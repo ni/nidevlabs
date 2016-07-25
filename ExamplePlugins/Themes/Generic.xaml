@@ -1,0 +1,31 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:platformFramework="clr-namespace:NationalInstruments.Design;assembly=NationalInstruments.PlatformFramework"
+    xmlns:exampleDiagram="clr-namespace:ExamplePlugins.ExampleDiagram.Design"
+    xmlns:local="clr-namespace:ExamplePlugins">
+
+    <Style TargetType="exampleDiagram:ExampleDiagramEditControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="exampleDiagram:ExampleDiagramEditControl">
+                    <Grid x:Name="PART_LayoutRoot">
+                        <platformFramework:DesignerEditControl x:Name="PART_designer"
+                                  DockedPaletteControl="{Binding ElementName=_dockedPaletteControl}">
+                            <exampleDiagram:ExampleRootDiagramCanvas x:Name="PART_diagram"/>
+                        </platformFramework:DesignerEditControl>
+                        <AdornerDecorator>
+                            <Grid HorizontalAlignment="Left" Margin="0,30,0,30">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="61"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <platformFramework:DockedPaletteControl x:Name="_dockedPaletteControl" Grid.Row="1"/>
+                            </Grid>
+                        </AdornerDecorator>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

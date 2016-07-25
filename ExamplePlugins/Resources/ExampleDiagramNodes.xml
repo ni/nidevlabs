@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PaletteControls PaletteBaseName="ExampleDiagramPalette" 
+                 xmlns:pf="http://www.ni.com/PlatformFramework" 
+                 xmlns:exampleNodes="http://www.ni.com/ExamplePlugins" 
+                 xmlns:vi="http://www.ni.com/LabVIEW.VI" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Category Display="Example Nodes" ElementId="ExamplePlugins.Nodes" UniqueId="EXAMPLENODES" Weight="1"
+            ImagePath="/ExamplePlugins;component/Resources/PaletteCategoryBarn40x40.xml"
+            BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PaletteCategory_40x40.xml"
+            >
+    <Leaf Display="Basic Node" UniqueId="ExamplePlugins.BasicNode"
+          ImagePath="/ExamplePlugins;component/Resources/Cow_40x40.xml"
+          BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
+      <pf:MergeScript>
+        <pf:MergeItem>
+          <exampleNodes:ExampleDiagramNode />
+        </pf:MergeItem>
+      </pf:MergeScript>
+    </Leaf>
+    <Leaf Display="Interactive Node" UniqueId="ExamplePlugins.InteractiveNode"
+          ImagePath="/ExamplePlugins;component/Resources/Pig_40x40.xml"
+          BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
+      <pf:MergeScript>
+        <pf:MergeItem>
+          <exampleNodes:InteractiveNode />
+        </pf:MergeItem>
+      </pf:MergeScript>
+    </Leaf>
+  </Category>
+</PaletteControls>

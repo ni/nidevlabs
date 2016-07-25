@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PaletteControls PaletteBaseName="Diagram" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:exampleNodes="http://www.ni.com/ExamplePlugins" xmlns:pf="http://www.ni.com/PlatformFramework" xmlns:vi="http://www.ni.com/LabVIEW.VI" xmlns:moc="http://www.ni.com/MocCommon">
+  <Category Display="Multiply Modes" UniqueId="NI.LabVIEW.VI:ModesForMultiplyOverloads" Weight="0.5">
+    <RequiredKeywords>
+      <Keyword>Modes</Keyword>
+    </RequiredKeywords>
+    <Leaf Display="Multiply By X" UniqueId="NI.ExamplePlugins:MultiplyByX"
+          ImagePath="/ExamplePlugins;component/Resources/MultiplyByXNode_40x40.xml"
+          BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
+      <pf:MergeScript>
+        <pf:MergeItem>
+          <exampleNodes:MultiplyByX />
+        </pf:MergeItem>
+      </pf:MergeScript>
+    </Leaf>
+  </Category>
+  <Category Display="Numeric Replacements" UniqueId="NI.LabVIEW.VI:ReplacementCategory.NumericReplacements" Weight="0.1">
+    <RequiredKeywords>
+      <Keyword>Replacements</Keyword>
+    </RequiredKeywords>
+    <Link LinkedId="NI.ExamplePlugins:MultiplyByX" />
+  </Category>
+</PaletteControls>

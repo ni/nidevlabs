@@ -1,0 +1,48 @@
+﻿<Window x:Class="ProgramaticControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgramaticControl"
+        mc:Ignorable="d"
+        Title="Open Project and Run" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="4" Grid.Row="0">Open Project</TextBlock>
+            <TextBox Margin="4" Grid.Row="0" Grid.Column="1" x:Name="_projectPath"></TextBox>
+            <Button Margin="4" Grid.Row="0" Grid.Column="2" Content="Load Project" Click="OnOpenProject" />
+            <TextBlock Margin="4" Grid.Row="1">Open VI</TextBlock>
+            <TextBox Margin="4" Grid.Row="1" Grid.Column="1" x:Name="_viName"></TextBox>
+            <Button Margin="4" Grid.Row="1" Grid.Column="2" Content="Load VI" Click="OnLoadVI" />
+            <Button Margin="4" Grid.Row="2" Grid.Column="3" Content="Run VI" Click="OnRunVI" />
+
+            <TextBlock Margin="6" Grid.Row="4" Text="Status / Errors" />
+            <TextBox Margin="6" Grid.Row="5" IsReadOnly="True" Grid.ColumnSpan="3" x:Name="_statusText"></TextBox>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="4" Text="Run Results" />
+            <TextBox Margin="6" Grid.Row="1" IsReadOnly="True" x:Name="_runResults"></TextBox>
+        </Grid>
+    </Grid>
+</Window>

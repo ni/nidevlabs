@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <InstallLocation>C:\Projects\TFS2\R4BajorMain\Binaries\WPF\LabVIEWNext\Debug</InstallLocation>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2DA51D40-D4A2-495A-A163-3B0CED4D7B11}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExamplePlugins</RootNamespace>
+    <AssemblyName>ExamplePlugins</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ExamplePlugins.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NationalInstruments.Common, Version=13.0.40.190, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Compiler, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Controls, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Controls.LabVIEW.Design">
+      <HintPath>$(InstallLocation)\NationalInstruments.Controls.LabVIEW.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.LabVIEW.Compiler.Interfaces, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.LabVIEW.Compiler.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.LabVIEW.VI, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.LabVIEW.VI.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.MocCommon, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.MocCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.PlatformFramework, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.PlatformFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ExampleDiagram\Design\InteractiveNodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExampleToolWindow\SelectionTrackingToolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExampleDiagram\Design\ExampleDiagramWireViewModel.cs" />
+    <Compile Include="ExampleDiagram\Design\ExampleRootDiagramCanvas.cs" />
+    <Compile Include="ExampleDiagram\Design\InteractiveNodeView.xaml.cs">
+      <DependentUpon>InteractiveNodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExampleDiagram\Design\InteractiveNodeViewModel.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\ExampleDiagramDefinition.cs" />
+    <Compile Include="ExampleDiagram\Design\ExampleDiagramDocument.cs" />
+    <Compile Include="ExampleDiagram\Design\ExampleDiagramEditControl.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\ExampleDiagramNode.cs" />
+    <Compile Include="ExampleDiagram\Design\ExampleDiagramNodeViewModel.cs" />
+    <Compile Include="ExampleDiagram\Design\ExampleDiagramPaletteLoader.cs" />
+    <Compile Include="ExampleDiagram\Shell\ExampleDiagramProjectService.cs" />
+    <Compile Include="ExampleDiagram\Design\ExampleDiagramViewModelProvider.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\ExampleRootDiagram.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\InteractiveNode.cs" />
+    <Compile Include="ExampleDocument\Model\TextDocumentDefinition.cs" />
+    <Compile Include="ExampleDocument\Shell\ProjectExplorerService.cs" />
+    <Compile Include="ExampleDocument\Shell\TextDocumentCommandContent.cs" />
+    <Compile Include="ExampleDocument\Shell\TextDocumentEditorView.cs" />
+    <Compile Include="ExampleDocument\Shell\TextEditorDocument.cs" />
+    <Compile Include="ExampleNode\Design\MultiplyByXViewModel.cs" />
+    <Compile Include="ExampleNode\Design\PaletteLoader.cs" />
+    <Compile Include="ExampleNode\Design\ViewModelProvider.cs" />
+    <Compile Include="ExampleNode\Model\MultiplyByXDfirNode.cs" />
+    <Compile Include="ExampleNode\Model\MultiplyByXNode.cs" />
+    <Compile Include="ExampleCommandPaneContent\ExampleCommandContent.cs" />
+    <Compile Include="ExampleToolWindow\SelectionTrackingToolWindow.xaml.cs">
+      <DependentUpon>SelectionTrackingToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExampleToolWindow\SelectionTrackingToolWindowType.cs" />
+    <Compile Include="NamespaceSchema.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <IncludeInCacheHash>True</IncludeInCacheHash>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <IncludeInCacheHash>True</IncludeInCacheHash>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ExamplePlugins.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DiagramPalette.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\10x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Copy_16x16.png" />
+    <Resource Include="Resources\Copy_32x32.png" />
+    <Resource Include="Resources\Cut_16x16.png" />
+    <Resource Include="Resources\Cut_32x32.png" />
+    <Resource Include="Resources\Delete_16x16.png" />
+    <Resource Include="Resources\Delete_32x32.png" />
+    <Resource Include="Resources\Paste_16x16.png" />
+    <Resource Include="Resources\Paste_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ModesPalette.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Paper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="disable_cache.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MultiplyByXNode_40x40.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Paper_16x16.png" />
+    <Resource Include="Resources\Paper_40x40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ExampleDiagramNodes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\WirePattern.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ArrogantLlama40x40.xml" />
+    <Resource Include="Resources\Cow_40x40.xml" />
+    <Resource Include="Resources\PaletteCategoryBarn40x40.xml" />
+    <Resource Include="Resources\Pig_40x40.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DocumentIconPaw16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PigNode_40x40.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /R /Y "$(TargetDir)ExamplePlugins.dll" "$(InstallLocation)"
+                    xcopy /R /Y "$(TargetDir)ExamplePlugins.pdb" "$(InstallLocation)"
+                    xcopy /R /Y "$(TargetDir)disable_cache.txt" "$(InstallLocation)"
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

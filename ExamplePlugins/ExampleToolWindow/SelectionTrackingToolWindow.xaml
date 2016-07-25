@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="ExamplePlugins.ExampleToolWindow.SelectionTrackingToolWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock FontSize="16" HorizontalAlignment="Right" Text="Active Document"></TextBlock>
+            <TextBlock FontSize="16" HorizontalAlignment="Right" Text="Active Document Type"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+            <TextBlock  FontSize="16" x:Name="_documentNameControl"></TextBlock>
+            <TextBlock  FontSize="16" x:Name="_documentTypeControl"></TextBlock>
+        </StackPanel>
+        <DataGrid ItemsSource="{Binding SelectedItems}" AutoGenerateColumns="False" Margin="10" Grid.Row="1" Grid.ColumnSpan="2" HeadersVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Icon">
+                    <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Image}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

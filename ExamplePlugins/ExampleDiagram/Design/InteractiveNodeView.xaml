@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="ExamplePlugins.ExampleDiagram.Design.InteractiveNodeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ExamplePlugins.ExampleDiagram.Design"
+             xmlns:core="clr-namespace:NationalInstruments.Core;assembly=NationalInstruments.Core"
+             mc:Ignorable="d" 
+             Height="50" Width="80">
+    <Border BorderBrush="DarkGray" BorderThickness="1">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <core:NineGrid DataSource="{Binding DataSource}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            </Grid>
+            <TextBlock Margin="0,0,4,0" HorizontalAlignment="Right" Text="Node Info" />
+            <TextBlock HorizontalAlignment="Center" Grid.Row="1" FontSize="8" Text="Node Info2" />
+            <CheckBox VerticalAlignment="Bottom" Grid.Row="2" Content="Active" />
+        </Grid>
+    </Border>
+</UserControl>
