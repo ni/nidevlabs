@@ -120,8 +120,8 @@
     <Compile Include="ExampleDiagram\SourceModel\ExampleDiagramDefinition.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramDocument.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramEditControl.cs" />
-    <Compile Include="ExampleDiagram\SourceModel\ExampleDiagramNode.cs" />
-    <Compile Include="ExampleDiagram\Design\ExampleDiagramNodeViewModel.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\BasicNode.cs" />
+    <Compile Include="ExampleDiagram\Design\BasicNodeViewModel.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramPaletteLoader.cs" />
     <Compile Include="ExampleDiagram\Shell\ExampleDiagramProjectService.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramViewModelProvider.cs" />

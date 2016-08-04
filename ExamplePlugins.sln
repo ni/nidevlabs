@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamplePlugins", "ExamplePl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fan", "FanControl\Fan.csproj", "{685D89F2-690D-4F75-9F01-066A8168F97A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanEditorExtensions", "FanDemo\FanEditorExtensions.csproj", "{BC278533-292A-4A6A-B650-62C50E817D26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanEditorExtensions", "FanPlugin\FanEditorExtensions.csproj", "{BC278533-292A-4A6A-B650-62C50E817D26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammaticControl", "ProgrammaticControl\ProgrammaticControl.csproj", "{B7D36151-14CC-4AD7-BC19-58A5449419FD}"
 EndProject

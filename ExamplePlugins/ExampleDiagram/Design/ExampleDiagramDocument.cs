@@ -38,6 +38,10 @@ namespace ExamplePlugins.ExampleDiagram.Design
         }
     }
 
+    /// <summary>
+    /// This is the document for the diagram editor.  The document is the root view model for the editor.
+    /// it is what owns and manages the editor.  It 
+    /// </summary>
     public class ExampleDiagramDocument : SourceFileDocument
     {
         protected override IEnumerable<IDocumentEditControlInfo> CreateDefaultEditControls()

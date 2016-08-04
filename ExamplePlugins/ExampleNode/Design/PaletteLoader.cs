@@ -25,23 +25,4 @@ namespace ExamplePlugins.ExampleNode.Design
             }
         }
     }
-
-    /// <summary>
-    /// Palette loader which provides our modes and replacement palettes
-    /// </summary>
-    [Export(typeof(IPaletteLoader))]
-    [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata(PaletteController.PaletteIdentifier, VIDiagramControl.PaletteIdentifier)]
-    [PartMetadata(ExportIdentifier.ExportIdentifierKey, ProductLevel.Elemental)]
-    public class ExamplePluginsDiagramModesPaletteLoader : ResourcePaletteLoader
-    {
-        /// <inheritdoc />
-        protected override string ResourcePath
-        {
-            get
-            {
-                return "ExamplePlugins.Resources.ModesPalette.xml";
-            }
-        }
-    }
 }

@@ -13,7 +13,7 @@
           BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
       <pf:MergeScript>
         <pf:MergeItem>
-          <exampleNodes:ExampleDiagramNode />
+          <exampleNodes:BasicNode />
         </pf:MergeItem>
       </pf:MergeScript>
     </Leaf>

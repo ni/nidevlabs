@@ -18,7 +18,7 @@ namespace ExamplePlugins.ExampleDiagram.Design
     {
         public ExamplePluginsViewModelProvider()
         {
-            AddSupportedModel<ExampleDiagramNode>(e => new ExampleDiagramNodeViewModel(e));
+            AddSupportedModel<BasicNode>(e => new BasicNodeViewModel(e));
             AddSupportedModel<InteractiveNode>(e => new InteractiveNodeViewModel(e));
             AddSupportedModel<Wire>(e => new ExampleDiagramWireViewModel(e));
         }
