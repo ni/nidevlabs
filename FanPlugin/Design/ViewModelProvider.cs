@@ -5,8 +5,10 @@ using FanPlugin.SourceModel;
 
 namespace FanPlugin.Design
 {
-    // The purpose of this class is to provide the IDE an explicit association between your Model and
-    // ViewModel types.
+    /// <summary>
+    /// The purpose of this class is to provide the IDE an explicit association between your Model and
+    /// ViewModel types.
+    /// </summary>
     [Export(typeof(IProvideViewModels))]
     [ExportProvideViewModels(typeof(VIPanelControl))]
     public class DemoViewModelProvider : ViewModelProvider

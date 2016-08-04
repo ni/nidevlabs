@@ -10,8 +10,10 @@ using NationalInstruments.PanelCommon.SourceModel;
 
 namespace FanPlugin.SourceModel
 {
+    /// <summary>
     // VisualModel is the common model class for control models to inherit from
-    // The IConfigurationPaneControl simply tags our model as a control to inherit a variety of base functionality for ribbon configuration (label, connector pane, etc...)
+    // The IConfigurationPaneControl simply tags our model as a control to inherit a variety of base functionality for configuration (label, connector pane, etc...)
+    /// </summary>
     public class FanModel : VisualModel, IConfigurationPaneControl, IProvideDiagramEvents
     {
         private const string FanName = "Fan";
@@ -23,7 +25,9 @@ namespace FanPlugin.SourceModel
         public static readonly PropertySymbol ValueSymbol = ExposePropertySymbol<FanModel>(ValueName, false);
         public static readonly PropertySymbol FanSpeedSymbol = ExposePropertySymbol<FanModel>(FanSpeedName, FanSpeed.Low);
 
-        protected FanModel() { }
+        protected FanModel()
+        {
+        }
 
         // This provides our parser with the name we are using to represent our control in its persisted state (in the xml)
         public override XName XmlElementName
@@ -31,8 +35,10 @@ namespace FanPlugin.SourceModel
             get { return XName.Get(FanName, DemoPanelNamespaceSchema.ParsableNamespaceName); }
         }
 
-        // This is required to supply the parser the mechanism to actually instantiate an instance of the model for a particular
-        // name it comes across in the persisted xml.
+        /// <summary>
+        /// This is required to supply the parser the mechanism to actually instantiate an instance of the model for a particular
+        /// name it comes across in the persisted xml.
+        /// <summary>
         [XmlParserFactoryMethod(FanName, DemoPanelNamespaceSchema.ParsableNamespaceName)]
         public static FanModel Create(IElementCreateInfo info)
         {
@@ -62,8 +68,11 @@ namespace FanPlugin.SourceModel
         }
 
         #endregion
-        // Required by the parser. In general for any property you would like to expose to the NextGen IDE, you should
-        // provide a case for it below
+
+        /// <summary>
+        /// Required by the parser. In general for any property you would like to expose to the NextGen IDE, you should
+        /// provide a case for it below
+        /// </summary>
         public override Type GetPropertyType(PropertySymbol identifier)
         {
             switch (identifier.Name)
@@ -77,30 +86,38 @@ namespace FanPlugin.SourceModel
             }
         }
 
-        // Models the 'Value' property of the Fan control
+        /// <summary>
+        /// Models the 'Value' property of the Fan control
+        /// </summary>
         public bool Value
         {
             get { return ImmediateValueOrDefault<bool>(ValueSymbol); }
             set { SetOrReplaceImmediateValue(ValueSymbol, value); }
         }
 
-        // Models the 'FanSpeed' property of the Fan control
+        /// <summary>
+        /// Models the 'FanSpeed' property of the Fan control
+        /// </summary>
         public FanSpeed FanSpeed
         {
             get { return ImmediateValueOrDefault<FanSpeed>(FanSpeedSymbol); }
             set { SetOrReplaceImmediateValue(FanSpeedSymbol, value); }
         }
 
-        // Required to create the necessary run-time configuration of the control
+        /// <summary>
+        /// Required to create the necessary run-time configuration of the control
+        /// </summary>
         public override XamlGenerationHelper XamlGenerationHelper
         {
             get { return new FanXamlHelper(); }
         }
     }
 
-    // This class provides the IDE knowledge for which model property to use to bind to its default
-    // diagram terminal. In this case we select the 'Value' property. As a result, when we drop the fan
-    // control on the panel, we will get an accessor bound to it's 'Value' property available on the diagram
+    /// <summary>
+    /// This class provides the IDE knowledge for which model property to use to bind to its default
+    /// diagram terminal. In this case we select the 'Value' property. As a result, when we drop the fan
+    /// control on the panel, we will get an accessor bound to it's 'Value' property available on the diagram
+    /// </summary>
     [ExportModelPropertyInfo(typeof(FanModel))]
     public class FanPropertyInfo : IModelPropertyInfo
     {
@@ -117,8 +134,10 @@ namespace FanPlugin.SourceModel
         }
     }
 
-    // This class is responsible for generating the appropriate run-time configuration of your control that
-    // is ideally based on the current state of your model. This is Windows-specific.
+    /// <summary>
+    /// This class is responsible for generating the appropriate run-time configuration of your control that
+    /// is ideally based on the current state of your model. This is Windows-specific.
+    /// </summary>
     public class FanXamlHelper : XamlGenerationHelper
     {
         public override Type ControlType

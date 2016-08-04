@@ -8,8 +8,10 @@ using FanPlugin.SourceModel;
 
 namespace FanPlugin.Design
 {
-    // The View Model is primarily responsible for funneling any model properties on to the view (which it also creates).
-    // It is also responsible for the generation of custom command content.
+    /// <summary>
+    /// The View Model is primarily responsible for funneling any model properties on to the view (which it also creates).
+    /// It is also responsible for the generation of custom command content.
+    /// </summary>
     public class FanViewModel : VisualViewModel
     {
         public FanViewModel(Element model)
@@ -24,10 +26,12 @@ namespace FanPlugin.Design
             return fan;
         }
 
-        // IMPORTANT!
-        // This is the place where we hook into the event that we had to expose on our control. The purpose of this event handler
-        // is to notice interactive changes on the view, and update the model accordingly. "Transactions" are required for the changes
-        // to the model to be persisted (and available for operations like XAML-generation).
+        /// <summary>
+        /// IMPORTANT!
+        /// This is the place where we hook into the event that we had to expose on our control. The purpose of this event handler
+        /// is to notice interactive changes on the view, and update the model accordingly. "Transactions" are required for the changes
+        /// to the model to be persisted (and available for operations like XAML-generation).
+        /// </summary>
         private void OnValueChanged(object sender, EventArgs eventArgs)
         {
             var fan = sender as Fan;
@@ -41,7 +45,9 @@ namespace FanPlugin.Design
             }
         }
 
-        // This method updates the view in response to property changes on the model
+        /// <summary>
+        /// This method updates the view in response to property changes on the model
+        /// <summary>
         protected override void SetProperty(NationalInstruments.DynamicProperties.PropertySymbol identifier, object value)
         {
             Fan fan = ProxiedElement as Fan;
@@ -61,7 +67,9 @@ namespace FanPlugin.Design
 
         #region Command Content
 
-        // This method will create the custom ribbon content to represent the FanSpeed editor
+        /// <summary>
+        /// This method will create the custom ribbon content to represent the FanSpeed editor
+        /// </summary>
         public override void CreateCommandContent(ICommandPresentationContext context)
         {
             base.CreateCommandContent(context);

@@ -6,9 +6,11 @@ using NationalInstruments.Core;
 
 namespace FanPlugin.SourceModel
 {
-    // This is necessary for the parser to understand the 'FanSpeed' enum datatype, which is persisted.
-    // The EnumSerializer generic type is a useful type to derive a converter from for custom enum types.
-    // If you do this, then the following is all that is needed for the parser to recognize your enum type.
+    /// <summary>
+    /// This is necessary for the parser to understand the 'FanSpeed' enum datatype, which is persisted.
+    /// The EnumSerializer generic type is a useful type to derive a converter from for custom enum types.
+    /// If you do this, then the following is all that is needed for the parser to recognize your enum type.
+    /// </summary>
     [ExportTypeConverter(typeof(FanSpeed), "FanSpeed")]
     public class FanSpeedConverter : EnumSerializer<FanSpeed>
     {
