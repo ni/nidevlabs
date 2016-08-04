@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ExamplePlugins.SourceModel;
 using NationalInstruments.Compiler;
 using NationalInstruments.Composition;
@@ -340,6 +341,8 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             {
                 return;
             }
+            // When setting a tag we are modifying the model so we must set the tags in a transaction.  Since all of the models are in
+            // the same file we can set all of the tags in a single transaction.
             using (var transaction = selectedModels.First().TransactionManager.BeginTransaction("Tag Selection", TransactionPurpose.User))
             {
                 foreach (var element in selectedModels)
@@ -368,10 +371,28 @@ namespace ExamplePlugins.ExampleCommandPaneContent
                 }
                 if (taggedElements.Any())
                 {
-                    var findOptions = new FindViewModelOptions();
-                    findOptions.Highlight = true;
-                    site.FindViewModelForModelElementAsync(taggedElements.First(), findOptions).IgnoreAwait();
+                    // If we found tagged elements highlight all of them with a slight delay for a fun effect.
+                    // Note the usage of .IgnoreAwait().  This is a convention we use to ensure that any unhandled exceptions
+                    // are dealt with.
+                    SlowlyHighlightElementsAsync(site, taggedElements).IgnoreAwait();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Highlights a collection of elements with a slight delay between the start of the highlight animation.
+        /// </summary>
+        /// <param name="site">The current document edit site</param>
+        /// <param name="elements">The elements to highlight</param>
+        /// <returns>The task to await on</returns>
+        private static async Task SlowlyHighlightElementsAsync(DocumentEditSite site, IEnumerable<Element> elements)
+        {
+            foreach (var element in elements)
+            {
+                var findOptions = new FindViewModelOptions();
+                findOptions.Highlight = true;
+                await site.FindViewModelForModelElementAsync(element, findOptions);
+                await Task.Delay(100);
             }
         }
     }
