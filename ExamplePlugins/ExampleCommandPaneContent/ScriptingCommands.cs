@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NationalInstruments.Compiler;
 using NationalInstruments.Composition;
 using NationalInstruments.Controls.Shell;
@@ -7,6 +8,7 @@ using NationalInstruments.MocCommon.SourceModel;
 using NationalInstruments.Shell;
 using NationalInstruments.SourceModel;
 using NationalInstruments.SourceModel.Envoys;
+using NationalInstruments.VI.Design;
 using NationalInstruments.VI.SourceModel;
 
 namespace ExamplePlugins.ExampleCommandPaneContent
@@ -33,7 +35,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewVICommand = new ShellRelayCommand(OnAddNewVI)
         {
-            LabelTitle = "(Plug-in) Add New VI",
+            LabelTitle = "Add New VI",
             MenuParent = ScriptingMenuRoot
         };
 
@@ -42,7 +44,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewMemberVICommand = new ShellRelayCommand(OnAddNewMemberVI)
         {
-            LabelTitle = "(Plug-in) Add New Member VI",
+            LabelTitle = "Add New Member VI",
             MenuParent = ScriptingMenuRoot
         };
 
@@ -51,7 +53,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewTypeCommand = new ShellRelayCommand(OnAddNewType)
         {
-            LabelTitle = "(Plug-in) Add New Type",
+            LabelTitle = "Add New Type",
             MenuParent = ScriptingMenuRoot
         };
 
@@ -61,7 +63,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewDerivedTypeCommand = new ShellRelayCommand(OnAddNewDerviedType)
         {
-            LabelTitle = "(Plug-in) Add New DerivedType",
+            LabelTitle = "Add New DerivedType",
             MenuParent = ScriptingMenuRoot
         };
 
@@ -80,72 +82,154 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             context.Add(AddNewDerivedTypeCommand);
         }
 
+        /// <summary>
+        /// Command handler which adds a new VI to the project (under the default target)
+        /// </summary>
         public static void OnAddNewVI(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
         {
             var project = host.GetSharedExportedValue<IDocumentManager>().ActiveProject;
-            var createInfo = EnvoyCreateInfo.CreateForNew(VirtualInstrument.VIModelDefinitionType, new QualifiedName("My New VI"));
+            var createInfo = EnvoyCreateInfo.CreateForNew(VirtualInstrument.VIModelDefinitionType, new QualifiedName("New VI.gvi"));
             Envoy createdItem = null;
+            ILockedSourceFile createdFile = null;
+            // Always perform modifications from within a transaction
+            // Here we are creating a user transaction which means it is undoable
             using (var transaction = project.TransactionManager.BeginTransaction("Add A VI", TransactionPurpose.User))
             {
-                var createdFile = project.CreateNewFile(null, createInfo);
+                createdFile = project.CreateNewFile(null, createInfo);
                 createdItem = createdFile?.Envoy;
                 transaction.Commit();
             }
+            // edit the newly created VI
             createdItem?.Edit();
+
+            // After editing dispose our lock in the file
+            createdFile?.Dispose();
         }
 
+        /// <summary>
+        /// Command handler which adds a new member VI to the gtype that is currently being edited
+        /// </summary>
         public static void OnAddNewMemberVI(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
         {
-            var gType = (GTypeDefinition)site?.ActiveDocument?.Envoy?.ReferenceDefinition;
+            // Check to see that the user is currently editing a type and if not do nothing.
+            var gTypeEnvoy = site?.ActiveDocument?.Envoy;
+            var gType = (GTypeDefinition)gTypeEnvoy?.ReferenceDefinition;
             if (gType == null)
             {
                 return;
             }
+
             var project = host.GetSharedExportedValue<IDocumentManager>().ActiveProject;
-            var createInfo = EnvoyCreateInfo.CreateForNew(VirtualInstrument.VIModelDefinitionType, new QualifiedName("My New VI"));
+            var createInfo = EnvoyCreateInfo.CreateForNew(VirtualInstrument.VIModelDefinitionType, new QualifiedName("New Member VI.gvi"));
             Envoy createdItem = null;
+            ILockedSourceFile createdFile = null;
+            // Always perform modifications from within a transaction
+            // Here we are creating a user transaction which means it is undoable
             using (var transaction = gType.TransactionManager.BeginTransaction("Add A VI", TransactionPurpose.User))
             {
-                var createdFile = project.CreateNewFile(gType.Scope, createInfo);
+                createdFile = project.CreateNewFile(gType.Scope, createInfo);
                 createdItem = createdFile.Envoy;
                 transaction.Commit();
             }
-            createdItem?.Edit();
+
+            // Lets add a terminal to the member data
+            // First we query for the merge script provider from our gtype.  Merge scripts are snippets of code that can be
+            // merged into diagrams / panels / ...
+            // The gtype will provide a merge script that can be used to add data item (control / terminal) to a VI and
+            // many other things
+            string mergeScriptText = string.Empty;
+            var dataProviders = gTypeEnvoy.QueryService<IProvideMergeScriptData>();
+            foreach (var dataProvider in dataProviders)
+            {
+                foreach (var script in dataProvider.MergeScriptData)
+                {
+                    if (script.ClipboardDataFormat == VIDiagramControl.ClipboardDataFormat)
+                    {
+                        // Found the merge script for a VI diagram, we are done
+                        mergeScriptText = script.MergeText;
+                        break;
+                    }
+                }
+            }
+            // Now merge the script onto the diagram of the VI we just created
+            if (!string.IsNullOrEmpty(mergeScriptText))
+            {
+                var vi = (VirtualInstrument)createdItem.ReferenceDefinition;
+                // Always perform modifications from within a transaction
+                // We are making this transaction a non user so that it cannot be undone it is just the initial state of the VI
+                using (var transaction = vi.TransactionManager.BeginTransaction("Add A VI", TransactionPurpose.NonUser))
+                {
+                    var mergeScript = MergeScript.FromString(mergeScriptText, host);
+                    var resolver = new MergeScriptResolver(mergeScript, host);
+                    resolver.Merge(vi.BlockDiagram);
+                    // Don't forget to commit the transaction or it will cancel.
+                    transaction.Commit();
+                }
+            }
+            // Now edit the memeber VI that was just created, and this time let's edit starting on the diagram
+            EditDocumentInfo editInfo = new EditDocumentInfo();
+            editInfo.EditorType = typeof(VIDiagramControl);
+            createdItem?.Edit(editInfo);
+
+            // After editing dispose our lock in the file
+            createdFile?.Dispose();
         }
 
+        /// <summary>
+        /// Command handler which adds a new gtype to the project
+        /// </summary>
         public static void OnAddNewType(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
         {
             var project = host.GetSharedExportedValue<IDocumentManager>().ActiveProject;
-            var createInfo = EnvoyCreateInfo.CreateForNew(GTypeDefinition.ModelDefinitionTypeString, new QualifiedName("My New Type"));
+            var createInfo = EnvoyCreateInfo.CreateForNew(GTypeDefinition.ModelDefinitionTypeString, new QualifiedName("New Type.gtype"));
             ILockedSourceFile lockSourceFile;
             using (var transaction = project.TransactionManager.BeginTransaction("Add A Type", TransactionPurpose.User))
             {
                 lockSourceFile = project.CreateNewFile(null, createInfo);
                 transaction.Commit();
             }
+            // To create a class we need to set the base type to whatever we want.  The default base type for a class is GObject
+            // We don't point to the base directly and instead we set the QualifiedName of the base class we want.  The linker will then
+            // find the base type by name and hook everything up based on the project configuration.
             using (var transaction = lockSourceFile.Envoy.ReferenceDefinition.TransactionManager.BeginTransaction("Make Type A Class", TransactionPurpose.NonUser))
             {
                 ((GTypeDefinition)lockSourceFile.Envoy.ReferenceDefinition).BaseTypeQualifiedName = TargetCommonTypes.GObjectQualifiedName;
                 transaction.Commit();
             }
+            lockSourceFile?.Envoy?.Edit();
+
+            // After editing dispose our lock in the file
+            lockSourceFile?.Dispose();
         }
 
+        /// <summary>
+        /// Command handler which adds a new gtype to the project that is derived from the gtype currently being edited
+        /// </summary>
         public static void OnAddNewDerviedType(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
         {
+            // Check to see that the user is currently editing a type and if not do nothing.
+            // The edit site provides access to the state of the editor.  Here we are checking to see of the active document
+            // is a gtype by looking at the definition that is being edited.  The definition is the model of the object being
+            // edited
             var gType = (GTypeDefinition)site?.ActiveDocument?.Envoy?.ReferenceDefinition;
             if (gType == null)
             {
                 return;
             }
-
+            // Get the project being edited
             var project = host.GetSharedExportedValue<IDocumentManager>().ActiveProject;
-            var createInfo = EnvoyCreateInfo.CreateForNew(GTypeDefinition.ModelDefinitionTypeString, new QualifiedName("My New Derived Type.gtype"));
+            // Setup the create info for a gtype.
+            var createInfo = EnvoyCreateInfo.CreateForNew(GTypeDefinition.ModelDefinitionTypeString, new QualifiedName("New Derived Type.gtype"));
+            // The LockedSourceFile is an object which holds a document in memory
             ILockedSourceFile lockSourceFile;
+            // Always perform modifications from within a transaction
+            // Here we are creating a user transaction which means it is undoable
             using (var transaction = project.TransactionManager.BeginTransaction("Add A Type", TransactionPurpose.User))
             {
                 lockSourceFile = project.CreateNewFile(null, createInfo);
                 transaction.Commit();
             }
+            // Here we are setting the base type based on the type that is currently being edited.
             using (var transaction = lockSourceFile.Envoy.ReferenceDefinition.TransactionManager.BeginTransaction("Make Type A Class", TransactionPurpose.NonUser))
             {
                 ((GTypeDefinition)lockSourceFile.Envoy.ReferenceDefinition).BaseTypeQualifiedName = gType.Name;
