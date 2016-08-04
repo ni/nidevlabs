@@ -34,6 +34,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             base.CreateBatchRules(rules);
 
             rules.Add(new CoreBatchRule());
+            rules.Add(new VerticalGrowNodeBoundsRule());
             rules.Add(new WiringBatchRule());
             rules.Add(new WireCommentBatchRule());
         }
