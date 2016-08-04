@@ -1,9 +1,4 @@
 ﻿using NationalInstruments.Design;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NationalInstruments.SourceModel;
 using NationalInstruments.Core;
 
@@ -38,7 +33,7 @@ namespace ExamplePlugins.ExampleDiagram.Design
         {
             get
             {
-                return ErrorClusterAssets.GetWireRenderInfo(4);
+                return ErrorClusterAssets.GetWireRenderInfo(2);
             }
         }
     }
