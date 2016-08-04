@@ -4,7 +4,7 @@ using NationalInstruments.RuntimeSerialization;
 using FanControl;
 using NationalInstruments.Core;
 
-namespace FanDemo
+namespace FanPlugin.SourceModel
 {
     // This is necessary for the parser to understand the 'FanSpeed' enum datatype, which is persisted.
     // The EnumSerializer generic type is a useful type to derive a converter from for custom enum types.

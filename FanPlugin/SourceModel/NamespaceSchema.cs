@@ -2,7 +2,7 @@
 using System.Reflection;
 using NationalInstruments.SourceModel.Persistence;
 
-namespace FanDemo
+namespace FanPlugin.SourceModel
 {
     /// <summary>
     /// Implements namespace versioning for elements in this assembly.

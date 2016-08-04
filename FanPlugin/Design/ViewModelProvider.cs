@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.Composition;
-using FanDemo;
 using NationalInstruments.VI.Design;
 using NationalInstruments.Shell;
-using FanDemo.SourceModel;
+using FanPlugin.SourceModel;
 
-namespace FanControl
+namespace FanPlugin.Design
 {
     // The purpose of this class is to provide the IDE an explicit association between your Model and
     // ViewModel types.
@@ -12,6 +11,9 @@ namespace FanControl
     [ExportProvideViewModels(typeof(VIPanelControl))]
     public class DemoViewModelProvider : ViewModelProvider
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public DemoViewModelProvider()
         {
             AddSupportedModel<FanModel>(e => new FanViewModel(e));

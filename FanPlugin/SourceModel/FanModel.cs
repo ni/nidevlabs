@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
 using FanControl;
-using FanDemo;
 using NationalInstruments.Controls.SourceModel;
 using NationalInstruments.DynamicProperties;
 using NationalInstruments.VI.SourceModel;
@@ -9,7 +8,7 @@ using NationalInstruments.SourceModel.Persistence;
 using NationalInstruments.SourceModel;
 using NationalInstruments.PanelCommon.SourceModel;
 
-namespace FanDemo.SourceModel
+namespace FanPlugin.SourceModel
 {
     // VisualModel is the common model class for control models to inherit from
     // The IConfigurationPaneControl simply tags our model as a control to inherit a variety of base functionality for ribbon configuration (label, connector pane, etc...)

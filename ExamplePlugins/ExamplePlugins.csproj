@@ -111,6 +111,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleCommandPaneContent\ScriptingCommands.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramWireViewModel.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleRootDiagramCanvas.cs" />
     <Compile Include="ExampleDiagram\Design\InteractiveNodeView.xaml.cs">

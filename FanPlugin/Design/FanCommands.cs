@@ -7,9 +7,9 @@ using NationalInstruments.MocCommon.Design;
 using NationalInstruments.Controls.Shell;
 using NationalInstruments.SourceModel;
 using NationalInstruments.Shell;
-using FanDemo.SourceModel;
+using FanPlugin.SourceModel;
 
-namespace FanDemo
+namespace FanPlugin.Design
 {
     // This class contains the commands which the command bar (and popup menu) utilizes for the fan control. Specifically, there are 
     // four commands. One to represent the "menu open" command, and serve as the parent in a popup menu, and three others to

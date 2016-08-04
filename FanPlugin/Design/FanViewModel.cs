@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using FanControl;
-using NationalInstruments.Controls.SourceModel;
-using NationalInstruments.Controls.Design;
 using NationalInstruments.Core;
-using NationalInstruments.VI.Design;
 using NationalInstruments.MocCommon.Design;
-using NationalInstruments.Controls.Shell;
 using NationalInstruments.Design;
 using NationalInstruments.SourceModel;
-using NationalInstruments.Shell;
-using FanDemo.SourceModel;
+using FanControl;
+using FanPlugin.SourceModel;
 
-namespace FanDemo
+namespace FanPlugin.Design
 {
     // The View Model is primarily responsible for funneling any model properties on to the view (which it also creates).
     // It is also responsible for the generation of custom command content.

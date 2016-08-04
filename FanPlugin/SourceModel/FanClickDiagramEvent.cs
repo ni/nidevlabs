@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NationalInstruments.DataTypes;
 using NationalInstruments.SourceModel;
 
-namespace FanDemo
+namespace FanPlugin.SourceModel
 {
     /// <summary>
     /// Diagram event model for a position click event

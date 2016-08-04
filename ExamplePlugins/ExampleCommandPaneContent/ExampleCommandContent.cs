@@ -47,6 +47,12 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             LabelTitle = "(Plug-in) Open In Notepad",
         };
 
+        public static readonly ICommandEx OpenInNotepadMenuCommand = new ShellRelayCommand(OnOpenInNotepad)
+        {
+            LabelTitle = "(Plug-in) Open In Notepad",
+            MenuParent = MenuPathCommands.EditMenu
+        };
+
         public static readonly ICommandEx TerminalCommand = new ShellRelayCommand(OnShowTerminalType)
         {
             LabelTitle = "(Plug-in) Terminal Type",
@@ -116,6 +122,12 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             {
                 NIMessageBox.Show("The terminal type is: " + viewModel.DataType.ToString());
             }
+        }
+
+        public override void CreateApplicationContent(ICommandPresentationContext context)
+        {
+            base.CreateApplicationContent(context);
+            context.Add(OpenInNotepadMenuCommand);
         }
 
         /// <summary>

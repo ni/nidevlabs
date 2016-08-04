@@ -8,7 +8,7 @@ using NationalInstruments.Core;
 using NationalInstruments.SourceModel.Envoys;
 using NationalInstruments.SourceModel;
 
-namespace FanControl
+namespace FanPlugin.Design
 {
     /// <summary>
     /// This class is required to insert your custom control into the front panel palette.
@@ -24,7 +24,7 @@ namespace FanControl
         {
             get
             {
-                return "FanDemo.Resources.DemoPanelPalette.xml";
+                return "FanPlugin.Resources.DemoPanelPalette.xml";
             }
         }
     }

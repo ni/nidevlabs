@@ -8,7 +8,7 @@
     <ProjectGuid>{BC278533-292A-4A6A-B650-62C50E817D26}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FanEditorExtensions</RootNamespace>
+    <RootNamespace>FanPlugin</RootNamespace>
     <AssemblyName>FanEditorExtensions</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -90,7 +90,7 @@
     <Compile Include="Design\ViewModelProvider.cs" />
     <Compile Include="SourceModel\FanClickDiagramEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Design\FanSpeedConverter.cs" />
+    <Compile Include="SourceModel\FanSpeedConverter.cs" />
     <Compile Include="SourceModel\FanModel.cs" />
     <Compile Include="Design\FanCommands.cs" />
     <Compile Include="Design\FanViewModel.cs" />
@@ -117,8 +117,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /R /Y "$(TargetDir)FanDemo.dll" "$(InstallLocation)"
-                    xcopy /R /Y "$(TargetDir)FanDemo.pdb" "$(InstallLocation)"
+    <PostBuildEvent>xcopy /R /Y "$(TargetDir)FanEditorExtensions.dll" "$(InstallLocation)"
+                    xcopy /R /Y "$(TargetDir)FanEditorExtensions.pdb" "$(InstallLocation)"
     </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
