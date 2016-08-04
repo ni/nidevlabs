@@ -114,6 +114,7 @@
     <Compile Include="ExampleCommandPaneContent\ScriptingCommands.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramWireViewModel.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleRootDiagramCanvas.cs" />
+    <Compile Include="ExampleDiagram\Design\GrowableNodeViewModel.cs" />
     <Compile Include="ExampleDiagram\Design\InteractiveNodeView.xaml.cs">
       <DependentUpon>InteractiveNodeView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +128,7 @@
     <Compile Include="ExampleDiagram\Shell\ExampleDiagramProjectService.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramViewModelProvider.cs" />
     <Compile Include="ExampleDiagram\SourceModel\ExampleRootDiagram.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\GrowableNode.cs" />
     <Compile Include="ExampleDiagram\SourceModel\InteractiveNode.cs" />
     <Compile Include="ExampleDocument\Model\TextDocumentDefinition.cs" />
     <Compile Include="ExampleDocument\Shell\ProjectExplorerService.cs" />
@@ -212,10 +214,14 @@
     <EmbeddedResource Include="Resources\ExampleDiagramNodes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\WirePattern.xml" />
+    <EmbeddedResource Include="Resources\WirePattern.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ArrogantLlama40x40.xml" />
+    <Resource Include="Resources\Llama_40x40.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Resource Include="Resources\Cow_40x40.xml" />
     <Resource Include="Resources\PaletteCategoryBarn40x40.xml" />
     <Resource Include="Resources\Pig_40x40.xml" />

@@ -17,6 +17,15 @@
         </pf:MergeItem>
       </pf:MergeScript>
     </Leaf>
+    <Leaf Display="Growable Node" UniqueId="ExamplePlugins.BasicNode"
+          ImagePath="/ExamplePlugins;component/Resources/Llama_40x40.xml"
+          BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
+      <pf:MergeScript>
+        <pf:MergeItem>
+          <exampleNodes:GrowableNode />
+        </pf:MergeItem>
+      </pf:MergeScript>
+    </Leaf>
     <Leaf Display="Interactive Node" UniqueId="ExamplePlugins.InteractiveNode"
           ImagePath="/ExamplePlugins;component/Resources/Pig_40x40.xml"
           BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
