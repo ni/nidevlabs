@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 using NationalInstruments.DataTypes;
 using NationalInstruments.SourceModel;
@@ -8,17 +6,21 @@ using NationalInstruments.SourceModel.Persistence;
 
 namespace ExamplePlugins.ExampleDiagram.SourceModel
 {
+    /// <summary>
+    /// This is the model for a basic node.  This node has 4 terminals that can be wired together.  It correctly saves and loads
+    /// but does not have any configuration.
+    /// </summary>
     public class BasicNode : Node
     {
-        // Our Private Fields
-
+        // this node has a fixed set of terminals and they are stored as fields
         private Terminal _input1Terminal;
         private Terminal _input2Terminal;
         private Terminal _output1Terminal;
         private Terminal _output2Terminal;
 
         /// <summary>
-        /// This is the specific type identifier for the node
+        /// This is the specific type identifier for the node.  T
+        /// This is what will identify the node in persisted content.
         /// </summary>
         public const string ElementName = "BasicNode";
 
@@ -61,11 +63,16 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             {
                 return new Documentation() { Name = "Input 2" };
             }
-            return new Documentation() { Name = "Result" };
+            if (terminal == _output1Terminal)
+            {
+                return new Documentation() { Name = "Result 1" };
+            }
+            return new Documentation() { Name = "Result 1" };
         }
 
         /// <summary>
-        /// Our create this.  This is used to create a new instance either programmatically, from load, and from the palette
+        /// This an exported factory method used to construct instances of this node.
+        /// This is used to create a new instance either programmatically, from load, and from the palette (merge script)
         /// </summary>
         /// <param name="info">creation information.  This tells us why we are being created (new, load, ...)</param>
         /// <returns>The newly created node</returns>
@@ -97,7 +104,6 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             base.Init(info);
             Width = StockDiagramGeometries.StandardNodeWidth;
             Height = StockDiagramGeometries.StandardNodeHeight;
-
             _input1Terminal = new NodeTerminal(Direction.Unknown, PFTypes.Void, "Input 1", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 0));
             _input2Terminal = new NodeTerminal(Direction.Unknown, PFTypes.Void, "Input 1", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 3));
             _output1Terminal = new NodeTerminal(Direction.Unknown, PFTypes.Void, "Output 1", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0));

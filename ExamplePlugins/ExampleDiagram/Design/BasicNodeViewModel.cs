@@ -1,12 +1,6 @@
-﻿using System;
-using System.Linq;
-using NationalInstruments.Composition;
-using NationalInstruments.Core;
-using NationalInstruments.Controls.Shell;
+﻿using NationalInstruments.Core;
 using NationalInstruments.Design;
 using NationalInstruments.SourceModel;
-using NationalInstruments.Shell;
-using ExamplePlugins.ExampleNode.Model;
 
 namespace ExamplePlugins.ExampleDiagram.Design
 {
