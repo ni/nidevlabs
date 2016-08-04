@@ -10,6 +10,7 @@ using NationalInstruments.Controls.Shell;
 using NationalInstruments.Design;
 using NationalInstruments.SourceModel;
 using NationalInstruments.Shell;
+using FanDemo.SourceModel;
 
 namespace FanDemo
 {

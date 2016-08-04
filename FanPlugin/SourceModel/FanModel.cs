@@ -9,7 +9,7 @@ using NationalInstruments.SourceModel.Persistence;
 using NationalInstruments.SourceModel;
 using NationalInstruments.PanelCommon.SourceModel;
 
-namespace FanDemo
+namespace FanDemo.SourceModel
 {
     // VisualModel is the common model class for control models to inherit from
     // The IConfigurationPaneControl simply tags our model as a control to inherit a variety of base functionality for ribbon configuration (label, connector pane, etc...)

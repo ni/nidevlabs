@@ -7,6 +7,7 @@ using NationalInstruments.MocCommon.Design;
 using NationalInstruments.Controls.Shell;
 using NationalInstruments.SourceModel;
 using NationalInstruments.Shell;
+using FanDemo.SourceModel;
 
 namespace FanDemo
 {

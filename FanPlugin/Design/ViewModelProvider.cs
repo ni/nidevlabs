@@ -2,6 +2,7 @@
 using FanDemo;
 using NationalInstruments.VI.Design;
 using NationalInstruments.Shell;
+using FanDemo.SourceModel;
 
 namespace FanControl
 {
