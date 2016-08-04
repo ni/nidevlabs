@@ -6,7 +6,6 @@ using NationalInstruments.Controls.Shell;
 using NationalInstruments.Design;
 using NationalInstruments.SourceModel;
 using NationalInstruments.Shell;
-using ExamplePlugins.ExampleNode.Model;
 using ExamplePlugins.ExampleDiagram.SourceModel;
 using System.Collections.Generic;
 

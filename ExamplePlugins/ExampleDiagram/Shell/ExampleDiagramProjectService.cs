@@ -28,7 +28,7 @@ namespace ExamplePlugins.ExampleDiagram.Shell
     /// </summary>
     public class ExampleDiagramProjectExplorerService : ProjectItemInfoSourceFileReferenceDefaultService
     {
-        public static ImageSource DefaultIcon = ResourceHelpers.LoadBitmapImage(typeof(ExampleDiagramProjectExplorerService), "Resources/Paper.png");
+        public static ImageSource DefaultIcon =  ResourceHelpers.LoadBitmapImage(typeof(ExampleDiagramProjectExplorerService), "Resources/DocumentIconPaw16x16.png");
 
         /// <summary>
         /// Returns the icon to use in the project tree

@@ -31,6 +31,10 @@ namespace ProgramaticControl
             DocumentManager = Host.GetSharedExportedValue<IDocumentManager>();
         }
 
+        /// <summary>
+        /// The host represents an instance of our editing enviornment.  It manages all of the objects
+        /// involved in the designtime system of the editor.
+        /// </summary>
         private ICompositionHost Host { get; set; }
 
         private IDocumentManager DocumentManager { get; set; }
@@ -98,7 +102,7 @@ namespace ProgramaticControl
         /// <remarks>Must be called in dispatcher thread.</remarks>
         private IReferencedFileService GetReferencingFile(string viName)
         {
-            if (DocumentManager != null)
+            if (_project != null)
             {
                 foreach (var envoy in _project.GetDescendantsBreadthFirst(null).OfType<Envoy>())
                 {
@@ -112,6 +116,9 @@ namespace ProgramaticControl
             return null;
         }
 
+        /// <summary>
+        /// Event handler used to run a VI
+        /// </summary>
         private async void OnRunVI(object sender, RoutedEventArgs e)
         {
             await RunVIAsync();
@@ -142,11 +149,16 @@ namespace ProgramaticControl
             // This will make sure the last run values retain their values after VI executes
             using (viExecutionService.FunctionDataspace.EnsureDataAvailability())
             {
+                // Run the VI and await for it to complete
                 await viExecutionService.RunAsync();
                 VIDoneExecuting();
             }
         }
 
+        /// <summary>
+        /// This will be called when the VI finishes execution.  When the VI finishes execution this
+        /// method will retrieve all of the values from the VI's connector pane
+        /// </summary>
         private void VIDoneExecuting()
         {
             IDataspace dataContext = null;
@@ -172,8 +184,17 @@ namespace ProgramaticControl
         }
     }
 
+    /// <summary>
+    /// This is a collection of helper methods that will be added to the core framework but did not make it into
+    /// the last drop
+    /// </summary>
     public static class ToAddToFramework
     {
+        /// <summary>
+        /// A helper to asynchronously compile a VI hierarchy and deploy it to the runtime
+        /// </summary>
+        /// <param name="executionService">The execution service of the VI to run</param>
+        /// <returns>Task to await on.  This will be completed when the compile is complete</returns>
         public static async Task CompileAndDeployAsync(this IExecutionService executionService)
         {
             var viExecutionService = executionService as NationalInstruments.MocCommon.Execution.ExecutionService;
@@ -181,6 +202,11 @@ namespace ProgramaticControl
             await viExecutionService.CompileAndDeployHierarchyAsync(cancellationSource.Token, AsyncTaskPriority.WorkerHighest);
         }
 
+        /// <summary>
+        /// A helper to asynchronus run a VI
+        /// </summary>
+        /// <param name="executionService">The execution services to use to run the VI</param>
+        /// <returns>Task to await on.  This will be completed when the VI finishes execution.</returns>
         public static Task RunAsync(this IExecutionService executionService)
         {
             TaskCompletionSource<bool> result = new TaskCompletionSource<bool>();

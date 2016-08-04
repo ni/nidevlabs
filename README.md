@@ -19,6 +19,8 @@ If you installed Next Generation LabVIEW Features Technology Preview somewhere e
 You will also need to change the [InstallLocation.targets](InstallLocation.targets) file to refer to the install location.  
 The install location affects where the projects look for the dependent assemblies and where the built assemblies are copied for use.
 
+The APIs and features used by these examples are expected to change and may be removed with new releases.  The plan is to keep these examples up to date with each new release.
+ 
 To remove this example from the installed application, delete the following files from the install directory:
 
 * ExamplePlugins.dll

@@ -57,7 +57,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewTypeCommand = new ShellRelayCommand(OnAddNewType)
         {
-            LabelTitle = "Add New Type",
+            LabelTitle = "Add New Class",
             MenuParent = ScriptingMenuRoot
         };
 
@@ -67,7 +67,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewDerivedTypeCommand = new ShellRelayCommand(OnAddNewDerviedType)
         {
-            LabelTitle = "Add New DerivedType",
+            LabelTitle = "Add New Derived Class",
             MenuParent = ScriptingMenuRoot
         };
 

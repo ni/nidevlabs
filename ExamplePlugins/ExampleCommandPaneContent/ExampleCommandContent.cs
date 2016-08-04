@@ -36,30 +36,48 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// <summary>
         /// This is the definition of the command which will multiply the output of the random number by 10
         /// </summary>
-        public static readonly ICommandEx MultipleCommand = new ShellSelectionRelayCommand(OnMultipleBy10, CanMultiplyBy10)
+        public static readonly ICommandEx MultiplyBy10Command = new ShellSelectionRelayCommand(OnMultipleBy10, CanMultiplyBy10)
         {
             LabelTitle = "Multiply By 10",
             LargeImageSource = ResourceHelpers.LoadBitmapImage(typeof(ExampleCommandContent), "Resources/10x.png")
         };
 
+        /// <summary>
+        /// This is the definition of the command which will persist the active source model to a temporary merge script
+        /// and open the result in notepad for viewing
+        /// </summary>
         public static readonly ICommandEx OpenInNotepadCommand = new ShellRelayCommand(OnOpenInNotepad)
         {
             LabelTitle = "(Plug-in) Open In Notepad",
         };
 
+        /// <summary>
+        /// This is the definition of the command which will persist the active source model to a temporary merge script
+        /// and open the result in notepad for viewing
+        /// This command can be used in the top level menu.  It will appear in the Edit meu
+        /// </summary>
         public static readonly ICommandEx OpenInNotepadMenuCommand = new ShellRelayCommand(OnOpenInNotepad)
         {
             LabelTitle = "(Plug-in) Open In Notepad",
             MenuParent = MenuPathCommands.EditMenu
         };
 
+        /// <summary>
+        /// This is the definition of the command which will show the data type of a terminal that is clicked in
+        /// it will appear in the right click menu of a terminal
+        /// </summary>
         public static readonly ICommandEx TerminalCommand = new ShellRelayCommand(OnShowTerminalType)
         {
             LabelTitle = "(Plug-in) Terminal Type",
         };
 
+        /// <summary>
+        /// This is the command enabler for the multiple by 10 command.  Command enablers are called when the state of the editor changes
+        /// The enable can update the state of the command based on the current state of the editor (what is selected, is something running, ...)
+        /// </summary>
         public static bool CanMultiplyBy10(ICommandParameter parameter, IEnumerable<IViewModel> selection, ICompositionHost host, DocumentEditSite site)
         {
+            // This command is always enabled
             return true;
         }
 
@@ -108,13 +126,23 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             }
         }
 
+        /// <summary>
+        /// Command handler which writes the active definition to a temporary merge script and opens that script in notepad.
+        /// </summary>
         public static void OnOpenInNotepad(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
         {
-            var fileName = Path.GetTempFileName();
-            File.WriteAllText(fileName, MergeScriptBuilder.Create(new[] { site.EditControl.Document.Envoy.ReferenceDefinition }, host).ToString());
-            Process.Start("Notepad.exe", fileName);
+            var activeDefinition = site?.EditControl?.Document?.Envoy?.ReferenceDefinition;
+            if (activeDefinition != null)
+            {
+                var fileName = Path.GetTempFileName();
+                File.WriteAllText(fileName, MergeScriptBuilder.Create(activeDefinition.ToEnumerable(), host).ToString());
+                Process.Start("Notepad.exe", fileName);
+            }
         }
 
+        /// <summary>
+        /// Command handler which shows the data type of the selected terminal
+        /// </summary>
         public static void OnShowTerminalType(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
         {
             var viewModel = parameter.QueryService<NodeTerminalViewModel>().FirstOrDefault();
@@ -124,6 +152,10 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             }
         }
 
+        /// <summary>
+        /// This is called to add content to the application independent of the state of the editor
+        /// </summary>
+        /// <param name="context">The current presentation context</param>
         public override void CreateApplicationContent(ICommandPresentationContext context)
         {
             base.CreateApplicationContent(context);
@@ -144,7 +176,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
                     {
                         using (context.AddGroup(ExampleItemsGroup))
                         {
-                            context.Add(MultipleCommand, ButtonFactory.ForConfigurationPane);
+                            context.Add(MultiplyBy10Command, ButtonFactory.ForConfigurationPane);
                         }
                     }
                 }
