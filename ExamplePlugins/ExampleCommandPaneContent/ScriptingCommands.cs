@@ -4,6 +4,7 @@ using NationalInstruments.Compiler;
 using NationalInstruments.Composition;
 using NationalInstruments.Controls.Shell;
 using NationalInstruments.Core;
+using NationalInstruments.Design;
 using NationalInstruments.MocCommon.SourceModel;
 using NationalInstruments.Shell;
 using NationalInstruments.SourceModel;
@@ -67,6 +68,18 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             MenuParent = ScriptingMenuRoot
         };
 
+        public readonly ICommandEx CreateMergeScriptFromSelectionCommand = new ShellRelayCommand(OnCreateMergeScriptFromSelection)
+        {
+            LabelTitle = "Capture Merge Script from Selection",
+            MenuParent = ScriptingMenuRoot
+        };
+
+        public readonly ICommandEx MergeFromLastMergeScriptCommand = new ShellRelayCommand(OnMergeCapturedMergeScript)
+        {
+            LabelTitle = "Merge From Last Capture",
+            MenuParent = ScriptingMenuRoot
+        };
+
         /// <summary>
         /// Overriden to add our menu items to the application menu
         /// </summary>
@@ -80,6 +93,9 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             context.Add(AddNewMemberVICommand);
             context.Add(AddNewTypeCommand);
             context.Add(AddNewDerivedTypeCommand);
+            context.Add(CommandHelpers.CreateAdjacentSeparator(AddNewDerivedTypeCommand));
+            context.Add(CreateMergeScriptFromSelectionCommand);
+            context.Add(MergeFromLastMergeScriptCommand);
         }
 
         /// <summary>
@@ -236,5 +252,55 @@ namespace ExamplePlugins.ExampleCommandPaneContent
                 transaction.Commit();
             }
         }
+
+        private static string _lastMergeScript;
+
+        /// <summary>
+        /// This command create a merge script string from the selection of the active editor.  Merge scripts are what are used
+        /// for the clipboard, palette entries, and drag drop.  Merge scripts are basically mini versions of our persisted source
+        /// file format.  Merge scripts are also useful for scripting use cases where merge scripts can be pased onto a diagram,
+        /// wired together and modified.  Using merge scripts as templates is easier than writing a bunch on scripting code by hand.
+        /// </summary>
+        public static void OnCreateMergeScriptFromSelection(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
+        {
+            var selection = site.ActiveSelection.OfType<IElementViewModel>();
+            if (!selection.Any())
+            {
+                return;
+            }
+            // Create an Element selection is which a selection model for the selected view models
+            var elementSelection = SelectionToolViewModel.CreateElementSelection(selection, true);
+            // Get the text from the merge script
+            _lastMergeScript = elementSelection.CopyMergeScript(host);
+        }
+
+        /// <summary>
+        /// This command merges the last created merge script onto the active editor.  It better match the formats since we are
+        /// not checking.
+        /// </summary>
+        public static void OnMergeCapturedMergeScript(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
+        {
+            if (string.IsNullOrEmpty(_lastMergeScript))
+            {
+                return;
+            }
+            // The root element is the root of what ever the active editor is editing.  This would be things like the BlockDiagram
+            // or FrontPanel of a VI.
+            var rootElement = site.ActiveDocumentEditor?.EditorInfo?.RootElement;
+            if (rootElement != null)
+            {
+                // Always perform modifications from within a transaction
+                // Here we are creating a user transaction which means it is undoable
+                using (var transaction = rootElement.TransactionManager.BeginTransaction("Merge", TransactionPurpose.User))
+                {
+                    var mergeScript = MergeScript.FromString(_lastMergeScript, host);
+                    var resolver = new MergeScriptResolver(mergeScript, host);
+                    resolver.Merge(rootElement);
+                    // Don't forget to commit the transaction
+                    transaction.Commit();
+                }
+            }
+        }
     }
 }
+
