@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using ExamplePlugins.SourceModel;
 using NationalInstruments.Compiler;
 using NationalInstruments.Composition;
 using NationalInstruments.Controls.Shell;
@@ -68,15 +70,40 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             MenuParent = ScriptingMenuRoot
         };
 
+        /// <summary>
+        /// This command create a merge script string from the selection of the active editor.
+        /// </summary>
         public readonly ICommandEx CreateMergeScriptFromSelectionCommand = new ShellRelayCommand(OnCreateMergeScriptFromSelection)
         {
             LabelTitle = "Capture Merge Script from Selection",
             MenuParent = ScriptingMenuRoot
         };
 
+        /// <summary>
+        /// This command merges the last created merge script onto the active editor.  It better match the formats since we are
+        /// not checking.
+        /// </summary>
         public readonly ICommandEx MergeFromLastMergeScriptCommand = new ShellRelayCommand(OnMergeCapturedMergeScript)
         {
             LabelTitle = "Merge From Last Capture",
+            MenuParent = ScriptingMenuRoot
+        };
+
+        /// <summary>
+        /// This command adds our example "tag" attached property on all of the selected elements
+        /// </summary>
+        public readonly ICommandEx TagSelectionCommand = new ShellRelayCommand(OnTagSelection)
+        {
+            LabelTitle = "Tag Current Selection",
+            MenuParent = ScriptingMenuRoot
+        };
+
+        /// <summary>
+        /// This command finds all current model elements that have the example "tag" set and highlights the first element
+        /// </summary>
+        public readonly ICommandEx FindTaggedElementsCommand = new ShellRelayCommand(OnFindTaggedElements)
+        {
+            LabelTitle = "Find Tagged Elements",
             MenuParent = ScriptingMenuRoot
         };
 
@@ -93,9 +120,10 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             context.Add(AddNewMemberVICommand);
             context.Add(AddNewTypeCommand);
             context.Add(AddNewDerivedTypeCommand);
-            context.Add(CommandHelpers.CreateAdjacentSeparator(AddNewDerivedTypeCommand));
             context.Add(CreateMergeScriptFromSelectionCommand);
             context.Add(MergeFromLastMergeScriptCommand);
+            context.Add(TagSelectionCommand);
+            context.Add(FindTaggedElementsCommand);
         }
 
         /// <summary>
@@ -301,6 +329,50 @@ namespace ExamplePlugins.ExampleCommandPaneContent
                 }
             }
         }
+
+        /// <summary>
+        /// This command adds our example "tag" attached property on all of the selected elements
+        /// </summary>
+        public static void OnTagSelection(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
+        {
+            var selectedModels = site.ActiveSelection.Select(vm => vm.Model).OfType<Element>();
+            if (!selectedModels.Any())
+            {
+                return;
+            }
+            using (var transaction = selectedModels.First().TransactionManager.BeginTransaction("Tag Selection", TransactionPurpose.User))
+            {
+                foreach (var element in selectedModels)
+                {
+                    ExampleAttachedProperties.SetTag(element, "Tagged");
+                }
+                transaction.Commit();
+            }
+        }
+
+        /// <summary>
+        /// This command finds all current model elements that have the example "tag" set and highlights the first element
+        /// </summary>
+        public static void OnFindTaggedElements(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
+        {
+            var rootElement = site.ActiveDocumentEditor?.EditorInfo?.RootElement;
+            if (rootElement != null)
+            {
+                List<Element> taggedElements = new List<Element>();
+                foreach (var element in rootElement.GetSelfAndDescendantsBreadthFirst((e) => true))
+                {
+                    if (ExampleAttachedProperties.GetTag(element) == "Tagged")
+                    {
+                        taggedElements.Add(element);
+                    }
+                }
+                if (taggedElements.Any())
+                {
+                    var findOptions = new FindViewModelOptions();
+                    findOptions.Highlight = true;
+                    site.FindViewModelForModelElementAsync(taggedElements.First(), findOptions).IgnoreAwait();
+                }
+            }
+        }
     }
 }
-
