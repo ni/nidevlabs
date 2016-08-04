@@ -19,7 +19,7 @@
             </Grid>
             <TextBlock Margin="0,0,4,0" HorizontalAlignment="Right" Text="Node Info" />
             <TextBlock HorizontalAlignment="Center" Grid.Row="1" FontSize="8" Text="Node Info2" />
-            <CheckBox VerticalAlignment="Bottom" Grid.Row="2" Content="Active" />
+            <CheckBox VerticalAlignment="Bottom" Grid.Row="2" Content="Active" IsChecked="{Binding IsActive}" />
         </Grid>
     </Border>
 </UserControl>

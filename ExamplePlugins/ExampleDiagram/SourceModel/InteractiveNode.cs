@@ -5,29 +5,52 @@ using System.Xml.Linq;
 using NationalInstruments.DataTypes;
 using NationalInstruments.SourceModel;
 using NationalInstruments.SourceModel.Persistence;
+using NationalInstruments.DynamicProperties;
 
 namespace ExamplePlugins.ExampleDiagram.SourceModel
 {
     public class InteractiveNode : Node
     {
-        // Our Private Fields
-
         private Terminal _input1Terminal;
         private Terminal _input2Terminal;
         private Terminal _output1Terminal;
         private Terminal _output2Terminal;
+
+        private bool _isActive;
 
         /// <summary>
         /// This is the specific type identifier for the node
         /// </summary>
         public const string ElementName = "InteractiveNode";
 
+        public static readonly PropertySymbol ConcatenateInputsPropertySymbol =
+                ExposeStaticProperty<InteractiveNode>(
+                "IsActive",
+                obj => obj.IsActive,
+                (obj, value) => obj.IsActive = (bool)value,
+                PropertySerializers.BooleanSerializer,
+                false);
+        
         /// <summary>
         /// The standard constructor.  To construct a new instance use the static Create method to enable
         /// two pass creation
         /// </summary>
         protected InteractiveNode()
         {
+        }
+
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set
+            {
+                if (_isActive != value)
+                {
+                    var wasIsActive = _isActive;
+                    _isActive = value;
+                    TransactionRecruiter.EnlistPropertyItem(this, "IsActive", wasIsActive, _isActive, (v, r) => { _isActive = v; }, TransactionHints.None);
+                }
+            }
         }
 
         /// <summary>
