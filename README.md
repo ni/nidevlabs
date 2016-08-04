@@ -3,6 +3,7 @@
 
 This repository contains examples for how to extend the editor and also how to create a custom control and expose it in the editor.
 There are 4 projects in the solution:
+
 1. ExamplePlugins - Contains the source for several editor extensions.  [See ExamplePlugins.md](ExamplePlugins/README.md).
 2. Fan - Custom WPF Fan control
 3. FanEditorExtensions - Editor extensions to host and edit a Fan control on the front panel of a VI
@@ -19,6 +20,7 @@ You will also need to change the [InstallLocation.targets](InstallLocation.targe
 The install location affects where the projects look for the dependent assemblies and where the built assemblies are copied for use.
 
 To remove this example from the installed application, delete the following files from the install directory:
+
 * ExamplePlugins.dll
 * ExamplePlugins.pdb
 * Fan.dll
