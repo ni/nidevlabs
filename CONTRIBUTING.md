@@ -13,8 +13,8 @@ See [GitHub's official documentation](https://help.github.com/articles/using-pul
 
 # Getting Started
 
-1. Install an NI software product that exposes a .NET API (e.g., LabVIEW
-   Communications System Design Suite 2.0).
+1. Install an NI software product that exposes a .NET API (e.g., Next 
+   Generation LabVIEW Features Technology Preview).
 2. Open ExamplePlugins.sln in Visual Studio 2015 (also works in Community
    Edition).
 3. Build Solution in Visual Studio.
