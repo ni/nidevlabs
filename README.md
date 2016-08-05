@@ -7,7 +7,7 @@ There are 4 projects in the solution:
 1. ExamplePlugins - Contains the source for several editor extensions.  [See ExamplePlugins.md](ExamplePlugins/README.md).
 2. Fan - Custom WPF Fan control
 3. FanEditorExtensions - Editor extensions to host and edit a Fan control on the front panel of a VI
-4. Programmatic Control - Shows how to programmatically open a project, compile and run a VI, and then retreive the results of the VI execution.
+4. Programmatic Control - Shows how to programmatically open a project, compile and run a VI, and then retrieve the results of the VI execution.
 
 This solution is configured to copy everything to the standard install location of the Next Generation LabVIEW Features Technology Preview
 "C:\Program Files\National Instruments\Next Generation LabVIEW Features Technology Preview"
