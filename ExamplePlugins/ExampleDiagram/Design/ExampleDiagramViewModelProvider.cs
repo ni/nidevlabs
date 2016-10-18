@@ -7,6 +7,8 @@ using NationalInstruments.VI.Design;
 using NationalInstruments.Shell;
 using ExamplePlugins.ExampleDiagram.SourceModel;
 using NationalInstruments.SourceModel;
+using NationalInstruments.MocCommon.SourceModel;
+using NationalInstruments.MocCommon.Design;
 
 namespace ExamplePlugins.ExampleDiagram.Design
 {
@@ -22,6 +24,7 @@ namespace ExamplePlugins.ExampleDiagram.Design
             AddSupportedModel<GrowableNode>(e => new GrowableNodeViewModel(e));
             AddSupportedModel<InteractiveNode>(e => new InteractiveNodeViewModel(e));
             AddSupportedModel<Wire>(e => new ExampleDiagramWireViewModel(e));
+            AddSupportedModel<Comment>(e => new CommentViewModel(e));
         }
     }
 }
