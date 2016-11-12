@@ -58,6 +58,15 @@ namespace FanPlugin.SourceModel
         }
 
         /// <summary>
+        /// Determines if descendant Elements can provide diagram events.  This can be used for UI elements that are composed of
+        /// UI Elements that should not be made visible to the user.
+        /// </summary>
+        public bool CanDescendantsProvideDiagramEvents
+        {
+            get { return false; }
+        }
+
+        /// <summary>
         /// I this override you need to provide all of the possible events that the control can post at runtime.  Event
         /// structures will discover these events and present them to the user
         /// </summary>

@@ -3,6 +3,7 @@ using NationalInstruments.DynamicProperties;
 using NationalInstruments.SourceModel;
 using NationalInstruments.SourceModel.Envoys;
 using NationalInstruments.SourceModel.Persistence;
+using NationalInstruments.Core;
 
 namespace ExamplePlugins.ExampleDocument.Model
 {
@@ -18,7 +19,7 @@ namespace ExamplePlugins.ExampleDocument.Model
         /// This is the identifier used to tie this definition to the Document type which enables the
         /// editing of the definition.
         /// </summary>
-        public static readonly EnvoyKeyword DefinitionType = new EnvoyKeyword(ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName);
+        public static readonly BindingKeyword DefinitionType = new BindingKeyword(ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName);
 
         // Define a PropertySymbol for all model properties that are settable
         // The symbol is used for generic discovery of all properties of model elements.  This is used for things
@@ -62,7 +63,7 @@ namespace ExamplePlugins.ExampleDocument.Model
         /// </summary>
         /// <remarks>Overriding this is a good idea for child classes. By overriding and returning a constant,
         /// you will improve performance by avoiding the expensive reflection.</remarks>
-        public override EnvoyKeyword ModelDefinitionType
+        public override BindingKeyword ModelDefinitionType
         {
             get
             {

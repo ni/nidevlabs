@@ -43,7 +43,7 @@ namespace FanPlugin.SourceModel
             var eventData = PFTypes.Factory.DefineCluster();
             
             // The first field must be this control reference field
-            eventData.DefineField(PFTypes.UInt32, CtrlRefFieldName);
+            eventData.DefineField(PFTypes.UInt32, RefIdFieldName);
             
             // The rest of the fields are event specific
             eventData.DefineField(PFTypes.Int32, ClickCountFieldName);
@@ -136,7 +136,7 @@ namespace FanPlugin.SourceModel
         /// <returns>false to hide the field from the user, true to let the user use the field on the diagram.</returns>
         public override bool ShouldExposeProperty(string fieldName)
         {
-            if (fieldName == CtrlRefFieldName)
+            if (fieldName == RefIdFieldName)
             {
                 return false;
             }

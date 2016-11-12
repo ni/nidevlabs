@@ -16,7 +16,7 @@ namespace ExamplePlugins.ExampleNode.Model
     /// This is derived from Node (The base class for a node on a Diagram) and 
     /// IDfirBuilderNodeProvider (Interface which says this node generates its own DFIR)
     /// </summary>
-    [ExportOverloadInformation(NationalInstruments.Dfir.CompoundArithmeticNode.MultiplyOverloadGroup, NationalInstruments.Dfir.CompoundArithmeticNode.MultiplyOverloadHelpId)]
+    [ExportOverloadInformation(NationalInstruments.Dfir.CompoundArithmeticNode.MultiplyOverloadGroup)]
     public class MultiplyByXNode : Node, IDfirBuilderNodeProvider
     {
         // Our Private Fields

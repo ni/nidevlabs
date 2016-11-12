@@ -5,16 +5,89 @@ using System.Xml.Linq;
 using NationalInstruments.SourceModel;
 using NationalInstruments.SourceModel.Envoys;
 using NationalInstruments.SourceModel.Persistence;
+using NationalInstruments.Core;
+using NationalInstruments.VI.SourceModel;
+using NationalInstruments;
 
 namespace ExamplePlugins.ExampleDiagram.SourceModel
 {
+    /// <summary>
+    /// A batch rule ensuring the consistency of our loops.
+    /// </summary>
+    public class MyLoopBatchRule : BatchRule
+    {
+        /// <inheritdoc/>
+        public override ModelBatchRuleExecuteLevels InitializeForTransaction(IRuleInitializeContext context)
+        {
+            return ModelBatchRuleExecuteLevels.Intermediate;
+        }
+
+        /// <inheritdoc/>
+        protected override void OnBeginExecuteTransactionItems(IRuleExecuteContext context)
+        {
+            if (context.ShouldRunIntermediateRules)
+            {
+                HandleBorderNodeBoundsChanges(context.MergeItems<BoundsChangeMerger<BorderNode>>());
+
+                var boundsChanges = context.MergeItems<BoundsChangeMerger<Loop>>();
+                HandleLoopBoundsChanges(boundsChanges);
+            }
+            ProcessTransactionItems = false;
+        }
+
+        private void HandleBorderNodeBoundsChanges(BoundsChangeMerger<BorderNode> boundsChanges)
+        {
+            foreach (var change in boundsChanges)
+            {
+                var borderNode = change.TargetElement;
+                if (borderNode.Structure is Loop)
+                {
+                    ViewElementOverlapHelper.PreventBorderNodeOverlap(borderNode.Structure, g => ViewElementOverlapHelper.PreventBorderNodeOverlap(g));
+                }
+            }
+
+            CoreBatchRule.HandleBorderNodeChanges<Loop>(boundsChanges);
+        }
+
+        private void HandleLoopBoundsChanges(BoundsChangeMerger<Loop> boundsChanges)
+        {
+            foreach (var change in boundsChanges)
+            {
+                SMRect oldBounds = change.OldBounds;
+                SMRect newBounds = change.NewBounds;
+                // Don't move things on structure move.
+                if (!change.IsResize)
+                {
+                    continue;
+                }
+
+                var element = change.TargetElement;
+                float leftDiff = newBounds.Left - oldBounds.Left;
+                float topDiff = newBounds.Top - oldBounds.Top;
+                foreach (BorderNode node in element.BorderNodes)
+                {
+                    if (BorderNode.GetBorderNodeDockingAxis(node.Docking) == BorderNodeDockingAxis.Horizontal)
+                    {
+                        node.Left -= leftDiff;
+                    }
+                    else
+                    {
+                        node.Top -= topDiff;
+                    }
+                }
+                ViewElementOverlapHelper.PreventBorderNodeOverlap(element, g => ViewElementOverlapHelper.PreventBorderNodeOverlap(g));
+                element.BorderNodes.ForEach(bn => bn.EnsureDocking());
+            }
+        }
+    }
+
     public class ExampleDiagramDefinition : DiagramDefinition
     {
         /// <summary>
         /// This is the identifier used to tie this definition to the Document type which enables the
         /// editing of the definition.
         /// </summary>
-        public static readonly EnvoyKeyword DefinitionType = new EnvoyKeyword(ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName);
+        public static readonly BindingKeyword DefinitionType = new BindingKeyword(ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName);
 
         /// <summary>
         /// This is the specific type identifier for the definition
@@ -35,6 +108,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
 
             rules.Add(new CoreBatchRule());
             rules.Add(new VerticalGrowNodeBoundsRule());
+            rules.Add(new MyLoopBatchRule());
             rules.Add(new WiringBatchRule());
             rules.Add(new WireCommentBatchRule());
         }
@@ -86,7 +160,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
         /// </summary>
         /// <remarks>Overriding this is a good idea for child classes. By overriding and returning a constant,
         /// you will improve performance by avoiding the expensive reflection.</remarks>
-        public override EnvoyKeyword ModelDefinitionType
+        public override BindingKeyword ModelDefinitionType
         {
             get
             {

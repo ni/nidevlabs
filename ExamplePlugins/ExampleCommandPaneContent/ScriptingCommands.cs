@@ -165,7 +165,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             }
 
             var project = host.GetSharedExportedValue<IDocumentManager>().ActiveProject;
-            var createInfo = EnvoyCreateInfo.CreateForNew(VirtualInstrument.VIModelDefinitionType, new QualifiedName("New Member VI.gvi"));
+            var createInfo = EnvoyCreateInfo.CreateForNew(VirtualInstrument.VIModelDefinitionType, "New Member VI.gvi");
             Envoy createdItem = null;
             ILockedSourceFile createdFile = null;
             // Always perform modifications from within a transaction
@@ -173,6 +173,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             using (var transaction = gType.TransactionManager.BeginTransaction("Add A VI", TransactionPurpose.User))
             {
                 createdFile = project.CreateNewFile(gType.Scope, createInfo);
+                createdFile.Envoy.UpdateStoragePath("Members\\New Member VI.gvi");
                 createdItem = createdFile.Envoy;
                 transaction.Commit();
             }
@@ -231,6 +232,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             using (var transaction = project.TransactionManager.BeginTransaction("Add A Type", TransactionPurpose.User))
             {
                 lockSourceFile = project.CreateNewFile(null, createInfo);
+                lockSourceFile.Envoy.UpdateStoragePath("Classes\\New Member VI.gvi");
                 transaction.Commit();
             }
             // To create a class we need to set the base type to whatever we want.  The default base type for a class is GObject
