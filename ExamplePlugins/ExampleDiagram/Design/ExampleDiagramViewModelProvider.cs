@@ -25,6 +25,7 @@ namespace ExamplePlugins.ExampleDiagram.Design
             AddSupportedModel<InteractiveNode>(e => new InteractiveNodeViewModel(e));
             AddSupportedModel<Wire>(e => new ExampleDiagramWireViewModel(e));
             AddSupportedModel<Comment>(e => new CommentViewModel(e));
+            AddSupportedModel<SplineWire>(e => new SplineWireViewModel(e));
         }
     }
 }

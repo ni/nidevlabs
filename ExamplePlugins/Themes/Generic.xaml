@@ -28,4 +28,28 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="exampleDiagram:SplineWireControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="exampleDiagram:SplineWireControl">
+                    <Canvas x:Name="PART_pathCanvas" IsHitTestVisible="False">
+                        <!--This path creates a visible separation between crossing wires-->
+                        <Path
+                            StrokeLineJoin="Round" Stroke="White" IsHitTestVisible="True"
+                            StrokeThickness="{TemplateBinding OuterWireStrokeThickness}"
+                            Data="{Binding Path=PathData}">
+                        </Path>
+
+                        <Path x:Name="PART_innerWire"
+                            StrokeThickness="{TemplateBinding InnerWireStrokeThickness}"
+                            StrokeLineJoin="Round" IsHitTestVisible="True"
+                            Stroke="{TemplateBinding Stroke}"
+                            Data="{Binding Path=PathData}">
+                        </Path>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -120,6 +120,8 @@
       <DependentUpon>InteractiveNodeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExampleDiagram\Design\InteractiveNodeViewModel.cs" />
+    <Compile Include="ExampleDiagram\Design\SplineWire\SplineWireControl.cs" />
+    <Compile Include="ExampleDiagram\Design\SplineWire\SplineWireViewModel.cs" />
     <Compile Include="ExampleDiagram\SourceModel\ExampleDiagramDefinition.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramDocument.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramEditControl.cs" />
@@ -131,6 +133,8 @@
     <Compile Include="ExampleDiagram\SourceModel\ExampleRootDiagram.cs" />
     <Compile Include="ExampleDiagram\SourceModel\GrowableNode.cs" />
     <Compile Include="ExampleDiagram\SourceModel\InteractiveNode.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\SplineWire\SplineWire.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\SplineWire\SplineWiringBehavior.cs" />
     <Compile Include="ExampleDocument\Model\TextDocumentDefinition.cs" />
     <Compile Include="ExampleDocument\Shell\ProjectExplorerService.cs" />
     <Compile Include="ExampleDocument\Shell\TextDocumentCommandContent.cs" />

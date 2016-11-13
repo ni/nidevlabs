@@ -168,6 +168,9 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             }
         }
 
+        // This example can use the default wiring behavior which creates Manhatten wires.  This is what is used for a VI
+        // If desired the SplineWiringBehavior can be used instead.  This will create spline wires instead.
+        //private IWiringBehavior _wiringBehavior = new SplineWiringBehavior();
         private IWiringBehavior _wiringBehavior = new ManhattanWiringBehavior();
 
         public override IWiringBehavior DefaultWiringBehavior
