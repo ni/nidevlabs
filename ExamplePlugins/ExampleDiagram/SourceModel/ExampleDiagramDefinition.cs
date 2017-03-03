@@ -111,6 +111,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             rules.Add(new MyLoopBatchRule());
             rules.Add(new WiringBatchRule());
             rules.Add(new WireCommentBatchRule());
+            rules.Add(new TerminalDirectionBatchRule());
         }
 
         protected override void Init(IElementCreateInfo info)

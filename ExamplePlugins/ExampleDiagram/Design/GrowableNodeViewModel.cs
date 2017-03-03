@@ -1,6 +1,7 @@
 ﻿using ExamplePlugins.ExampleDiagram.SourceModel;
 using NationalInstruments.Core;
 using NationalInstruments.Design;
+using NationalInstruments.SourceModel;
 
 namespace ExamplePlugins.ExampleDiagram.Design
 {
@@ -22,13 +23,13 @@ namespace ExamplePlugins.ExampleDiagram.Design
         /// <summary>
         /// Returns the Uri (resource location) for our node foreground image
         /// </summary>
-        protected override ViewModelUri ForegroundUri
+        protected override ResourceUri ForegroundUri
         {
             get
             {
                 // We are loading the vector ninegrid out of a resource
                 // this will be rendered on the default node visual.
-                return new ViewModelUri(GetType(), "Resources/Llama");
+                return new ResourceUri(GetType(), "Resources/Llama");
             }
         }
 

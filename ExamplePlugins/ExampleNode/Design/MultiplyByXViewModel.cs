@@ -39,9 +39,9 @@ namespace ExamplePlugins.ExampleNode.Design
         /// <summary>
         /// Returns the Uri (resource location) for our node foreground image
         /// </summary>
-        protected override ViewModelUri ForegroundUri
+        protected override ResourceUri ForegroundUri
         {
-            get { return new ViewModelUri(GetType(), "Resources/MultiplyByXNode"); }
+            get { return new ResourceUri(GetType(), "Resources/MultiplyByXNode"); }
         }
 
         /// <summary>

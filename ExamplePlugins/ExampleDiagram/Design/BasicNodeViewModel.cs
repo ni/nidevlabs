@@ -24,13 +24,13 @@ namespace ExamplePlugins.ExampleDiagram.Design
         /// <summary>
         /// Returns the Uri (resource location) for our node foreground image
         /// </summary>
-        protected override ViewModelUri ForegroundUri
+        protected override ResourceUri ForegroundUri
         {
             get
             {
                 // We are loading the vector ninegrid out of a resource
                 // this will be rendered on the default node visual.
-                return new ViewModelUri(GetType(), "Resources/Cow");
+                return new ResourceUri(GetType(), "Resources/Cow");
             }
         }
 

@@ -135,6 +135,7 @@
     <Compile Include="ExampleDiagram\SourceModel\InteractiveNode.cs" />
     <Compile Include="ExampleDiagram\SourceModel\SplineWire\SplineWire.cs" />
     <Compile Include="ExampleDiagram\SourceModel\SplineWire\SplineWiringBehavior.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\SplineWire\TerminalDirectionBatchRule.cs" />
     <Compile Include="ExampleDocument\Model\TextDocumentDefinition.cs" />
     <Compile Include="ExampleDocument\Shell\ProjectExplorerService.cs" />
     <Compile Include="ExampleDocument\Shell\TextDocumentCommandContent.cs" />
