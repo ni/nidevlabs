@@ -16,8 +16,8 @@ namespace ExamplePlugins.ExampleDocument.Shell
     {
         public static readonly ICommandEx OpenInNotepadCommand = new ShellRelayCommand(OnOpenInNotepad)
         {
+            UniqueId = "ExamplePlugins.OpenInNotepadCommand",
             LabelTitle = "Open In Notepad",
-            //LargeImageSource = ResourceHelpers.LoadBitmapImage(typeof(RandomNumberCommandContent), "Resources/10x.png")
         };
 
         public static void OnOpenInNotepad(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)

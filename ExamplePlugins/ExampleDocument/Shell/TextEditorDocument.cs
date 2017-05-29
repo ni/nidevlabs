@@ -69,6 +69,7 @@ namespace ExamplePlugins.ExampleDocument.Shell
         /// </summary>
         public static readonly ICommandEx EditingGroupCommand = new ShellRelayCommand(ShellDocumentCommandHelpers.HandleNoop)
         {
+            UniqueId = "ExamplePlugins.EditingGroupCommand",
             LargeImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Placeholder_32x32.png"),
             SmallImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Placeholder_16x16.png"),
             LabelTitle = "Editing"
@@ -79,6 +80,7 @@ namespace ExamplePlugins.ExampleDocument.Shell
         /// </summary>
         private ICommandEx CutCommand = new ShellRelayCommand(HandleCut, CanCut)
         {
+            UniqueId = "ExamplePlugins.CutCommand",
             LargeImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Cut_32x32.png"),
             SmallImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Cut_16x16.png"),
             LabelTitle = "Cut"
@@ -116,6 +118,7 @@ namespace ExamplePlugins.ExampleDocument.Shell
         /// </summary>
         private ICommandEx CopyCommand = new ShellRelayCommand(HandleCopy, CanCopy)
         {
+            UniqueId = "ExamplePlugins.CopyCommand",
             LargeImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Copy_32x32.png"),
             SmallImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Copy_16x16.png"),
             LabelTitle = "Copy"
@@ -153,6 +156,7 @@ namespace ExamplePlugins.ExampleDocument.Shell
         /// </summary>
         private ICommandEx PasteCommand = new ShellRelayCommand(HandlePaste, CanPaste)
         {
+            UniqueId = "ExamplePlugins.PasteCommand",
             LargeImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Paste_32x32.png"),
             SmallImageSource = ResourceHelpers.LoadBitmapImage(typeof(TextDocument), "Resources/Paste_16x16.png"),
             LabelTitle = "Paste"

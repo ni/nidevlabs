@@ -29,6 +29,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public static readonly ICommandEx ScriptingMenuRoot = new RelayCommandEx(RelayCommandEx.HandleNoOp)
         {
+            UniqueId = "ExamplePlugins.ScriptingMenuRoot",
             LabelTitle = "(Plug-in) Scripting",
             MenuParent = MenuPathCommands.EditMenu,
             Weight = 0.3
@@ -39,6 +40,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewVICommand = new ShellRelayCommand(OnAddNewVI)
         {
+            UniqueId = "ExamplePlugins.AddNewVICommand",
             LabelTitle = "Add New VI",
             MenuParent = ScriptingMenuRoot
         };
@@ -48,6 +50,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewMemberVICommand = new ShellRelayCommand(OnAddNewMemberVI)
         {
+            UniqueId = "ExamplePlugins.AddNewMemberVICommand",
             LabelTitle = "Add New Member VI",
             MenuParent = ScriptingMenuRoot
         };
@@ -57,6 +60,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewTypeCommand = new ShellRelayCommand(OnAddNewType)
         {
+            UniqueId = "ExamplePlugins.AddNewTypeCommand",
             LabelTitle = "Add New Class",
             MenuParent = ScriptingMenuRoot
         };
@@ -67,6 +71,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx AddNewDerivedTypeCommand = new ShellRelayCommand(OnAddNewDerviedType)
         {
+            UniqueId = "ExamplePlugins.AddNewDerivedTypeCommand",
             LabelTitle = "Add New Derived Class",
             MenuParent = ScriptingMenuRoot
         };
@@ -76,6 +81,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx CreateMergeScriptFromSelectionCommand = new ShellRelayCommand(OnCreateMergeScriptFromSelection)
         {
+            UniqueId = "ExamplePlugins.CreateMergeScriptFromSelectionCommand",
             LabelTitle = "Capture Merge Script from Selection",
             MenuParent = ScriptingMenuRoot
         };
@@ -86,6 +92,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx MergeFromLastMergeScriptCommand = new ShellRelayCommand(OnMergeCapturedMergeScript)
         {
+            UniqueId = "ExamplePlugins.MergeFromLastMergeScriptCommand",
             LabelTitle = "Merge From Last Capture",
             MenuParent = ScriptingMenuRoot
         };
@@ -95,6 +102,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx TagSelectionCommand = new ShellRelayCommand(OnTagSelection)
         {
+            UniqueId = "ExamplePlugins.TagSelectionCommand",
             LabelTitle = "Tag Current Selection",
             MenuParent = ScriptingMenuRoot
         };
@@ -104,6 +112,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public readonly ICommandEx FindTaggedElementsCommand = new ShellRelayCommand(OnFindTaggedElements)
         {
+            UniqueId = "ExamplePlugins.FindTaggedElementsCommand",
             LabelTitle = "Find Tagged Elements",
             MenuParent = ScriptingMenuRoot
         };

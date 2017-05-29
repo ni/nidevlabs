@@ -30,6 +30,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public static readonly ICommandEx ExampleItemsGroup = new ShellRelayCommand(ShellDocumentCommandHelpers.HandleNoop)
         {
+            UniqueId = "ExamplePlugins.ExampleItemsGroup",
             LabelTitle = "Example Buttons"
         };
 
@@ -38,6 +39,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public static readonly ICommandEx MultiplyBy10Command = new ShellSelectionRelayCommand(OnMultipleBy10, CanMultiplyBy10)
         {
+            UniqueId = "ExamplePlugins.MultiplyBy10Command",
             LabelTitle = "Multiply By 10",
             LargeImageSource = ResourceHelpers.LoadBitmapImage(typeof(ExampleCommandContent), "Resources/10x.png")
         };
@@ -48,6 +50,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public static readonly ICommandEx OpenInNotepadCommand = new ShellRelayCommand(OnOpenInNotepad)
         {
+            UniqueId = "ExamplePlugins.OpenInNotepadCommand",
             LabelTitle = "(Plug-in) Open In Notepad",
         };
 
@@ -58,6 +61,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public static readonly ICommandEx OpenInNotepadMenuCommand = new ShellRelayCommand(OnOpenInNotepad)
         {
+            UniqueId = "ExamplePlugins.OpenInNotepadMenuCommand",
             LabelTitle = "(Plug-in) Open In Notepad",
             MenuParent = MenuPathCommands.EditMenu
         };
@@ -68,6 +72,7 @@ namespace ExamplePlugins.ExampleCommandPaneContent
         /// </summary>
         public static readonly ICommandEx TerminalCommand = new ShellRelayCommand(OnShowTerminalType)
         {
+            UniqueId = "ExamplePlugins.TerminalCommand",
             LabelTitle = "(Plug-in) Terminal Type",
         };
 

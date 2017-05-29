@@ -9,8 +9,8 @@
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ExamplePlugins</RootNamespace>
-    <AssemblyName>ExamplePlugins</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AssemblyName>ExamplePlugins.plugin</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -18,6 +18,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -205,11 +206,6 @@
     <Resource Include="Resources\Paper.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="disable_cache.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\MultiplyByXNode_40x40.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -240,10 +236,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /R /Y "$(TargetDir)ExamplePlugins.dll" "$(InstallLocation)"
-                    xcopy /R /Y "$(TargetDir)ExamplePlugins.pdb" "$(InstallLocation)"
-                    xcopy /R /Y "$(TargetDir)disable_cache.txt" "$(InstallLocation)"
-    </PostBuildEvent>
+    <PostBuildEvent>mkdir "$(InstallLocation)\Addons\ExamplePlugins"
+xcopy /R /Y "$(TargetDir)ExamplePlugins.plugin.dll" "$(InstallLocation)\Addons\ExamplePlugins"
+xcopy /R /Y "$(TargetDir)ExamplePlugins.plugin.pdb" "$(InstallLocation)\Addons\ExamplePlugins"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

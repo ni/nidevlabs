@@ -8,14 +8,14 @@ using ExamplePlugins.ExampleDocument.Model;
 namespace ExamplePlugins.ExampleDocument.Shell
 {
     /// <summary>
-    /// Project service factory
+    /// Envoy service factory
     /// </summary>
-    [ExportProjectServiceFactory(typeof(IProjectItemInfo))]
+    [ExportEnvoyServiceFactory(typeof(IProjectItemInfo))]
     [BindsToModelDefinitionType(TextDocumentDefinition.ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName)]
-    public class TextDocumentProjectExplorerServiceFactory : ProjectServiceFactory
+    public class TextDocumentProjectExplorerServiceFactory : EnvoyServiceFactory
     {
         /// <inheritdoc />
-        protected override IProjectService CreateService()
+        protected override EnvoyService CreateService()
         {
             return Host.CreateInstance<TextDocumentProjectExplorerService>();
         }

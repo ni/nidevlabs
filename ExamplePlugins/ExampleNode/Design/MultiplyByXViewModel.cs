@@ -16,13 +16,15 @@ namespace ExamplePlugins.ExampleNode.Design
     /// </summary>
     public class MultiplyByXViewModel : NodeViewModel
     {
-        public static readonly ICommandEx ConfigureGroup = new ShellRoutedCommand()
+        public static readonly ICommandEx ConfigureGroup = new ShellRelayCommand()
         {
+            UniqueId = "ExamplePlugins.ConfigureGroup",
             LabelTitle = "Multiply By X Configuration"
         };
 
         public static readonly ICommandEx MultiplierCommand = new ShellSelectionRelayCommand(OnMultiplierChanged, OnUpdateMultiplierChanged)
         {
+            UniqueId = "ExamplePlugins.MultiplierCommand",
             LabelTitle = "Multiplier",
             UIType =  UITypeForCommand.TextBox
         };
@@ -67,19 +69,6 @@ namespace ExamplePlugins.ExampleNode.Design
                     context.Add(MultiplierCommand);
                 }
             }
-
-            // Create a new ribbon group and add a text block which allows the user to set
-            // the multiplier
-            //RibbonGroup group = new RibbonGroup() { Command = ConfigureGroup };
-            //RibbonTextBox box = new RibbonTextBox();
-            //box.Label = "Multiplier";
-            //var binding = new Binding("Multiplier");
-            //box.SetBinding(RibbonTextBox.TextProperty, binding);
-            //box.DataContext = this;
-            //group.AddItem(box);
-
-            //// Add the ribbon group to the presentation context
-            //context.Add(group);
         }
 
         public static bool OnUpdateMultiplierChanged(ICommandParameter parameter, IEnumerable<IViewModel> selection, ICompositionHost host, DocumentEditSite site)

@@ -5,13 +5,15 @@ using NationalInstruments.Dfir.Plugin;
 using NationalInstruments.Compiler.SemanticAnalysis;
 using NationalInstruments.Core;
 using NationalInstruments.DataTypes;
+using NationalInstruments.CommonModel;
+using System;
 
 namespace ExamplePlugins.ExampleNode.Model
 {
     /// <summary>
     /// The DFIR node for the Multiply By X node
     /// </summary>
-    public class MultiplyByXDfirNode : PluginNode
+    public class MultiplyByXDfirNode : PluginNode, IOverloadGroup
     {
         // The multiplier to use when generating code
         private double _multiplier;
@@ -53,7 +55,7 @@ namespace ExamplePlugins.ExampleNode.Model
             {
                 if (terminal.Direction == Direction.Input)
                 {
-                    terminal.TestRecommendedTerminalConnected();
+                    terminal.TestRequiredTerminalConnected();
                 }
                 terminal.DataType = PFTypes.Double;
             }
@@ -103,6 +105,30 @@ namespace ExamplePlugins.ExampleNode.Model
         public override bool SynchronizeAtNodeBoundaries
         {
             get { return false; }
+        }
+
+        public string OverloadGroup
+        {
+            get
+            {
+                return NationalInstruments.Dfir.CompoundArithmeticNode.MultiplyOverloadGroup;
+            }
+        }
+
+        public string OverloadGroupSubId
+        {
+            get { return typeof(MultiplyByXDfirNode).ToString(); }
+        }
+
+        public Node OriginalNode
+        {
+            get;
+            set;
+        }
+
+        public SideIndex GetSideIndexFromTerminal(Terminal terminal)
+        {
+            return OverloadHelpers.GetSideIndexFromTerminalDefault(Terminals, terminal);
         }
 
         /// <inheritdoc/>

@@ -8,21 +8,21 @@ using ExamplePlugins.ExampleDiagram.SourceModel;
 namespace ExamplePlugins.ExampleDiagram.Shell
 {
     /// <summary>
-    /// Project service factory
+    /// Envoy service factory
     /// </summary>
-    [ExportProjectServiceFactory(typeof(IProjectItemInfo))]
+    [ExportEnvoyServiceFactory(typeof(IProjectItemInfo))]
     [BindsToModelDefinitionType(ExampleDiagramDefinition.ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName)]
-    public class ExampleDiagramProjectExplorerServiceFactory : ProjectServiceFactory
+    public class ExampleDiagramProjectExplorerServiceFactory : EnvoyServiceFactory
     {
         /// <inheritdoc />
-        protected override IProjectService CreateService()
+        protected override EnvoyService CreateService()
         {
             return Host.CreateInstance<ExampleDiagramProjectExplorerService>();
         }
     }
 
     /// <summary>
-    /// This is a "ProjectSerice" which provides information about our definition used to display it in
+    /// This is a "EnvoySerice" which provides information about our definition used to display it in
     /// the "Project Explorer Window" which is the project tree view.
     /// If a file does not have a ProjectExplorerService it will not be shown in the project tree.
     /// </summary>

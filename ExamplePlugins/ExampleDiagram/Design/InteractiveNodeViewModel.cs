@@ -102,11 +102,13 @@ namespace ExamplePlugins.ExampleDiagram.Design
 
         public static readonly ICommandEx ConfigurationItemsGroup = new ShellRelayCommand(ShellDocumentCommandHelpers.HandleNoop)
         {
+            UniqueId = "ExamplePlugins.ConfigurationItemsGroup",
             LabelTitle = "Configuration"
         };
 
         public static readonly ICommandEx IsActiveCommand = new ShellSelectionRelayCommand(OnIsActive, UpdateIsActive)
         {
+            UniqueId = "ExamplePlugins.IsActiveCommand",
             LabelTitle = "Is Active"
         };
 
