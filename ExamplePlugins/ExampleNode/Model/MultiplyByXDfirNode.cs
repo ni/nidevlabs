@@ -107,6 +107,7 @@ namespace ExamplePlugins.ExampleNode.Model
             get { return false; }
         }
 
+        /// <inheritdoc/>
         public string OverloadGroup
         {
             get
@@ -115,17 +116,20 @@ namespace ExamplePlugins.ExampleNode.Model
             }
         }
 
+        /// <inheritdoc/>
         public string OverloadGroupSubId
         {
             get { return typeof(MultiplyByXDfirNode).ToString(); }
         }
 
+        /// <inheritdoc/>
         public Node OriginalNode
         {
             get;
             set;
         }
 
+        /// <inheritdoc/>
         public SideIndex GetSideIndexFromTerminal(Terminal terminal)
         {
             return OverloadHelpers.GetSideIndexFromTerminalDefault(Terminals, terminal);
