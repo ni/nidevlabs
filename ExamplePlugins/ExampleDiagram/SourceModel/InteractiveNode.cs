@@ -119,8 +119,11 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
 
             _input1Terminal = new NodeTerminal(Direction.Unknown, PFTypes.Void, "Input 1", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 0));
             _input2Terminal = new NodeTerminal(Direction.Unknown, PFTypes.Void, "Input 1", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 3));
-            _output1Terminal = new NodeTerminal(Direction.Unknown, PFTypes.Void, "Output 1", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0));
-            _output2Terminal = new NodeTerminal(Direction.Unknown, PFTypes.Void, "Output 1", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 3));
+            
+            // We are using a custom terminal for our outputs so that the wires of these terminals will be spline wires.
+            _output1Terminal = new SplineWireTerminal(Direction.Unknown, PFTypes.Void, "Output 1", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0));
+            _output2Terminal = new SplineWireTerminal(Direction.Unknown, PFTypes.Void, "Output 1", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 3));
+
             OnComponentInserted(_input1Terminal);
             OnComponentInserted(_input2Terminal);
             OnComponentInserted(_output1Terminal);
