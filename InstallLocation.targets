@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
-    <InstallLocation>C:\Program Files\National Instruments\Next Generation LabVIEW Features Technology Preview</InstallLocation>
+    <InstallLocation>C:\dev\R4\Releases\Cycle5\Binaries\WPF\LabVIEW\Debug</InstallLocation>
   </PropertyGroup>
 </Project>
