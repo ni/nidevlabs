@@ -17,6 +17,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
         private Terminal _output2Terminal;
 
         private bool _isActive;
+        private string _sound;
 
         /// <summary>
         /// This is the specific type identifier for the node
@@ -30,6 +31,13 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
                 (obj, value) => obj.IsActive = (bool)value,
                 PropertySerializers.BooleanSerializer,
                 false);
+
+        public static readonly PropertySymbol SoundPropertySymbol =
+            ExposeStaticProperty<InteractiveNode>(
+                "Sound", obj => obj.Sound,
+                (obj, value) => obj.Sound = (string)value,
+                PropertySerializers.StringSerializer,
+                string.Empty);
         
         /// <summary>
         /// The standard constructor.  To construct a new instance use the static Create method to enable
@@ -49,6 +57,20 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
                     var wasIsActive = _isActive;
                     _isActive = value;
                     TransactionRecruiter.EnlistPropertyItem(this, "IsActive", wasIsActive, _isActive, (v, r) => { _isActive = v; }, TransactionHints.None);
+                }
+            }
+        }
+
+        public string Sound
+        {
+            get { return _sound; }
+            set
+            {
+                if (_sound != value)
+                {
+                    var oldSound = _sound;
+                    _sound = value;
+                    TransactionRecruiter.EnlistPropertyItem(this, "Sound", oldSound, _sound, (v, r) => { _sound = v; }, TransactionHints.None);
                 }
             }
         }

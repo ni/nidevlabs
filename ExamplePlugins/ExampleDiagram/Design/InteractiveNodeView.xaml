@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:ExamplePlugins.ExampleDiagram.Design"
              xmlns:core="clr-namespace:NationalInstruments.Core;assembly=NationalInstruments.Core"
              mc:Ignorable="d" 
-             Height="50" Width="80">
+             Height="NaN" Width="80">
     <Border BorderBrush="DarkGray" BorderThickness="1">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -19,7 +20,8 @@
             </Grid>
             <TextBlock Margin="0,0,4,0" HorizontalAlignment="Right" Text="Node Info" />
             <TextBlock HorizontalAlignment="Center" Grid.Row="1" FontSize="8" Text="Node Info2" />
-            <CheckBox VerticalAlignment="Bottom" Grid.Row="2" Content="Active" IsChecked="{Binding IsActive}" />
+            <TextBlock Grid.Row="2" Text="{Binding Sound}"/>
+            <CheckBox VerticalAlignment="Bottom" Grid.Row="3" Content="Active" IsChecked="{Binding IsActive}" />
         </Grid>
     </Border>
 </UserControl>

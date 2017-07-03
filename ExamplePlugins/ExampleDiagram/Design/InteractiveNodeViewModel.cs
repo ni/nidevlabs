@@ -47,12 +47,29 @@ namespace ExamplePlugins.ExampleDiagram.Design
             }
         }
 
+        public string Sound
+        {
+            get { return Node.Sound; }
+            set
+            {
+                using (var transaction = Node.TransactionManager.BeginTransaction("Set Sound", TransactionPurpose.User))
+                {
+                    Node.Sound = value;
+                    transaction.Commit();
+                }
+            }
+        }
+
         public override void ModelPropertyChanged(Element modelElement, string propertyName, TransactionItem transactionItem)
         {
             base.ModelPropertyChanged(modelElement, propertyName, transactionItem);
             if (propertyName == "IsActive")
             {
                 NotifyPropertyChanged("IsActive");
+            }
+            else if (propertyName == nameof(Sound))
+            {
+                NotifyPropertyChanged(nameof(Sound));
             }
         }
 
@@ -112,6 +129,65 @@ namespace ExamplePlugins.ExampleDiagram.Design
             LabelTitle = "Is Active"
         };
 
+        public static readonly ICommandEx SoundSelectionGroupCommand = new ShellRelayCommand()
+        {
+            UniqueId = "ExamplePlugins.SoundSelectionGroupCommand",
+            LabelTitle = "Select the animal sound"
+        };
+
+        #region Sound commands
+
+        private static readonly ICommandEx WoofCommand = CreateSoundCommand("WoofCommand", "Dog goes woof");
+
+        private static readonly ICommandEx MeowCommand = CreateSoundCommand("MeowCommand", "Cat goes meow");
+
+        private static readonly ICommandEx TweetCommand = CreateSoundCommand("TweetCommand", "Bird goes tweet");
+        
+        private static readonly ICommandEx SqueakCommand = CreateSoundCommand("SqueakCommand", "Mouse goes squeak");
+
+        private static readonly ICommandEx MooCommand = CreateSoundCommand("MooCommand", "Cow goes moo");
+
+        private static readonly ICommandEx CroakCommand = CreateSoundCommand("CroakCommand", "Frog goes croak");
+
+        private static readonly ICommandEx TootCommand = CreateSoundCommand("TootCommand", "Elephant goes toot");
+
+        private static readonly ICommandEx QuackCommand = CreateSoundCommand("QuackCommand", "Duck say quack");
+
+        private static readonly ICommandEx BlubCommand = CreateSoundCommand("BlubCommand", "Fish go blub");
+
+        private static readonly ICommandEx OwowowCommand = CreateSoundCommand("OwowowCommand", "Seal goes ow ow ow");
+
+        private static readonly ICommandEx FoxCommand = new ShellRelayCommand(OnFoxCommand)
+        {
+            UniqueId = "ExamplePlugins.FoxCommand",
+            LabelTitle = "Fox says..."
+        };
+
+        private static ICommandEx CreateSoundCommand(string name, string phrase)
+        {
+            return new ShellSelectionRelayCommand(OnSoundCommand)
+            {
+                UniqueId = $"ExamplePlugins.{name}",
+                LabelTitle = phrase
+            };
+        }
+
+        private static void OnSoundCommand(ICommandParameter parameter, IEnumerable<IViewModel> selection, ICompositionHost host, DocumentEditSite site)
+        {
+            var viewModel = selection.FirstOrDefault() as InteractiveNodeViewModel;
+            if (viewModel != null)
+            {
+                viewModel.Sound = string.Concat(parameter.LabelTitle.Split(new[] { ' ' }, 3).Skip(2));
+            }
+        }
+
+        private static void OnFoxCommand(ICommandParameter parameter, ICompositionHost host, DocumentEditSite site)
+        {
+            NIMessageBox.Show("What does the fox say?");
+        }
+
+        #endregion
+
         public static bool UpdateIsActive(ICommandParameter parameter, IEnumerable<IViewModel> selection, ICompositionHost host, DocumentEditSite site)
         {
             var checkableParameter = parameter as ICheckableCommandParameter;
@@ -159,6 +235,21 @@ namespace ExamplePlugins.ExampleDiagram.Design
                 using (context.AddGroup(ConfigurationItemsGroup))
                 {
                     context.Add(IsActiveCommand, CheckBoxFactory.ForConfigurationPane);
+
+                    using (context.AddGroup(SoundSelectionGroupCommand, ListBoxLayoutFactory.ForConfigurationPane))
+                    {
+                        context.Add(WoofCommand);
+                        context.Add(MeowCommand);
+                        context.Add(TweetCommand);
+                        context.Add(SqueakCommand);
+                        context.Add(MooCommand);
+                        context.Add(CroakCommand);
+                        context.Add(TootCommand);
+                        context.Add(QuackCommand);
+                        context.Add(BlubCommand);
+                        context.Add(OwowowCommand);
+                        context.Add(FoxCommand);
+                    }
                 }
             }
         }
