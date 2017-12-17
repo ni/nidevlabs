@@ -103,6 +103,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ExampleDiagram\Shell\ListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExampleToolWindow\SelectionTrackingToolWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,8 +125,13 @@
       <DependentUpon>InteractiveNodeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExampleDiagram\Design\InteractiveNodeViewModel.cs" />
+    <Compile Include="ExampleDiagram\Design\ListBoxItem.cs" />
+    <Compile Include="ExampleDiagram\Design\ListBoxVisualLayoutFactory.cs" />
     <Compile Include="ExampleDiagram\Design\SplineWire\SplineWireControl.cs" />
     <Compile Include="ExampleDiagram\Design\SplineWire\SplineWireViewModel.cs" />
+    <Compile Include="ExampleDiagram\Shell\ListBox.xaml.cs">
+      <DependentUpon>ListBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExampleDiagram\SourceModel\ExampleDiagramDefinition.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramDocument.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramEditControl.cs" />
