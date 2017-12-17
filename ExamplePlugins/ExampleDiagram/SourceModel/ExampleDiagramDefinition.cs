@@ -174,11 +174,11 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
         //private IWiringBehavior _wiringBehavior = new SplineWiringBehavior();
         private IWiringBehavior _wiringBehavior = new ManhattanWiringBehavior();
 
-        public override IWiringBehavior DefaultWiringBehavior
+        protected override Lazy<IWiringBehavior> DefaultWiringBehavior
         {
             get
             {
-                return _wiringBehavior;
+                return new Lazy<IWiringBehavior>(() => _wiringBehavior);
             }
         }
 

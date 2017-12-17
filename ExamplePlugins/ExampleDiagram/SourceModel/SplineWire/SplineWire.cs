@@ -99,7 +99,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             foreach (var joint in Joints)
             {
                 float distance = joint.GetDistance(position);
-                if (distance <= Math.Max(threshold, WireJoint.JointFloatEpsilon))
+                if (distance <= Math.Max(threshold, WireJoint.JointPrecisionDigits))
                 {
                     yield return new NearWireChild(joint, point, distance);
                 }

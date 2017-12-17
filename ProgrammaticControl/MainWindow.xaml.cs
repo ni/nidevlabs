@@ -140,7 +140,7 @@ namespace ProgramaticControl
 
             await viExecutionService.CompileAndDeployAsync();
 
-            if (viExecutionService.HasMessages(MessageSeverity.NotReady, null))
+            if (viExecutionService.HasMessages(MessageSeverity.NotReady))
             {
                 _statusText.Text = "VI Not Ready Error";
                 return;
