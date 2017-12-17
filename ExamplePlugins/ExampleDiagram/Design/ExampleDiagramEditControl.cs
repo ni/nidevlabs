@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NationalInstruments.Core;
 using NationalInstruments.Design;
 using NationalInstruments.Shell;
@@ -16,7 +14,7 @@ namespace ExamplePlugins.ExampleDiagram.Design
 
         public const string PaletteIdentifier = "ExampleDiagramPalette";
 
-        public static readonly string ClipboardDataFormat = ClipboardFormatHelper.RegisterClipboardFormat(DragDrop.NIDataFormatPrefix + PaletteIdentifier, "Diagram Editor");
+        public static readonly string ClipboardDataFormat = ClipboardFormatHelper.RegisterClipboardFormat(DragDrop.NIDataFormatPrefix + PaletteIdentifier, "Example Diagram Editor");
 
         public ExampleDiagramEditControl()
         {

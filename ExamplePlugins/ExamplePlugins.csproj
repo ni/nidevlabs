@@ -103,6 +103,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ExampleDiagram\Design\VIReferenceNodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExampleDiagram\Shell\ListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,9 +133,14 @@
     <Compile Include="ExampleDiagram\Design\ListBoxVisualLayoutFactory.cs" />
     <Compile Include="ExampleDiagram\Design\SplineWire\SplineWireControl.cs" />
     <Compile Include="ExampleDiagram\Design\SplineWire\SplineWireViewModel.cs" />
+    <Compile Include="ExampleDiagram\Design\VIReferenceNodeView.xaml.cs">
+      <DependentUpon>VIReferenceNodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExampleDiagram\Design\VIReferenceNodeViewModel.cs" />
     <Compile Include="ExampleDiagram\Shell\ListBox.xaml.cs">
       <DependentUpon>ListBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExampleDiagram\Shell\VIReferenceMergeScriptProvider.cs" />
     <Compile Include="ExampleDiagram\SourceModel\ExampleDiagramDefinition.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramDocument.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramEditControl.cs" />
@@ -147,6 +156,7 @@
     <Compile Include="ExampleDiagram\SourceModel\SplineWire\SplineWireTerminal.cs" />
     <Compile Include="ExampleDiagram\SourceModel\SplineWire\SplineWiringBehavior.cs" />
     <Compile Include="ExampleDiagram\SourceModel\SplineWire\TerminalDirectionBatchRule.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\VIReferenceNode.cs" />
     <Compile Include="ExampleDocument\Model\TextDocumentDefinition.cs" />
     <Compile Include="ExampleDocument\Shell\ProjectExplorerService.cs" />
     <Compile Include="ExampleDocument\Shell\TextDocumentCommandContent.cs" />
