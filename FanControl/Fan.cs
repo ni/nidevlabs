@@ -34,31 +34,33 @@ namespace FanControl
             Storyboard.SetTarget(_rotateAnimation, _fanPart);
             Storyboard.SetTargetProperty(_rotateAnimation, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
             _storyboard.Children.Add(_rotateAnimation);
-            UpdateFanSpeedAnimation(FanSpeed);
+            UpdateFanSpeedAnimation(FanSpeed, Value);
         }
 
-        private void UpdateFanSpeedAnimation(FanSpeed speed)
+        private void UpdateFanSpeedAnimation(FanSpeed speed, bool isChecked)
         {
-            ((Storyboard)Resources["Storyboard"]).Stop();
-            switch (speed)
+            ((Storyboard)Resources["Storyboard"])?.Stop();
+            if (_rotateAnimation != null)
             {
-                case FanSpeed.Low:
-                    _rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-                    _rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
-                    break;
-                case FanSpeed.Medium:
-                    _rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(.1));
-                    _rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
-                    break;
-                case FanSpeed.High:
-                    _rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(.01));
-                    _rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
-                    break;
+                switch (speed)
+                {
+                    case FanSpeed.Low:
+                        _rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+                        _rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                        break;
+                    case FanSpeed.Medium:
+                        _rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(.1));
+                        _rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                        break;
+                    case FanSpeed.High:
+                        _rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(.01));
+                        _rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                        break;
+                }
             }
-
-            if (Value)
+            if (isChecked)
             {
-                ((Storyboard)Resources["Storyboard"]).Begin();
+                ((Storyboard)Resources["Storyboard"])?.Begin();
             }
         }
 
@@ -68,18 +70,18 @@ namespace FanControl
             if (IsChecked == true)
             {
                 Value = true;
-                ((Storyboard)Resources["Storyboard"]).Begin();
+                ((Storyboard)Resources["Storyboard"])?.Begin();
             }
             else
             {
                 Value = false;
-                ((Storyboard)Resources["Storyboard"]).Stop();
+                ((Storyboard)Resources["Storyboard"])?.Stop();
             }
         }
 
         private void FanPartOnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            ((Storyboard)Resources["Storyboard"]).Stop();
+            ((Storyboard)Resources["Storyboard"])?.Stop();
             _fanPart.RenderTransform = new ScaleTransform(.9, .9, .5, .5);
         }
 
@@ -95,7 +97,7 @@ namespace FanControl
         private static void OnFanSpeedChanged(object sender, DependencyPropertyChangedEventArgs args)
         {
             var fan = sender as Fan;
-            fan.UpdateFanSpeedAnimation(fan.FanSpeed);
+            fan.UpdateFanSpeedAnimation(fan.FanSpeed, fan.Value);
         }
 
         public bool Value
@@ -112,12 +114,13 @@ namespace FanControl
         private static void OnValueChanged(object sender, DependencyPropertyChangedEventArgs args)
         {
             var fan = sender as Fan;
-            if (fan != null && fan._valueChanged != null)
+            if (fan != null)
             {
-                fan._valueChanged(fan, EventArgs.Empty);
+                fan._valueChanged?.Invoke(fan, EventArgs.Empty);
+                fan.UpdateFanSpeedAnimation(fan.FanSpeed, (bool)args.NewValue);
             }
         }
-        
+
         private EventHandler _valueChanged;
         public event EventHandler ValueChanged
         {

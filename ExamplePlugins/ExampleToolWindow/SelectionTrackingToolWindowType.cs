@@ -91,6 +91,9 @@ namespace ExamplePlugins.ExampleToolWindow
         {
         }
 
+        /// <summary>
+        /// Standard INotifyPropertyChanged property changed event.
+        /// </summary>
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
     }
 }

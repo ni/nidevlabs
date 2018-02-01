@@ -7,6 +7,8 @@ using NationalInstruments.VI.SourceModel;
 using NationalInstruments.SourceModel.Persistence;
 using NationalInstruments.SourceModel;
 using NationalInstruments.PanelCommon.SourceModel;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FanPlugin.SourceModel
 {
@@ -67,13 +69,14 @@ namespace FanPlugin.SourceModel
         }
 
         /// <summary>
-        /// I this override you need to provide all of the possible events that the control can post at runtime.  Event
+        /// In this override you need to provide all of the possible events that the control can post at runtime.  Event
         /// structures will discover these events and present them to the user
         /// </summary>
-        protected override void SetupEvents()
+        protected override IList<IDiagramEvent> SetupDiagramEvents()
         {
-            base.SetupEvents();
-            AddDiagramEvent(new FanClickDiagramEvent(this));
+            var events = base.SetupDiagramEvents();
+            events.Add(new FanClickDiagramEvent(this));
+            return events;
         }
 
         #endregion
@@ -131,16 +134,10 @@ namespace FanPlugin.SourceModel
     public class FanPropertyInfo : IModelPropertyInfo
     {
         /// <inheritdoc/>
-        public PropertySymbol DefaultBindableProperty
-        {
-            get { return FanModel.ValueSymbol; }
-        }
+        public PropertySymbol DefaultBindableProperty => FanModel.ValueSymbol;
 
-
-        public System.Collections.Generic.IEnumerable<PropertySymbol> NonBindableProperties
-        {
-            get { throw new NotImplementedException(); }
-        }
+        /// <inheritdoc/>
+        public System.Collections.Generic.IEnumerable<PropertySymbol> NonBindableProperties => Enumerable.Empty<PropertySymbol>();
     }
 
     /// <summary>
@@ -149,10 +146,7 @@ namespace FanPlugin.SourceModel
     /// </summary>
     public class FanXamlHelper : XamlGenerationHelper
     {
-        public override Type ControlType
-        {
-            get { return typeof(Fan); }
-        }
+        public override Type ControlType => typeof(Fan);
 
         public override NameWithNamespace AttributeName(UIModel model, PropertySymbol propertyName)
         {

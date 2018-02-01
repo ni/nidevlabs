@@ -5,8 +5,8 @@ xmlns:nextgenvi="clr-namespace:NationalInstruments.VI.Design;assembly=NationalIn
 xmlns:cld="clr-namespace:NationalInstruments.Controls.SourceModel;assembly=NationalInstruments.Controls.LabVIEW.Design" 
 xmlns:adorners="clr-namespace:NationalInstruments.Controls.Design;assembly=NationalInstruments.Controls.LabVIEW.Design" 
 xmlns:nidesigner="NationalInstruments.Designer">
-	<Category Display="Demo" ImagePath="/FanDemo;component/Resources/Fan.png" ToolTip="Demo" UniqueId="Demo" Weight="0.2" BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PaletteCategory_40x40.xml">
-		<Leaf Display="Fan" ImagePath="/FanDemo;component/Resources/Fan_32x32.png" ToolTip="Fan" UniqueId="Fan" Weight="0.2">
+	<Category Display="Demo" ImagePath="/FanEditorExtensions.plugin;component/Resources/NeutralCategoriesNumeric_40x40.xml" ToolTip="Demo" UniqueId="Demo" Weight="0.2" BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PaletteCategory_40x40.xml">
+		<Leaf Display="Fan" ImagePath="/FanEditorExtensions.plugin;component/Resources/NeutralNumericControl_40x40.xml" ToolTip="Fan" UniqueId="Fan" Weight="0.2">
 			<pf:MergeScript>
 				<pf:MergeItem Path="./ancestor::SourceFile/=IDataItemOwner">
 					<moc:DataItem Id="1" Name="Fan" DataType="Boolean" AdaptToDiagramType="False">

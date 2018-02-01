@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PaletteControls PaletteBaseName="Diagram" xmlns:pf="http://www.ni.com/PlatformFramework" xmlns:exampleNodes="http://www.ni.com/ExamplePlugins" xmlns:vi="http://www.ni.com/LabVIEW.VI" xmlns:ctrl="http://www.ni.com/Controls.LabVIEW.Design" xmlns:moc="http://www.ni.com/MocCommon" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Category Display="Example Nodes" ElementId="ExamplePlugins.Nodes" UniqueId="EXAMPLENODES" Weight="1" 
-            ImagePath="/ExamplePlugins;component/Resources/MultiplyByXNode_40x40.xml" 
+            ImagePath="/ExamplePlugins.plugin;component/Resources/PaletteCategoryBarn40x40.xml" 
             BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PaletteCategory_40x40.xml"
             >
     <Leaf Display="Multiple By X" UniqueId="ExamplePlugins.MultiplyByX" 
-          ImagePath="/ExamplePlugins;component/Resources/MultiplyByXNode_40x40.xml" 
+          ImagePath="/ExamplePlugins.plugin;component/Resources/MultiplyByXNode_40x40.xml" 
           BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
       <pf:MergeScript>
         <pf:MergeItem>
