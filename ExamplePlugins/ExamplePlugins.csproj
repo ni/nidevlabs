@@ -149,6 +149,7 @@
     <Compile Include="ExampleDiagram\Design\ExampleDiagramPaletteLoader.cs" />
     <Compile Include="ExampleDiagram\Shell\ExampleDiagramProjectService.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramViewModelProvider.cs" />
+    <Compile Include="ExampleDiagram\SourceModel\ExampleNewDocumentNodePaletteItem.cs" />
     <Compile Include="ExampleDiagram\SourceModel\ExampleRootDiagram.cs" />
     <Compile Include="ExampleDiagram\SourceModel\GrowableNode.cs" />
     <Compile Include="ExampleDiagram\SourceModel\InteractiveNode.cs" />

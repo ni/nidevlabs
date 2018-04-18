@@ -52,6 +52,9 @@
     <Reference Include="NationalInstruments.LabVIEW.FrontPanelRuntime">
       <HintPath>$(InstallLocation)\NationalInstruments.LabVIEW.FrontPanelRuntime.dll</HintPath>
     </Reference>
+    <Reference Include="NationalInstruments.NIWebBrowserSupport">
+      <HintPath>$(InstallLocation)\NationalInstruments.NIWebBrowserSupport.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
