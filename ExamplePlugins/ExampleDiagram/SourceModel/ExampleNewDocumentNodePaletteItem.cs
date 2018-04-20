@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 using ExamplePlugins.ExampleDiagram.Design;
 using NationalInstruments;
 using NationalInstruments.Composition;
@@ -12,7 +13,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
     [ExportPaletteLoader(ExampleDiagramEditControl.PaletteIdentifier)]
     [BindsToKeyword(ExampleDiagramDefinition.ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName)]
     [PartMetadata(ExportIdentifier.ExportIdentifierKey, ProductLevel.Elemental)]
-    public class ExampleNewDocumentNodePaletteItem : NewDocumentPaletteItem<Node>
+    public class ExampleNewDocumentNodePaletteItem : NewDocumentPaletteItem
     {
         protected override string Icon
         {
@@ -54,9 +55,9 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             }
         }
 
-        protected override Func<ElementCreateInfo, Node> ElementCreator()
+        protected override Task<Element> CreateElementAsync(ElementCreateInfo createInfo)
         {
-            return BasicNode.Create;
+            return Task.FromResult<Element>(BasicNode.Create(createInfo));
         }
 
         protected override PaletteElementCategory CreateParentCategory()
@@ -64,33 +65,31 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             return null;
         }
 
-        protected override void SetTargetPlaceholderText(string targetPlaceholderText, Node newNode)
+        protected override void SetTargetPlaceholderText(string targetPlaceholderText, Element newElement)
         {
-            newNode.Height = 50;
-            newNode.Width = 50;
+            var newNode = newElement as Node;
+            if (newNode != null)
+            {
+                newNode.Height = 50;
+                newNode.Width = 50;
+            }
         }
 
-        protected override Action<Envoy> ModifyNewDocument
+        protected override void ModifyNewDocument(Envoy envoy)
         {
-            get
+            var diagramDefinition = envoy.ReferenceDefinition as ExampleDiagramDefinition;
+            if (diagramDefinition != null)
             {
-                return (envoy) =>
+                using (var transaction = diagramDefinition.TransactionManager.BeginTransaction("Drop Some Nodes", TransactionPurpose.NonUser))
                 {
-                    var diagramDefinition = envoy.ReferenceDefinition as ExampleDiagramDefinition;
-                    if (diagramDefinition != null)
+                    for (int i = 0; i < 4; i++)
                     {
-                        using (var transaction = diagramDefinition.TransactionManager.BeginTransaction("Drop Some Nodes", TransactionPurpose.NonUser))
-                        {
-                            for (int i = 0; i < 4; i++)
-                            {
-                                var node = GrowableNode.Create(new ElementCreateInfo());
-                                node.Bounds = new SMRect(i * 75 + 100, i * 75 + 100, 50, 50);
-                                diagramDefinition.RootDiagram.AddNode(node);
-                            }
-                            transaction.Commit();
-                        }
+                        var node = GrowableNode.Create(new ElementCreateInfo());
+                        node.Bounds = new SMRect(i * 75 + 100, i * 75 + 100, 50, 50);
+                        diagramDefinition.RootDiagram.AddNode(node);
                     }
-                };
+                    transaction.Commit();
+                }
             }
         }
     }
