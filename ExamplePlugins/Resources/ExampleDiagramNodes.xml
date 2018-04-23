@@ -6,11 +6,11 @@
                  xmlns:moc="http://www.ni.com/MocCommon"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Category Display="Example Nodes" ElementId="ExamplePlugins.Nodes" UniqueId="EXAMPLENODES" Weight="1"
-            ImagePath="/ExamplePlugins;component/Resources/PaletteCategoryBarn40x40.xml"
+            ImagePath="/ExamplePlugins.plugin;component/Resources/PaletteCategoryBarn40x40.xml"
             BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PaletteCategory_40x40.xml"
             >
     <Leaf Display="Basic Node" UniqueId="ExamplePlugins.BasicNode"
-          ImagePath="/ExamplePlugins;component/Resources/Cow_40x40.xml"
+          ImagePath="/ExamplePlugins.plugin;component/Resources/Cow_40x40.xml"
           BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
       <pf:MergeScript>
         <pf:MergeItem>
@@ -18,8 +18,8 @@
         </pf:MergeItem>
       </pf:MergeScript>
     </Leaf>
-    <Leaf Display="Growable Node" UniqueId="ExamplePlugins.BasicNode"
-          ImagePath="/ExamplePlugins;component/Resources/Llama_40x40.xml"
+    <Leaf Display="Growable Node" UniqueId="ExamplePlugins.GrowableNode"
+          ImagePath="/ExamplePlugins.plugin;component/Resources/Llama_40x40.xml"
           BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
       <pf:MergeScript>
         <pf:MergeItem>
@@ -28,7 +28,7 @@
       </pf:MergeScript>
     </Leaf>
     <Leaf Display="Interactive Node" UniqueId="ExamplePlugins.InteractiveNode"
-          ImagePath="/ExamplePlugins;component/Resources/Pig_40x40.xml"
+          ImagePath="/ExamplePlugins.plugin;component/Resources/Pig_40x40.xml"
           BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
       <pf:MergeScript>
         <pf:MergeItem>

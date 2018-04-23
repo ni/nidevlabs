@@ -199,7 +199,7 @@ namespace ProgramaticControl
         {
             var viExecutionService = executionService as NationalInstruments.MocCommon.Execution.ExecutionService;
             var cancellationSource = CompileCancellationToken.CreateNewSource();
-            await viExecutionService.CompileAndDeployHierarchyAsync(cancellationSource.Token, AsyncTaskPriority.WorkerHighest);
+            await viExecutionService.CompileAndDeployAsync();
         }
 
         /// <summary>
