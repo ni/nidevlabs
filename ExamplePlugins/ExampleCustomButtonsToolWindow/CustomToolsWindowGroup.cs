@@ -17,14 +17,14 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow
     [PartMetadata(ExportIdentifier.ExportIdentifierKey, ProductLevel.Base)]
     [BindsToKeyword(DocumentEditControl.DocumentEditControlIdentifier)]
     [BindsToKeyword(ToolLauncherContentHelpers.ToolLauncherKeyword, PlatformFrameworkNamespaceSchema.ParsableNamespaceName)]
-    public sealed class CustomButtonsToolWindowGroup : PushCommandContent
+    public sealed class CustomToolsWindowGroup : PushCommandContent
     {
-        private static readonly string CustomButtonsGroupsCommandUniqueId = "NI.ExamplePlugins:CustomButtonsToolsGroupCommand".NotLocalized();
+        private static readonly string CustomToolsGroupCommandUniqueId = "NI.ExamplePlugins:CustomToolsGroupCommand".NotLocalized();
         
-        private static readonly ICommandEx CustomButtonsToolWindowGroupCommand = new ShellRelayCommand()
+        private static readonly ICommandEx CustomToolsWindowGroupCommand = new ShellRelayCommand
         {
-            LabelTitle = LocalizedStrings.CustomButtonsToolWindowGroupName,
-            UniqueId = CustomButtonsGroupsCommandUniqueId
+            LabelTitle = LocalizedStrings.CustomToolsWindowGroupName,
+            UniqueId = CustomToolsGroupCommandUniqueId
         };
 
         /// <inheritdoc />
@@ -36,7 +36,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow
             using (context.AddToolLauncherContent())
             {
                 // Add a group
-                using (context.AddGroup(CustomButtonsToolWindowGroupCommand))
+                using (context.AddGroup(CustomToolsWindowGroupCommand))
                 {
                     // Add the custom buttons tool window to the group
                     ICommandContentManager commandContentManager = ((CommandContentBuilder)context).Site.CommandContentManager;

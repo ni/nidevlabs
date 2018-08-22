@@ -61,16 +61,16 @@ namespace ExamplePlugins.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom Buttons.
+        ///   Looks up a localized string similar to (Example) Custom Tools.
         /// </summary>
-        internal static string CustomButtonsToolWindowGroupName {
+        internal static string CustomToolsWindowGroupName {
             get {
-                return ResourceManager.GetString("CustomButtonsToolWindowGroupName", resourceCulture);
+                return ResourceManager.GetString("CustomToolsWindowGroupName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate DFIR and run custom code.
+        ///   Looks up a localized string similar to (Example) Generate DFIR and output to console log.
         /// </summary>
         internal static string GenerateDfirButtonName {
             get {

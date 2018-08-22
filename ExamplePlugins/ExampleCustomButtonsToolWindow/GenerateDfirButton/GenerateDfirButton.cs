@@ -51,12 +51,15 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
             var scheduledActivityManager = _host.GetSharedExportedValue<IScheduledActivityManager>();
             var activity = new BasicActivity<Task>(
                 ActivityResourceAffinities.None,
-                AsyncTaskPriorityToken.WorkerNormal,
+                AsyncTaskPriority.WorkerHigh,
                 "Generate DFIR",
                 async () =>
                 {
                     Tuple<DfirRoot, IDictionary<ExtendedQualifiedName, DfirRoot>> dfirRoots = await GenerateDfirForDocumentAndSubVIsAsync(_host, document);
-                    WriteHierarchyToConsoleOutput(dfirRoots);
+                    if (dfirRoots != null)
+                    {
+                        WriteHierarchyToConsoleOutput(dfirRoots);
+                    }
                 });
             scheduledActivityManager.RunActivityAsync(activity).IgnoreAwait();
         }
@@ -76,8 +79,8 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
             {
                 if (subVi != null)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine($@"SubVI: {subVi.Name}");
+                    Log.WriteLine();
+                    Log.WriteLine($@"SubVI: {subVi.Name}");
                     WriteBlockDiagramToConsoleOutput(subVi);
                 }
             }
@@ -87,7 +90,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
         {
             foreach (Node node in dfirRoot.BlockDiagram.Nodes)
             {
-                Console.WriteLine($@"Id {node.UniqueId} : {node.GetType().Name}");
+                Log.WriteLine($@"Id {node.UniqueId} : {node.GetType().Name}");
             }
         }
 
@@ -123,8 +126,8 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
 
         private static bool CanDfirBeGeneratedForDocument(Document document)
         {
-            bool hasCompilerService = document.Envoy?.QueryService<CompilerService>().FirstOrDefault() != null;
-            bool hasTargetCompiler = document.Envoy?.QueryInheritedService<ITargetCompilerServices>().FirstOrDefault()?.Compiler != null;
+            bool hasCompilerService = document?.Envoy?.QueryService<CompilerService>().FirstOrDefault() != null;
+            bool hasTargetCompiler = document?.Envoy?.QueryInheritedService<ITargetCompilerServices>().FirstOrDefault()?.Compiler != null;
             return hasCompilerService && hasTargetCompiler;
         }
 

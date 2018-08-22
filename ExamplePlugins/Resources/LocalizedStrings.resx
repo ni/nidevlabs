@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CustomButtonsToolWindowGroupName" xml:space="preserve">
-    <value>Custom Buttons</value>
+  <data name="CustomToolsWindowGroupName" xml:space="preserve">
+    <value>(Example) Custom Tools</value>
   </data>
   <data name="GenerateDfirButtonName" xml:space="preserve">
-    <value>Generate DFIR and run custom code</value>
+    <value>(Example) Generate DFIR and output to console log</value>
   </data>
 </root>

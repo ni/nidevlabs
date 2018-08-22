@@ -122,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleCommandPaneContent\ScriptingCommands.cs" />
-    <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindowGroup.cs" />
+    <Compile Include="ExampleCustomButtonsToolWindow\CustomToolsWindowGroup.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\GenerateDfirButton\GenerateDfirButton.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindow.xaml.cs">
       <DependentUpon>CustomButtonsToolWindow.xaml</DependentUpon>
