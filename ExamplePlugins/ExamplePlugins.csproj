@@ -95,6 +95,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExampleDiagram\Design\InteractiveNodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +122,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleCommandPaneContent\ScriptingCommands.cs" />
+    <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindowGroup.cs" />
+    <Compile Include="ExampleCustomButtonsToolWindow\GenerateDfirButton\GenerateDfirButton.cs" />
+    <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindow.xaml.cs">
+      <DependentUpon>CustomButtonsToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindowType.cs" />
+    <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindowViewModel.cs" />
+    <Compile Include="ExampleCustomButtonsToolWindow\CustomButton.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleDiagramWireViewModel.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleRootDiagramCanvas.cs" />
     <Compile Include="ExampleDiagram\Design\GrowableNodeViewModel.cs" />
