@@ -10,7 +10,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow
     /// </summary>
     [Export(typeof(IToolWindowType))]
     [ExportMetadata("UniqueID", WindowGuidText)]
-    [Name("(Example) Custom Button Window")]
+    [Name("(Example) Custom Buttons")]
     [ExportMetadata("SmallImagePath", "")]
     [ExportMetadata("LargeImagePath", "")]
     [ExportMetadata("DefaultCreationTime", ToolWindowCreationTime.UserRequested)]
