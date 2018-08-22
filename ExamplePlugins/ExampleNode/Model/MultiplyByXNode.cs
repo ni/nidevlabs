@@ -146,7 +146,7 @@ namespace ExamplePlugins.ExampleNode.Model
         }
 
         /// <inheritdoc />
-        public NationalInstruments.Dfir.Node BuildDfirNode(NationalInstruments.Dfir.Plugin.PluginNodeTerminalInfo terminalInfo, NationalInstruments.Dfir.Plugin.IPluginNodeDfirBuilderHelper helper)
+        public NationalInstruments.Dfir.Node BuildDfirNode(NationalInstruments.Dfir.Plugin.PluginNodeTerminalInfo terminalInfo, IPluginNodeDfirBuilderHelper helper)
         {
             return new MultiplyByXDfirNode(terminalInfo, _multiplier);
         }
