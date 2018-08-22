@@ -126,7 +126,7 @@ namespace ProgramaticControl
 
         private async Task RunVIAsync()
         {
-            var viExecutionService = _openedDocument.QueryExecutionService();
+            var viExecutionService = _openedDocument.QueryFunctionExecutionService();
 
             _lockedVIReference = _openedDocument.Envoy.GetReferencedFileService().KeepReferencedFileInMemory();
 
@@ -162,8 +162,8 @@ namespace ProgramaticControl
         private void VIDoneExecuting()
         {
             IDataspace dataContext = null;
-            var executionService = _openedDocument.QueryExecutionService();
-            if (executionService != null && executionService.MasterExecutableFunction != null)
+            var executionService = _openedDocument.QueryFunctionExecutionService();
+            if (executionService != null && executionService.MasterExecutable != null)
             {
                 dataContext = executionService.FunctionDataspace;
             }
@@ -216,12 +216,12 @@ namespace ProgramaticControl
             {
                 if (a.NewExecutionState.IsIdle() && a.OldExecutionState.IsReserved())
                 {
-                    executionService.MasterExecutableFunction.CurrentSimpleExecutionStateChanged -= viStateChangedEventHandler;
+                    executionService.MasterExecutable.CurrentSimpleExecutionStateChanged -= viStateChangedEventHandler;
                     result.SetResult(true);
                 }
             });
-            executionService.MasterExecutableFunction.CurrentSimpleExecutionStateChanged += viStateChangedEventHandler;
-            executionService.StartRun();
+            executionService.MasterExecutable.CurrentSimpleExecutionStateChanged += viStateChangedEventHandler;
+            executionService.MasterExecutable.StartRun();
             return result.Task;
         }
     }

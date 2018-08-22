@@ -69,6 +69,15 @@ namespace FanPlugin.SourceModel
         }
 
         /// <summary>
+        /// Determines if an event from a descendant is supported.  This can be used for UI elements that are composed of
+        /// UI Elements that should not be made visible to the user.
+        /// </summary>
+        public bool IsDescendantEventSupported(IDiagramEvent diagramEvent)
+        {
+            return false;
+        }
+
+        /// <summary>
         /// In this override you need to provide all of the possible events that the control can post at runtime.  Event
         /// structures will discover these events and present them to the user
         /// </summary>

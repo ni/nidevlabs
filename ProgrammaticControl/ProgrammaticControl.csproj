@@ -65,14 +65,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.LabVIEW.Compiler.Interfaces, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(InstallLocation)\NationalInstruments.LabVIEW.Compiler.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="NationalInstruments.LabVIEW.VI, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(InstallLocation)\NationalInstruments.LabVIEW.VI.dll</HintPath>
-    </Reference>
     <Reference Include="NationalInstruments.MocCommon, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.MocCommon.dll</HintPath>
@@ -80,6 +72,10 @@
     <Reference Include="NationalInstruments.PlatformFramework, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.PlatformFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.VI, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.VI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
