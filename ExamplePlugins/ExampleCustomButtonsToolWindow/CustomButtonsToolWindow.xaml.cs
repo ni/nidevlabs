@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using NationalInstruments.Composition;
+using NationalInstruments.Core;
 
 namespace ExamplePlugins.ExampleCustomButtonsToolWindow
 {
     /// <summary>
-    /// Interaction logic for CustomButtonsWindow.xaml
+    /// Interaction logic for CustomButtonsToolWindow.xaml
     /// </summary>
     internal partial class CustomButtonsToolWindow
     {
         /// <summary>
-        ///     Constructor for the tool window
+        /// Constructor for the tool window
         /// </summary>
         public CustomButtonsToolWindow()
         {
@@ -18,7 +19,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow
         }
 
         /// <summary>
-        ///     Initialize the control and load the custom buttons.
+        /// Initialize the control and load the custom buttons.
         /// </summary>
         /// <param name="host">The composition host</param>
         internal void Initialize(ICompositionHost host)
@@ -30,6 +31,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow
             }
             catch (CompositionException e)
             {
+                Log.WriteLine(e.Message);
                 return;
             }
 

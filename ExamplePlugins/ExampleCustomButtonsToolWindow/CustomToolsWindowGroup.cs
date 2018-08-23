@@ -9,7 +9,6 @@ using NationalInstruments.SourceModel.Persistence;
 
 namespace ExamplePlugins.ExampleCustomButtonsToolWindow
 {
-
     /// <summary>
     /// Tool launcher group for the window with cutom buttons 
     /// </summary>
@@ -19,12 +18,12 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow
     [BindsToKeyword(ToolLauncherContentHelpers.ToolLauncherKeyword, PlatformFrameworkNamespaceSchema.ParsableNamespaceName)]
     public sealed class CustomToolsWindowGroup : PushCommandContent
     {
-        private static readonly string CustomToolsGroupCommandUniqueId = "NI.ExamplePlugins:CustomToolsGroupCommand".NotLocalized();
+        private static readonly string CustomToolsWindowGroupCommandUniqueId = "NI.ExamplePlugins:CustomToolsWindowGroupCommand".NotLocalized();
         
         private static readonly ICommandEx CustomToolsWindowGroupCommand = new ShellRelayCommand
         {
             LabelTitle = LocalizedStrings.CustomToolsWindowGroupName,
-            UniqueId = CustomToolsGroupCommandUniqueId
+            UniqueId = CustomToolsWindowGroupCommandUniqueId
         };
 
         /// <inheritdoc />

@@ -5,12 +5,12 @@ using NationalInstruments.Shell;
 namespace ExamplePlugins.ExampleCustomButtonsToolWindow
 {
     /// <summary>
-    ///     View model for the Custom Buttons window
+    /// View model for the Custom Buttons window
     /// </summary>
     internal class CustomButtonsToolWindowViewModel : ToolWindowViewModelBase
     {
         /// <summary>
-        ///     Constructor for the Custom Buttons window view model
+        /// Constructor for the Custom Buttons window view model
         /// </summary>
         public CustomButtonsToolWindowViewModel()
         {
