@@ -13,5 +13,14 @@
         </pf:MergeItem>
       </pf:MergeScript>
     </Leaf>
+    <Leaf Display="Calculate Total Length" UniqueId="ExamplePlugins.CalculateTotalLength" 
+          ImagePath="/ExamplePlugins.plugin;component/Resources/Llama_40x40.xml" 
+          BackgroundImagePath="/NationalInstruments.MocCommon;component/Resources/Palette/Backgrounds/PrimitiveRectangle_40x40.xml">
+      <pf:MergeScript>
+        <pf:MergeItem>
+          <exampleNodes:CalculateTotalLength />
+        </pf:MergeItem>
+      </pf:MergeScript>
+    </Leaf>
   </Category>
 </PaletteControls>
