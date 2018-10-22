@@ -6,7 +6,6 @@ using NationalInstruments.Compiler.SemanticAnalysis;
 using NationalInstruments.Core;
 using NationalInstruments.DataTypes;
 using NationalInstruments.CommonModel;
-using System;
 
 namespace ExamplePlugins.ExampleNode.Model
 {
@@ -101,13 +100,20 @@ namespace ExamplePlugins.ExampleNode.Model
             return AsyncHelpers.CompletedTask;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets whether the each node decomposition should be housed within a frame.
+        /// </summary>
+        /// <remarks>
+        /// Standard nodes synchronize at node boundaries and do not start to execute until all inputs have arrived, but this can limit what transformations can be performed on scripted code.
+        /// </remarks>
         public override bool SynchronizeAtNodeBoundaries
         {
             get { return false; }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the overload group this node is associated with. If a node does not participate in Node Overloading this will return null.
+        /// </summary>
         public string OverloadGroup
         {
             get
@@ -116,26 +122,42 @@ namespace ExamplePlugins.ExampleNode.Model
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the globally unique identifier for this Dfir node within this overload group. If a node does not participate in Node Overloading this will return null.
+        /// </summary>
+        /// <remarks>
+        /// Overload disambiguation will not allow nodes from the same OverloadGroupSubId to compete with each other.
+        /// </remarks> 
         public string OverloadGroupSubId
         {
             get { return typeof(MultiplyByXDfirNode).ToString(); }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// original node that this node is overloading
+        /// </summary>
         public Node OriginalNode
         {
             get;
             set;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the SideIndex for a terminal that is owned by this Node.  This is needed so the overload disambiguator
+        /// can know which terminals correspond to each other in different nodes/VIs.
+        /// </summary>
+        /// <param name="terminal">The terminal, which is owned by this node.</param>
+        /// <returns>The SideIndex in the source model for this terminal.</returns>
         public SideIndex GetSideIndexFromTerminal(Terminal terminal)
         {
             return OverloadHelpers.GetSideIndexFromTerminalDefault(Terminals, terminal);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets when the node needs to be decomposed.
+        /// </summary>
+        /// <param name="targetInfo">Target on which this node will be decomposed.</param>
+        /// <returns>When the node should decompose.</returns>
         public override DecomposeStrategy DecomposeWhen(ISemanticAnalysisTargetInfo targetInfo)
         {
             return DecomposeStrategy.AfterSemanticAnalysis;

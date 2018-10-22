@@ -10,7 +10,9 @@ using NationalInstruments.Dfir.Plugin;
 namespace ExamplePlugins.ExampleNode.Model
 {
     /// <summary>
-    /// The DFIR node for the Calculate Total Length node
+    /// The DFIR node for the Calculate Total Length node.  This node generates code that will
+    /// call <see cref="CalculateTotalLengthCallback.CalculateTotalLength"/> at runtime.
+    ///
     /// See notes on the <see cref="CalculateTotalLengthNode"/> class for caveats.
     /// </summary>
     public class CalculateTotalLengthDfirNode : PluginNode
@@ -86,6 +88,10 @@ namespace ExamplePlugins.ExampleNode.Model
             return AsyncHelpers.CompletedTask;
         }
 
+        /// <summary>
+        /// Creates the <see cref="NIType"/> for calling the .NET method <see cref="CalculateTotalLengthCallback.CalculateTotalLength"/>.
+        /// </summary>
+        /// <returns></returns>
         private NIType CreateMethodType()
         {
             System.Reflection.MethodBase method = typeof(CalculateTotalLengthCallback).GetMethod(nameof(CalculateTotalLengthCallback.CalculateTotalLength));
@@ -95,13 +101,22 @@ namespace ExamplePlugins.ExampleNode.Model
             return functionType;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets whether the each node decomposition should be housed within a frame.
+        /// </summary>
+        /// <remarks>
+        /// Standard nodes synchronize at node boundaries and do not start to execute until all inputs have arrived, but this can limit what transformations can be performed on scripted code.
+        /// </remarks>
         public override bool SynchronizeAtNodeBoundaries
         {
             get { return false; }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets when the node needs to be decomposed.
+        /// </summary>
+        /// <param name="targetInfo">Target on which this node will be decomposed.</param>
+        /// <returns>When the node should decompose.</returns>
         public override DecomposeStrategy DecomposeWhen(ISemanticAnalysisTargetInfo targetInfo)
         {
             return DecomposeStrategy.AfterSemanticAnalysis;

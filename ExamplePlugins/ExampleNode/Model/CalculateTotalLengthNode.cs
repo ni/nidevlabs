@@ -119,7 +119,13 @@ namespace ExamplePlugins.ExampleNode.Model
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Obtain a Dfir node that represents the plugin node. This method will create a Dfir node with
+        /// no parent. The builder will place the node on the correct diagram.
+        /// </summary>
+        /// <param name="terminalInfo">The association map between source model terminals and Dfir terminals.</param>
+        /// <param name="helper">Helpers for building the plugin node's Dfir</param>
+        /// <returns>The plugin that provides the implementation for this node.</returns>
         public NationalInstruments.Dfir.Node BuildDfirNode(NationalInstruments.Dfir.Plugin.PluginNodeTerminalInfo terminalInfo, IPluginNodeDfirBuilderHelper helper)
         {
             return new CalculateTotalLengthDfirNode(terminalInfo);

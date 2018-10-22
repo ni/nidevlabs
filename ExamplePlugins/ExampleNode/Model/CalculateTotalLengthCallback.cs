@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace ExamplePlugins.ExampleNode.Model
 {
     /// <summary>
-    /// An example class that is called into by <see cref="CalculateTotalLengthDfirNode"/> 
+    /// An example class that is called into at runtime by <see cref="CalculateTotalLengthDfirNode"/>.
     /// </summary>
     public static class CalculateTotalLengthCallback
     {
         /// <summary>
-        /// An example method that is called by <see cref="CalculateTotalLengthDfirNode"/> 
+        /// An example method that is called at runtime by <see cref="CalculateTotalLengthDfirNode"/>.
         /// </summary>
         /// <param name="names">An array of names</param>
         /// <param name="extraName">An extra name</param>
