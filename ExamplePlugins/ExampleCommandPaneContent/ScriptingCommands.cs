@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using ExamplePlugins.SourceModel;
 using NationalInstruments.Compiler;
 using NationalInstruments.Composition;
@@ -311,7 +312,8 @@ namespace ExamplePlugins.ExampleCommandPaneContent
             // Create an Element selection is which a selection model for the selected view models
             var elementSelection = SelectionToolViewModel.CreateElementSelection(selection, true);
             // Get the text from the merge script
-            _lastMergeScript = elementSelection.CopyMergeScript(host);
+            _lastMergeScript = elementSelection.CopyMergeScript(host, true);
+            Clipboard.SetText(_lastMergeScript);
         }
 
         /// <summary>
