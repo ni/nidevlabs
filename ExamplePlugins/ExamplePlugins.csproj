@@ -171,9 +171,13 @@
     <Compile Include="ExampleDocument\Shell\TextDocumentCommandContent.cs" />
     <Compile Include="ExampleDocument\Shell\TextDocumentEditorView.cs" />
     <Compile Include="ExampleDocument\Shell\TextEditorDocument.cs" />
+    <Compile Include="ExampleNode\Design\CalculateTotalLengthViewModel.cs" />
     <Compile Include="ExampleNode\Design\MultiplyByXViewModel.cs" />
     <Compile Include="ExampleNode\Design\PaletteLoader.cs" />
     <Compile Include="ExampleNode\Design\ViewModelProvider.cs" />
+    <Compile Include="ExampleNode\Model\CalculateTotalLengthCallback.cs" />
+    <Compile Include="ExampleNode\Model\CalculateTotalLengthDfirNode.cs" />
+    <Compile Include="ExampleNode\Model\CalculateTotalLengthNode.cs" />
     <Compile Include="ExampleNode\Model\MultiplyByXDfirNode.cs" />
     <Compile Include="ExampleNode\Model\MultiplyByXNode.cs" />
     <Compile Include="ExampleCommandPaneContent\ExampleCommandContent.cs" />
