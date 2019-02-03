@@ -16,8 +16,10 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow
         {
             CreateViewHandler = () =>
             {
-                var toolWindow = Host.CreateInstance<CustomButtonsToolWindow>();
-                toolWindow.DataContext = this;
+                var toolWindow = new CustomButtonsToolWindow
+                {
+                    DataContext = this
+                };
                 toolWindow.Initialize(Host);
                 return toolWindow;
             };

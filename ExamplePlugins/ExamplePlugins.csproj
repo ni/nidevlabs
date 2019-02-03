@@ -122,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleCommandPaneContent\ScriptingCommands.cs" />
-    <Compile Include="ExampleCustomButtonsToolWindow\CustomToolsWindowGroup.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\GenerateDfirButton\GenerateDfirButton.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindow.xaml.cs">
       <DependentUpon>CustomButtonsToolWindow.xaml</DependentUpon>
@@ -130,6 +129,11 @@
     <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindowType.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindowViewModel.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\CustomButton.cs" />
+    <Compile Include="ExampleCustomButtonsToolWindow\Resources\CustomButtonsToolWindow.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomButtonsToolWindow.resx</DependentUpon>
+    </Compile>
     <Compile Include="ExampleDiagram\Design\ExampleDiagramWireViewModel.cs" />
     <Compile Include="ExampleDiagram\Design\ExampleRootDiagramCanvas.cs" />
     <Compile Include="ExampleDiagram\Design\GrowableNodeViewModel.cs" />
@@ -202,6 +206,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="ExampleCustomButtonsToolWindow\Resources\CustomButtonsToolWindow.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomButtonsToolWindow.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\LocalizedStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedStrings.Designer.cs</LastGenOutput>
