@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using ExamplePlugins.ExampleBuildApplicationCommandLineTool.Resources;
+using ExamplePlugins.Resources;
 using NationalInstruments.ComponentEditor.SourceModel;
 using NationalInstruments.CommandLineInterface;
 
@@ -10,19 +10,18 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
     /// </summary>
     [ExportCommandLineTool(
         typeToLocateResources: typeof(BuildLibraryCommandLineTool),
-        resourceName: nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings),
         commandName: CommandName,
-        commandHelpKey: nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_Help),
+        commandHelpKey: nameof(LocalizedStrings.BuildLibraryTool_Help),
         optionsHelpKeys: new string[]
         {
             ProjectPathArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ProjectPath),
+            nameof(LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ProjectPath),
             ComponentNameArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ComponentName),
+            nameof(LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ComponentName),
             TargetNameArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_TargetName),
+            nameof(LocalizedStrings.BuildLibraryTool_HelpOptionDescription_TargetName),
             SaveArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_Save)
+            nameof(LocalizedStrings.BuildLibraryTool_HelpOptionDescription_Save)
         })]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class BuildLibraryCommandLineTool : BuildComponentCommandLineTool
@@ -39,16 +38,16 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         {
             AddOption(
                 ProjectPathArgumentPrototype,
-                ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ProjectPath,
+                LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ProjectPath,
                 s => { ProjectPath = s; },
                 required: true);
             AddOption(
                 ComponentNameArgumentPrototype,
-                ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ComponentName,
+                LocalizedStrings.BuildLibraryTool_HelpOptionDescription_ComponentName,
                 s => { ComponentName = s; },
                 required: true);
-            AddOption(TargetNameArgumentPrototype, ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_TargetName, s => { Target = s; });
-            AddOption(SaveArgumentPrototype, ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildLibraryTool_HelpOptionDescription_Save, s => { Save = true; });
+            AddOption(TargetNameArgumentPrototype, LocalizedStrings.BuildLibraryTool_HelpOptionDescription_TargetName, s => { Target = s; });
+            AddOption(SaveArgumentPrototype, LocalizedStrings.BuildLibraryTool_HelpOptionDescription_Save, s => { Save = true; });
         }
 
         /// <inheritdoc/>

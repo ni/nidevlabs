@@ -19,7 +19,7 @@ namespace ExamplePlugins.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class LocalizedStrings {
@@ -57,6 +57,249 @@ namespace ExamplePlugins.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build the specified application into a binary. LabVIEW NXG Application Builder is required to use this feature..
+        /// </summary>
+        internal static string BuildApplicationTool_Help {
+            get {
+                return ResourceManager.GetString("BuildApplicationTool_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the application to build..
+        /// </summary>
+        internal static string BuildApplicationTool_HelpOptionDescription_ComponentName {
+            get {
+                return ResourceManager.GetString("BuildApplicationTool_HelpOptionDescription_ComponentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The relative or absolute path of the project containing the application to build..
+        /// </summary>
+        internal static string BuildApplicationTool_HelpOptionDescription_ProjectPath {
+            get {
+                return ResourceManager.GetString("BuildApplicationTool_HelpOptionDescription_ProjectPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Optional] Save the project and application after building. Use this to save versions of auto-incremented applications..
+        /// </summary>
+        internal static string BuildApplicationTool_HelpOptionDescription_Save {
+            get {
+                return ResourceManager.GetString("BuildApplicationTool_HelpOptionDescription_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target that contains the application to build. This option is required if the project contains SystemDesigner targets. If there are no SystemDesigner targets, this option is not required..
+        /// </summary>
+        internal static string BuildApplicationTool_HelpOptionDescription_TargetName {
+            get {
+                return ResourceManager.GetString("BuildApplicationTool_HelpOptionDescription_TargetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        internal static string BuildComponentTool_BuildErrorMessage {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_BuildErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Messages:.
+        /// </summary>
+        internal static string BuildComponentTool_BuildErrorMessagesHeader {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_BuildErrorMessagesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source:.
+        /// </summary>
+        internal static string BuildComponentTool_BuildErrorSource {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_BuildErrorSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} build failed..
+        /// </summary>
+        internal static string BuildComponentTool_BuildFailed {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_BuildFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} build failed. Run this build with the --save option, then open the project in the LabVIEW NXG IDE and check the build queue for more information..
+        /// </summary>
+        internal static string BuildComponentTool_BuildFailedWithoutErrorMessages {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_BuildFailedWithoutErrorMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} build started. -- {1}.
+        /// </summary>
+        internal static string BuildComponentTool_ChildBuildStartMessage {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_ChildBuildStartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} build finished. -- {1}.
+        /// </summary>
+        internal static string BuildComponentTool_ChildBuildSuccess {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_ChildBuildSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is of a sub-type that cannot be built by this tool. Sub-type: {1}..
+        /// </summary>
+        internal static string BuildComponentTool_ComponentSubTypeNotSupported {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_ComponentSubTypeNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to start build. See output messages for details..
+        /// </summary>
+        internal static string BuildComponentTool_FailToStartBuildErrorMessage {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_FailToStartBuildErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} could not be found on target {1}..
+        /// </summary>
+        internal static string BuildComponentTool_InvalidComponentName {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_InvalidComponentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified project path does not exist: {0}.
+        /// </summary>
+        internal static string BuildComponentTool_InvalidProjectPath {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_InvalidProjectPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No target with the name {0} could be found..
+        /// </summary>
+        internal static string BuildComponentTool_InvalidTargetName {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_InvalidTargetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building {0}....
+        /// </summary>
+        internal static string BuildComponentTool_RootBuildStartMessage {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_RootBuildStartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} build successful at &quot;{1}&quot;. -- {2}.
+        /// </summary>
+        internal static string BuildComponentTool_RootBuildSuccess {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_RootBuildSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One or more targets were found in the project&apos;s SystemDesigner document. Specify a target using the -t or --target parameter..
+        /// </summary>
+        internal static string BuildComponentTool_TargetNotProvided {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_TargetNotProvided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The valid {0} names on the specified target are:.
+        /// </summary>
+        internal static string BuildComponentTool_ValidComponentNamesHeader {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_ValidComponentNamesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The valid target names containing {0} in the specified project are:.
+        /// </summary>
+        internal static string BuildComponentTool_ValidTargetNamesHeader {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_ValidTargetNamesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build the specified library into a binary. LabVIEW NXG Application Builder and the Early Access license are required to use this feature..
+        /// </summary>
+        internal static string BuildLibraryTool_Help {
+            get {
+                return ResourceManager.GetString("BuildLibraryTool_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the library to build..
+        /// </summary>
+        internal static string BuildLibraryTool_HelpOptionDescription_ComponentName {
+            get {
+                return ResourceManager.GetString("BuildLibraryTool_HelpOptionDescription_ComponentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The relative or absolute path of the project containing the library to build..
+        /// </summary>
+        internal static string BuildLibraryTool_HelpOptionDescription_ProjectPath {
+            get {
+                return ResourceManager.GetString("BuildLibraryTool_HelpOptionDescription_ProjectPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Optional] Save the project and library after building. Use this to save versions of auto-incremented libraries..
+        /// </summary>
+        internal static string BuildLibraryTool_HelpOptionDescription_Save {
+            get {
+                return ResourceManager.GetString("BuildLibraryTool_HelpOptionDescription_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target that contains the library to build. This option is required if the project contains SystemDesigner targets. If there are no SystemDesigner targets, this option is not required..
+        /// </summary>
+        internal static string BuildLibraryTool_HelpOptionDescription_TargetName {
+            get {
+                return ResourceManager.GetString("BuildLibraryTool_HelpOptionDescription_TargetName", resourceCulture);
             }
         }
         

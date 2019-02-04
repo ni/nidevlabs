@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ExamplePlugins.ExampleBuildApplicationCommandLineTool.Resources;
+using ExamplePlugins.Resources;
 using NationalInstruments;
 using NationalInstruments.CommandLineInterface;
 using NationalInstruments.Compiler;
@@ -88,7 +88,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             {
                 string message = string.Format(
                     CultureInfo.CurrentCulture,
-                    ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_InvalidProjectPath,
+                    LocalizedStrings.BuildComponentTool_InvalidProjectPath,
                     ProjectPath);
                 throw new CommandLineOperationException(message, showToolHelp: true);
             }
@@ -151,7 +151,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
 
         private async Task<string> CreateTargetNotProvidedErrorMessageAsync(Project project)
         {
-            var errorMessageBuilder = new StringBuilder(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_TargetNotProvided);
+            var errorMessageBuilder = new StringBuilder(LocalizedStrings.BuildComponentTool_TargetNotProvided);
             await AppendAvailableTargetsForProvidedComponentNameErrorMessageAsync(project, errorMessageBuilder);
             return errorMessageBuilder.ToString();
         }
@@ -163,7 +163,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             if (!string.IsNullOrEmpty(validTargetNamesMessage))
             {
                 string validTargetNamesHeader = string.Format(CultureInfo.CurrentCulture,
-                    ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_ValidTargetNamesHeader,
+                    LocalizedStrings.BuildComponentTool_ValidTargetNamesHeader,
                     ComponentName);
                 errorMessageBuilder.AppendLine()
                     .AppendLine(validTargetNamesHeader)
@@ -212,7 +212,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             var errorMessageBuilder = new StringBuilder(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_InvalidTargetName,
+                    LocalizedStrings.BuildComponentTool_InvalidTargetName,
                     targetName));
             await AppendAvailableTargetsForProvidedComponentNameErrorMessageAsync(project, errorMessageBuilder);
             return errorMessageBuilder.ToString();
@@ -242,7 +242,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             var errorMessageBuilder = new StringBuilder(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_InvalidComponentName,
+                    LocalizedStrings.BuildComponentTool_InvalidComponentName,
                     componentName,
                     targetName));
 
@@ -256,7 +256,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         private async Task AppendAvailableComponentsForProvidedTargetNameErrorMessageAsync(StringBuilder errorMessageBuilder, ITargetScopeService targetScopeService)
         {
             string validComponentNamesHeader = string.Format(CultureInfo.CurrentCulture,
-                ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_ValidComponentNamesHeader,
+                LocalizedStrings.BuildComponentTool_ValidComponentNamesHeader,
                 ComponentType.GetComponentDisplayName());
             string validComponentNamesMessage = await GetComponentNamesMessageAsync(targetScopeService);
             if (!string.IsNullOrEmpty(validComponentNamesMessage))
@@ -334,7 +334,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
                     CommandLineInterfaceApplication.WriteError(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_BuildFailed,
+                            LocalizedStrings.BuildComponentTool_BuildFailed,
                             componentEnvoy.Name.Last));
                     return false;
                 }
@@ -351,7 +351,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             {
                 string message = string.Format(
                     CultureInfo.CurrentCulture,
-                    ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_ComponentSubTypeNotSupported,
+                    LocalizedStrings.BuildComponentTool_ComponentSubTypeNotSupported,
                     configurationReference.ComponentName.Last,
                     configurationReference.Configuration.ComponentSubtype.DisplayName);
                 CommandLineInterfaceApplication.WriteError(message);
@@ -437,7 +437,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         {
             string message = string.Format(
                 CultureInfo.CurrentCulture,
-                ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_RootBuildSuccess,
+                LocalizedStrings.BuildComponentTool_RootBuildSuccess,
                 componentName,
                 outputDirectory,
                 CommandLineHelpers.GetFullDateTimeString());

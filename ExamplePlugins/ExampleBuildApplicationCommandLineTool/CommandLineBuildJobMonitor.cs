@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ExamplePlugins.ExampleBuildApplicationCommandLineTool.Resources;
+using ExamplePlugins.Resources;
 using NationalInstruments.CommandLineInterface;
 using NationalInstruments.Compiler;
 using NationalInstruments.ComponentEditor.SourceModel;
@@ -56,7 +56,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             _rootJob = CreateNewBuildJob(componentConfiguration, cancellationTokenSource, progressToken, _jobCollection);
             if (_rootJob == null)
             {
-                throw new CommandLineOperationException(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_FailToStartBuildErrorMessage);
+                throw new CommandLineOperationException(LocalizedStrings.BuildComponentTool_FailToStartBuildErrorMessage);
             }
             SubscribeToRootJobFinishedEvent();
         }
@@ -165,7 +165,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             CommandLineInterfaceApplication.WriteLine(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    "   " + ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_ChildBuildStartMessage,
+                    "   " + LocalizedStrings.BuildComponentTool_ChildBuildStartMessage,
                     componentName,
                     CommandLineHelpers.GetFullDateTimeString()));
         }
@@ -175,7 +175,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             CommandLineInterfaceApplication.WriteLine(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_RootBuildStartMessage,
+                    LocalizedStrings.BuildComponentTool_RootBuildStartMessage,
                     componentName));
         }
 
@@ -238,7 +238,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         {
             string message = string.Format(
                 CultureInfo.CurrentCulture,
-                "   " + ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_ChildBuildSuccess,
+                "   " + LocalizedStrings.BuildComponentTool_ChildBuildSuccess,
                 componentName,
                 CommandLineHelpers.GetFullDateTimeString());
             CommandLineInterfaceApplication.WriteLine(message);
@@ -262,7 +262,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
                 CommandLineInterfaceApplication.WriteError(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_BuildFailedWithoutErrorMessages,
+                        LocalizedStrings.BuildComponentTool_BuildFailedWithoutErrorMessages,
                         componentEnvoy.Name.Last));
             }
         }
@@ -276,7 +276,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         internal static string CreateComponentBuildErrorMessage(string componentName, IList<MessageInfo> errors)
         {
             var errorMessageBuilder = new StringBuilder();
-            errorMessageBuilder.AppendLine(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_BuildErrorMessagesHeader);
+            errorMessageBuilder.AppendLine(LocalizedStrings.BuildComponentTool_BuildErrorMessagesHeader);
             var indentedErrorMessageBuilder = new StringBuilder();
             indentedErrorMessageBuilder.Append(
                 string.Join(
@@ -292,8 +292,8 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         {
             return string.Join(
                 Environment.NewLine + '\t',
-                string.Concat('\t', ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_BuildErrorSource, error.Message.ReportingElementName),
-                ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildComponentTool_BuildErrorMessage,
+                string.Concat('\t', LocalizedStrings.BuildComponentTool_BuildErrorSource, error.Message.ReportingElementName),
+                LocalizedStrings.BuildComponentTool_BuildErrorMessage,
                 IndentBlock(error.Message.FormattedText));
         }
 

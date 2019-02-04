@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using ExamplePlugins.ExampleBuildApplicationCommandLineTool.Resources;
+using ExamplePlugins.Resources;
 using NationalInstruments.CommandLineInterface;
 using NationalInstruments.ComponentEditor.SourceModel;
 
@@ -10,19 +10,18 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
     /// </summary>
     [ExportCommandLineTool(
         typeToLocateResources: typeof(BuildApplicationCommandLineTool),
-        resourceName: nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings),
         commandName: CommandName,
-        commandHelpKey: nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_Help),
+        commandHelpKey: nameof(LocalizedStrings.BuildApplicationTool_Help),
         optionsHelpKeys: new string[]
         {
             ProjectPathArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ProjectPath),
+            nameof(LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ProjectPath),
             ComponentNameArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ComponentName),
+            nameof(LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ComponentName),
             TargetNameArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_TargetName),
+            nameof(LocalizedStrings.BuildApplicationTool_HelpOptionDescription_TargetName),
             SaveArgumentPrototype,
-            nameof(ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_Save)
+            nameof(LocalizedStrings.BuildApplicationTool_HelpOptionDescription_Save)
         })]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class BuildApplicationCommandLineTool : BuildComponentCommandLineTool
@@ -39,16 +38,16 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         {
             AddOption(
                 ProjectPathArgumentPrototype,
-                ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ProjectPath,
+                LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ProjectPath,
                 s => { ProjectPath = s; },
                 required: true);
             AddOption(
                 ComponentNameArgumentPrototype,
-                ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ComponentName,
+                LocalizedStrings.BuildApplicationTool_HelpOptionDescription_ComponentName,
                 s => { ComponentName = s; },
                 required: true);
-            AddOption(TargetNameArgumentPrototype, ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_TargetName, s => { Target = s; });
-            AddOption(SaveArgumentPrototype, ExampleBuildApplicationCommandLineTool_LocalizedStrings.BuildApplicationTool_HelpOptionDescription_Save, s => { Save = true; });
+            AddOption(TargetNameArgumentPrototype, LocalizedStrings.BuildApplicationTool_HelpOptionDescription_TargetName, s => { Target = s; });
+            AddOption(SaveArgumentPrototype, LocalizedStrings.BuildApplicationTool_HelpOptionDescription_Save, s => { Save = true; });
         }
 
         /// <inheritdoc/>
