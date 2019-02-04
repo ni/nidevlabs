@@ -71,9 +71,9 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
             return BuildSucceeded;
         }
 
-        private bool BuildSucceeded => !IsJobIncomplete && _rootJob.State == JobState.Success;
+        private bool BuildSucceeded => !IsJobIncomplete && _rootJob?.State == JobState.Success;
 
-        private bool IsJobIncomplete => _rootJob != null && (_rootJob.State == JobState.InProgress || _rootJob.State == JobState.NotStarted);
+        private bool IsJobIncomplete => _rootJob?.State == JobState.InProgress || _rootJob?.State == JobState.NotStarted;
 
         private void SubscribeToRootJobFinishedEvent()
         {
