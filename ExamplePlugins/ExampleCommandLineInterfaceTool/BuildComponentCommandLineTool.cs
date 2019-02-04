@@ -16,7 +16,7 @@ using NationalInstruments.Shell;
 using NationalInstruments.SourceModel;
 using NationalInstruments.SourceModel.Envoys;
 
-namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
+namespace ExamplePlugins.ExampleCommandLineInterfaceTool
 {
     /// <summary>
     /// Generic tool for building a component

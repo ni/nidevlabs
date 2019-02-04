@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.Composition;
 using ExamplePlugins.Resources;
-using NationalInstruments.ComponentEditor.SourceModel;
 using NationalInstruments.CommandLineInterface;
+using NationalInstruments.ComponentEditor.SourceModel;
 
-namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
+namespace ExamplePlugins.ExampleCommandLineInterfaceTool
 {
     /// <summary>
     /// Command line tool that builds a library.

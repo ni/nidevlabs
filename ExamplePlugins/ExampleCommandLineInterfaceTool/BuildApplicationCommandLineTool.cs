@@ -3,7 +3,7 @@ using ExamplePlugins.Resources;
 using NationalInstruments.CommandLineInterface;
 using NationalInstruments.ComponentEditor.SourceModel;
 
-namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
+namespace ExamplePlugins.ExampleCommandLineInterfaceTool
 {
     /// <summary>
     /// Command line tool that builds an application.

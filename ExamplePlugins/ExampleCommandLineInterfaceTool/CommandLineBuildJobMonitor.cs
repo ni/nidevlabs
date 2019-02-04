@@ -14,7 +14,7 @@ using NationalInstruments.Core;
 using NationalInstruments.MocCommon.Components.BuildQueue.Model;
 using NationalInstruments.SourceModel;
 
-namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
+namespace ExamplePlugins.ExampleCommandLineInterfaceTool
 {
     /// <summary>
     /// Monitor class to print build updates to the command line. Will create a build job for a <see cref="ComponentConfigurationReference"/>,

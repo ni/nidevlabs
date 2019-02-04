@@ -129,10 +129,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExampleBuildApplicationCommandLineTool\BuildApplicationCommandLineTool.cs" />
-    <Compile Include="ExampleBuildApplicationCommandLineTool\BuildComponentCommandLineTool.cs" />
-    <Compile Include="ExampleBuildApplicationCommandLineTool\BuildLibraryCommandLineTool.cs" />
-    <Compile Include="ExampleBuildApplicationCommandLineTool\CommandLineBuildJobMonitor.cs" />
+    <Compile Include="ExampleCommandLineInterfaceTool\BuildApplicationCommandLineTool.cs" />
+    <Compile Include="ExampleCommandLineInterfaceTool\BuildComponentCommandLineTool.cs" />
+    <Compile Include="ExampleCommandLineInterfaceTool\BuildLibraryCommandLineTool.cs" />
+    <Compile Include="ExampleCommandLineInterfaceTool\CommandLineBuildJobMonitor.cs" />
     <Compile Include="ExampleCommandPaneContent\ScriptingCommands.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\GenerateDfirButton\GenerateDfirButton.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindow.xaml.cs">

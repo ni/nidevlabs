@@ -12,4 +12,3 @@ The LabVIEW NXG CLI (`labviewnxgcli.exe`) supports custom tools that are exporte
 1. To validate the values of the command-line options passed-in by the user, override `ThrowIfOptionNotSupported()` and throw a `CommandLineInterfaceException` if the set of options passed-in is not supported. Note that required options can be specified directly in `AddOption()`.
 
 ## How to report errors to the CLI
-TBD
