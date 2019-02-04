@@ -30,7 +30,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         /// <summary>
         /// The name of this command.
         /// </summary>
-        public const string CommandName = "build-application";
+        public const string CommandName = "example-build-application";
 
         /// <summary>
         /// Constructs a new <see cref="BuildApplicationCommandLineTool"/>.

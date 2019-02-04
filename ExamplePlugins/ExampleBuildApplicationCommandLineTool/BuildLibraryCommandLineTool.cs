@@ -30,7 +30,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         /// <summary>
         /// The name of this command.
         /// </summary>
-        public const string CommandName = "build-library";
+        public const string CommandName = "example-build-library";
 
         /// <summary>
         /// Default constructor.
