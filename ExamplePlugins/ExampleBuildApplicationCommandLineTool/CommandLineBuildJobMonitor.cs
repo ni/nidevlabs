@@ -11,7 +11,6 @@ using NationalInstruments.CommandLineInterface;
 using NationalInstruments.Compiler;
 using NationalInstruments.ComponentEditor.SourceModel;
 using NationalInstruments.Core;
-using NationalInstruments.Core.IO;
 using NationalInstruments.MocCommon.Components.BuildQueue.Model;
 using NationalInstruments.SourceModel;
 
@@ -72,25 +71,13 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
             return BuildSucceeded;
         }
 
-        private bool BuildSucceeded
-        {
-            get
-            {
-                return !IsJobIncomplete && _rootJob.State == JobState.Success;
-            }
-        }
+        private bool BuildSucceeded => !IsJobIncomplete && _rootJob.State == JobState.Success;
 
-        private bool IsJobIncomplete
-        {
-            get
-            {
-                return _rootJob != null && (_rootJob.State == JobState.InProgress || _rootJob.State == JobState.NotStarted);
-            }
-        }
+        private bool IsJobIncomplete => _rootJob != null && (_rootJob.State == JobState.InProgress || _rootJob.State == JobState.NotStarted);
 
         private void SubscribeToRootJobFinishedEvent()
         {
-            _rootJobFinishedEventHandler = (sender, args) => this.NotifyWhenRootBuildJobFinished(args);
+            _rootJobFinishedEventHandler = (sender, args) => NotifyWhenRootBuildJobFinished(args);
             _rootJob.PropertyChanged += _rootJobFinishedEventHandler;
         }
 
@@ -192,8 +179,7 @@ namespace ExamplePlugins.ExampleBuildApplicationCommandLineTool
         private static void BuildJobPropertyChanged(object sender, PropertyChangedEventArgs eventArgs, bool isChildBuild)
         {
             string spacingString = isChildBuild ? "   " : string.Empty;
-            IBuildQueueJob job = (IBuildQueueJob)sender;
-            string outputDirectory = LongPathDirectory.GetParent(job.OutputPath);
+            var job = (IBuildQueueJob)sender;
             if (!IsStatusChangedEvent(eventArgs))
             {
                 return;
