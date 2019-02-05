@@ -1,6 +1,6 @@
 ﻿# Extending the LabVIEW NXG CLI with custom tools
 
-The LabVIEW NXG CLI (`labviewnxgcli.exe`) supports custom tools that are exported via MEF. 
+Introduced in LabVIEW NXG 3.1, the LabVIEW NXG CLI (`labviewnxgcli.exe`) supports custom tools that are exported via MEF. 
 
 ## How to write a tool that can be invoked by the CLI
 1. Reference NationalInstruments.CommandLineInterface.Core.dll in the csproj.
