@@ -117,6 +117,99 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BuildApplicationTool_Help" xml:space="preserve">
+    <value>Build the specified application into a binary. LabVIEW NXG Application Builder is required to use this feature.</value>
+  </data>
+  <data name="BuildApplicationTool_HelpOptionDescription_ComponentName" xml:space="preserve">
+    <value>The name of the application to build.</value>
+  </data>
+  <data name="BuildApplicationTool_HelpOptionDescription_ProjectPath" xml:space="preserve">
+    <value>The relative or absolute path of the project containing the application to build.</value>
+  </data>
+  <data name="BuildApplicationTool_HelpOptionDescription_Save" xml:space="preserve">
+    <value>[Optional] Save the project and application after building. Use this to save versions of auto-incremented applications.</value>
+  </data>
+  <data name="BuildApplicationTool_HelpOptionDescription_TargetName" xml:space="preserve">
+    <value>The target that contains the application to build. This option is required if the project contains SystemDesigner targets. If there are no SystemDesigner targets, this option is not required.</value>
+  </data>
+  <data name="BuildComponentTool_BuildErrorMessage" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="BuildComponentTool_BuildErrorMessagesHeader" xml:space="preserve">
+    <value>Error Messages:</value>
+  </data>
+  <data name="BuildComponentTool_BuildErrorSource" xml:space="preserve">
+    <value>Source:</value>
+  </data>
+  <data name="BuildComponentTool_BuildFailed" xml:space="preserve">
+    <value>{0} build failed.</value>
+    <comment>{0} is the name of a component that failed to build.</comment>
+  </data>
+  <data name="BuildComponentTool_BuildFailedWithoutErrorMessages" xml:space="preserve">
+    <value>{0} build failed. Run this build with the --save option, then open the project in the LabVIEW NXG IDE and check the build queue for more information.</value>
+    <comment>{0} is the name of a component file.</comment>
+  </data>
+  <data name="BuildComponentTool_ChildBuildStartMessage" xml:space="preserve">
+    <value>{0} build started. -- {1}</value>
+    <comment>{0} is the name of a component file. {1} is a time stamp for the message (format TBD).</comment>
+  </data>
+  <data name="BuildComponentTool_ChildBuildSuccess" xml:space="preserve">
+    <value>{0} build finished. -- {1}</value>
+    <comment>{0} is the name of a component that built successfully. {1} is a time stamp for the message (format TBD).</comment>
+  </data>
+  <data name="BuildComponentTool_ComponentSubTypeNotSupported" xml:space="preserve">
+    <value>{0} is of a sub-type that cannot be built by this tool. Sub-type: {1}.</value>
+    <comment>{0} is a user provided name of a component. {1} is the name of an Application or Library sub-type (source, bitfile, etc.).</comment>
+  </data>
+  <data name="BuildComponentTool_FailToStartBuildErrorMessage" xml:space="preserve">
+    <value>Failed to start build. See output messages for details.</value>
+  </data>
+  <data name="BuildComponentTool_InvalidComponentName" xml:space="preserve">
+    <value>{0} could not be found on target {1}.</value>
+    <comment>{1} Is the display name of a target. {0} is a user provided name that does not match any existing components on that target.</comment>
+  </data>
+  <data name="BuildComponentTool_InvalidProjectPath" xml:space="preserve">
+    <value>The specified project path does not exist: {0}</value>
+    <comment>{0} is a user provided system path that should point to a .lvproject path.</comment>
+  </data>
+  <data name="BuildComponentTool_InvalidTargetName" xml:space="preserve">
+    <value>No target with the name {0} could be found.</value>
+    <comment>{0} is a user provided name that does not match any targets in the project.</comment>
+  </data>
+  <data name="BuildComponentTool_RootBuildStartMessage" xml:space="preserve">
+    <value>Building {0}...</value>
+    <comment>{0} is the name of a component file.</comment>
+  </data>
+  <data name="BuildComponentTool_RootBuildSuccess" xml:space="preserve">
+    <value>{0} build successful at "{1}". -- {2}</value>
+    <comment>{0} is the name of a component that built successfully. {1} is the path on disk to the folder containing the build output. {2} is a time stamp for the message (format TBD).</comment>
+  </data>
+  <data name="BuildComponentTool_TargetNotProvided" xml:space="preserve">
+    <value>One or more targets were found in the project's SystemDesigner document. Specify a target using the -t or --target parameter.</value>
+  </data>
+  <data name="BuildComponentTool_ValidComponentNamesHeader" xml:space="preserve">
+    <value>The valid {0} names on the specified target are:</value>
+    <comment>{0} is either 'Application' or 'Library'.</comment>
+  </data>
+  <data name="BuildComponentTool_ValidTargetNamesHeader" xml:space="preserve">
+    <value>The valid target names containing {0} in the specified project are:</value>
+    <comment>{0} is the user specified component name.</comment>
+  </data>
+  <data name="BuildLibraryTool_Help" xml:space="preserve">
+    <value>Build the specified library into a binary. LabVIEW NXG Application Builder and the Early Access license are required to use this feature.</value>
+  </data>
+  <data name="BuildLibraryTool_HelpOptionDescription_ComponentName" xml:space="preserve">
+    <value>The name of the library to build.</value>
+  </data>
+  <data name="BuildLibraryTool_HelpOptionDescription_ProjectPath" xml:space="preserve">
+    <value>The relative or absolute path of the project containing the library to build.</value>
+  </data>
+  <data name="BuildLibraryTool_HelpOptionDescription_Save" xml:space="preserve">
+    <value>[Optional] Save the project and library after building. Use this to save versions of auto-incremented libraries.</value>
+  </data>
+  <data name="BuildLibraryTool_HelpOptionDescription_TargetName" xml:space="preserve">
+    <value>The target that contains the library to build. This option is required if the project contains SystemDesigner targets. If there are no SystemDesigner targets, this option is not required.</value>
+  </data>
   <data name="CustomToolsWindowGroupName" xml:space="preserve">
     <value>(Example) Custom Tools</value>
   </data>

@@ -48,6 +48,14 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NationalInstruments.ComponentEditor, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.ComponentEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.CommandLineInterface.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.CommandLineInterface.Core.dll</HintPath>
+    </Reference>
     <Reference Include="NationalInstruments.Common, Version=13.0.40.190, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.Common.dll</HintPath>
@@ -121,6 +129,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleCommandLineInterfaceTool\BuildApplicationCommandLineTool.cs" />
+    <Compile Include="ExampleCommandLineInterfaceTool\BuildComponentCommandLineTool.cs" />
+    <Compile Include="ExampleCommandLineInterfaceTool\BuildLibraryCommandLineTool.cs" />
+    <Compile Include="ExampleCommandLineInterfaceTool\CommandLineBuildJobMonitor.cs" />
     <Compile Include="ExampleCommandPaneContent\ScriptingCommands.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\GenerateDfirButton\GenerateDfirButton.cs" />
     <Compile Include="ExampleCustomButtonsToolWindow\CustomButtonsToolWindow.xaml.cs">
