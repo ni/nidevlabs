@@ -45,9 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.Controls.LabVIEW.Design, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NationalInstruments.Controls.Design, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(InstallLocation)\NationalInstruments.Controls.LabVIEW.Design.dll</HintPath>
+      <HintPath>$(InstallLocation)\NationalInstruments.Controls.Design.dll</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

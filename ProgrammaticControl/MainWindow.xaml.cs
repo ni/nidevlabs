@@ -207,7 +207,7 @@ namespace ProgramaticControl
         /// </summary>
         /// <param name="executionService">The execution services to use to run the VI</param>
         /// <returns>Task to await on.  This will be completed when the VI finishes execution.</returns>
-        public static Task RunAsync(this IExecutionService executionService)
+        public static async Task RunAsync(this IExecutionService executionService)
         {
             TaskCompletionSource<bool> result = new TaskCompletionSource<bool>();
             // Run the VI
@@ -221,8 +221,8 @@ namespace ProgramaticControl
                 }
             });
             executionService.MasterExecutable.CurrentSimpleExecutionStateChanged += viStateChangedEventHandler;
-            executionService.MasterExecutable.StartRun();
-            return result.Task;
+            await executionService.MasterExecutable.BeginRunAsync();
+            await result.Task;
         }
     }
 }

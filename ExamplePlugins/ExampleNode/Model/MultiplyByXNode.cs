@@ -127,8 +127,8 @@ namespace ExamplePlugins.ExampleNode.Model
             Width = StockDiagramGeometries.StandardNodeWidth;
             Height = StockDiagramGeometries.StandardNodeHeight;
 
-            _inputTerminal = new NodeTerminal(Direction.Input, PFTypes.Double, "Input", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 0));
-            _outputTerminal = new NodeTerminal(Direction.Output, PFTypes.Double, "Result", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0));
+            _inputTerminal = new NodeTerminal(Direction.Input, NITypes.Double, "Input", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 0));
+            _outputTerminal = new NodeTerminal(Direction.Output, NITypes.Double, "Result", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0));
             OnComponentInserted(_inputTerminal);
             OnComponentInserted(_outputTerminal);
         }

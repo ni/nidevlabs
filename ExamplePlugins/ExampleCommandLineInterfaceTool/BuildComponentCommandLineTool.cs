@@ -77,7 +77,7 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
         public abstract ComponentType ComponentType { get; }
 
         /// <inheritdoc />
-        public override void ThrowIfOptionNotSupported()
+        protected override void ThrowIfOptionNotSupported()
         {
             ThrowIfProjectPathDoesNotExist();
         }

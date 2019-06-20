@@ -23,7 +23,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
         }
 
         [XmlParserFactoryMethod(ElementName, ExamplePluginsNamespaceSchema.ParsableNamespaceName)]
-        public static ExampleRootDiagram Create(IElementCreateInfo elementCreateInfo)
+        public static new ExampleRootDiagram Create(IElementCreateInfo elementCreateInfo)
         {
             var diagram = new ExampleRootDiagram();
             diagram.Init(elementCreateInfo);

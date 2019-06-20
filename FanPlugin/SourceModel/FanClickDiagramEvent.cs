@@ -11,7 +11,7 @@ namespace FanPlugin.SourceModel
     /// <summary>
     /// Diagram event model for a position click event
     /// </summary>
-    public class FanClickDiagramEvent : DiagramEvent, IXamlGenerableEvent
+    public class FanClickDiagramEvent : DiagramEvent, IXamlEventGeneratorProvider
     {
         /// <summary>
         /// The unique identifier for the click event
@@ -40,15 +40,15 @@ namespace FanPlugin.SourceModel
         /// </summary>
         private static Lazy<NIType> _clickEventType = new Lazy<NIType>(() =>
         {
-            var eventData = PFTypes.Factory.DefineCluster();
+            var eventData = NITypes.Factory.DefineCluster();
             
             // The first field must be this control reference field
-            eventData.DefineField(PFTypes.UInt32, RefIdFieldName);
+            eventData.DefineField(NITypes.UInt32, RefIdFieldName);
             
             // The rest of the fields are event specific
-            eventData.DefineField(PFTypes.Int32, ClickCountFieldName);
-            eventData.DefineField(PFTypes.Double, XPositionFieldName);
-            eventData.DefineField(PFTypes.Double, YPositionFieldName);
+            eventData.DefineField(NITypes.Int32, ClickCountFieldName);
+            eventData.DefineField(NITypes.Double, XPositionFieldName);
+            eventData.DefineField(NITypes.Double, YPositionFieldName);
             var eventDataType = eventData.CreateType();
 
             return EventDataTypes.MakeEvent(eventDataType, "Fan Click");
@@ -69,10 +69,10 @@ namespace FanPlugin.SourceModel
         /// </summary>
         private static Lazy<NIType> _clickEventMarshalType = new Lazy<NIType>(() =>
         {
-            var eventData = PFTypes.Factory.DefineCluster();
-            eventData.DefineField(PFTypes.Int32, ClickCountFieldName);
-            eventData.DefineField(PFTypes.Double, XPositionFieldName);
-            eventData.DefineField(PFTypes.Double, YPositionFieldName);
+            var eventData = NITypes.Factory.DefineCluster();
+            eventData.DefineField(NITypes.Int32, ClickCountFieldName);
+            eventData.DefineField(NITypes.Double, XPositionFieldName);
+            eventData.DefineField(NITypes.Double, YPositionFieldName);
             return eventData.CreateType();
         });
 
@@ -119,7 +119,7 @@ namespace FanPlugin.SourceModel
             // Calling this helper is all you usually need to do
             // See FanClickEventBehavior.cs in the Fan project for the implementation
             // of the attached behavior.
-            XamlGenerableEventHelpers.AddToXaml(
+            XamlEventGenerator.AddToXaml(
                 this,                    // Pass this along
                 xaml,                    // Pass this along
                 context,                 // Pass this along

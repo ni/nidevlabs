@@ -38,7 +38,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
             Width = 40;
 
             // Add the fixed terminals
-            AddComponent(new NodeTerminal(Direction.Output, PFTypes.Void, "element", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0)));
+            AddComponent(new NodeTerminal(Direction.Output, NITypes.Void, "element", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0)));
             this.SetVerticalChunkCount(1, GrowNodeResizeDirection.Bottom);
             this.RecalculateNodeHeight();
         }
@@ -163,7 +163,7 @@ namespace ExamplePlugins.ExampleDiagram.SourceModel
         {
             return new List<WireableTerminal>
             {
-                new NodeTerminal(Direction.Input, PFTypes.Void, "element", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 0))
+                new NodeTerminal(Direction.Input, NITypes.Void, "element", TerminalHotspots.CreateInputTerminalHotspot(TerminalSize.Small, 0))
             };
         }
 
