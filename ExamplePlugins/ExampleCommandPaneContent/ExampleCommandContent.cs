@@ -115,10 +115,8 @@ namespace ExamplePlugins.ExampleCommandPaneContent
                 node.Diagram.WireWithin((NodeTerminal)node.OutputTerminals.First(), (NodeTerminal)multiply.InputTerminals.First());
 
                 // Create a Double Numeric Constant with an initial value of 10.0
-                var literalBuilder = LiteralBuilder.GetLiteralBuilder(host);
-                var context = new CreateLiteralContext(PFTypes.Double, 10.0);
-                var literal = literalBuilder.CreateLiteral(context);
-
+                var literal = Literal.Create(NITypes.Double, 10.0);
+                
                 // Position the constant nicely and add it to the diagram
                 literal.TopLeft = new SMPoint(node.Left + StockDiagramGeometries.TinyNodeWidth, node.Bounds.Bottom + (2 * StockDiagramGeometries.GridSize));
                 node.Diagram.AddNode(literal);

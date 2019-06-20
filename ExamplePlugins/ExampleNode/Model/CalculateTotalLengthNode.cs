@@ -98,9 +98,9 @@ namespace ExamplePlugins.ExampleNode.Model
             Width = StockDiagramGeometries.StandardNodeWidth;
             Height = StockDiagramGeometries.StandardNodeHeight;
 
-            _inputNamesTerminal = new NodeTerminal(Direction.Input, PFTypes.StringArray1D, "names", TerminalHotspots.Input1);
-            _inputExtraNameTerminal = new NodeTerminal(Direction.Input, PFTypes.String, "extra name", TerminalHotspots.Input2);
-            _outputTerminal = new NodeTerminal(Direction.Output, PFTypes.Int32, "length", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0));
+            _inputNamesTerminal = new NodeTerminal(Direction.Input, NITypes.StringArray1D, "names", TerminalHotspots.Input1);
+            _inputExtraNameTerminal = new NodeTerminal(Direction.Input, NITypes.String, "extra name", TerminalHotspots.Input2);
+            _outputTerminal = new NodeTerminal(Direction.Output, NITypes.Int32, "length", TerminalHotspots.CreateOutputTerminalHotspot(TerminalSize.Small, Width, 0));
             OnComponentInserted(_inputNamesTerminal);
             OnComponentInserted(_inputExtraNameTerminal);
             OnComponentInserted(_outputTerminal);

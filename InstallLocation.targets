@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
-    <InstallLocation>c:\Program Files\National Instruments\LabVIEW NXG</InstallLocation>
+    <InstallLocation>c:\Program Files\National Instruments\LabVIEW NXG 4.0</InstallLocation>
   </PropertyGroup>
 </Project>

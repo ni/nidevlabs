@@ -56,7 +56,7 @@ namespace ExamplePlugins.ExampleNode.Model
                 {
                     terminal.TestRequiredTerminalConnected();
                 }
-                terminal.DataType = PFTypes.Double;
+                terminal.DataType = NITypes.Double;
             }
             return AsyncHelpers.CompletedTask;
         }
@@ -83,7 +83,7 @@ namespace ExamplePlugins.ExampleNode.Model
         public override Task DecomposeAsync(Diagram diagram, DecompositionTerminalAssociator terminalAssociator, ISemanticAnalysisTargetInfo targetInfo, CompileCancellationToken cancellationToken)
         {
             // Create a constant with our multiplier
-            Constant constNode = Constant.Create(diagram, _multiplier, PFTypes.Double);
+            Constant constNode = Constant.Create(diagram, _multiplier, NITypes.Double);
 
             // Add a multiply primitive
             MultiplyPrimitive prim = MultiplyPrimitive.Create(diagram);

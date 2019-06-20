@@ -104,14 +104,15 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
             IJobCollection jobCollection)
         {
             IBuildableComponentSubtype buildableComponentSubtype = (IBuildableComponentSubtype)componentConfiguration.ComponentSubtype;
-            BuildId currentBuildId = buildableComponentSubtype.CreateBuildId(componentConfiguration);
-            BuildQueueJobId buildQueueJobId = BuildQueueJobExtension.CreateBuildQueueJobId(currentBuildId);
-            if (jobCollection.JobInProgress(buildQueueJobId))
-            {
-                throw new CommandLineOperationException("ID created for build already has an associated job that is in progress");
-            }
 
             string outputFilePath = buildableComponentSubtype.GetOutputTopLevelFilePath(componentConfiguration);
+            if (jobCollection.JobInProgress(outputFilePath))
+            {
+                throw new CommandLineOperationException($"Build at {outputFilePath} is already in progress.");
+            }
+
+            BuildId currentBuildId = buildableComponentSubtype.CreateBuildId(componentConfiguration);
+            BuildQueueJobId buildQueueJobId = BuildQueueJobExtension.CreateBuildQueueJobId(currentBuildId);
             IBuildQueueJob job = jobCollection.CreateNewJob(
                 buildQueueJobId,
                 componentConfiguration.ComponentDefinition.ReferencingEnvoy,
@@ -232,7 +233,7 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
 
         private static bool IsStatusChangedEvent(PropertyChangedEventArgs eventArgs)
         {
-            return eventArgs.PropertyName == BuildQueueJobExtension.StatusPropertyName;
+            return eventArgs.PropertyName == nameof(BuildQueueJobBase.Status);
         }
 
         private static void WriteErrorsFromJob(IBuildQueueJob job)

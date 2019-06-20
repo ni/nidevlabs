@@ -44,9 +44,9 @@ namespace ExamplePlugins.ExampleNode.Model
         /// <param name="cancellationToken">Token indicating whether compile has been cancelled.</param>
         public override Task DoTypePropagationAsync(Node node, ITypePropagationAccessor typePropagationAccessor, CompileCancellationToken cancellationToken)
         {
-            GetTerminalByName("names").DataType = PFTypes.StringArray1D;
-            GetTerminalByName("extra name").DataType = PFTypes.String;
-            GetTerminalByName("length").DataType = PFTypes.Int32;
+            GetTerminalByName("names").DataType = NITypes.StringArray1D;
+            GetTerminalByName("extra name").DataType = NITypes.String;
+            GetTerminalByName("length").DataType = NITypes.Int32;
             // this simple example requires all inputs to be wired
             foreach (Terminal terminal in node.Terminals)
             {
