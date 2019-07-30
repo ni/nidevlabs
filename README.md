@@ -9,13 +9,12 @@ There are 4 projects in the solution:
 3. FanEditorExtensions - Editor extensions to host and edit a Fan control on the front panel of a VI
 4. Programmatic Control - Shows how to programmatically open a project, compile and run a VI, and then retrieve the results of the VI execution.
 
-This solution is configured to copy everything to the standard install location of the Next Generation LabVIEW Features Technology Preview
-"C:\Program Files\National Instruments\Next Generation LabVIEW Features Technology Preview"
+This solution is configured to copy everything to the standard install location of the LabVIEW NXG Technology Preview
+"C:\Program Files\National Instruments\LabVIEW NXG <version#>"
 
-Since this location can only be written to by an administrator you should run Visual Studio as an administrator so that the build can copy the output
-files to the Next Generation LabVIEW Features Technology Preview directory.
+Since this location can only be written to by an administrator you should run Visual Studio as an administrator so that the build can copy the output files to the LabVIEW NXG Technology Preview directory.
 
-If you installed Next Generation LabVIEW Features Technology Preview somewhere else you will need to change the location of the executable project that is used to launch.
+If you installed LabVIEW NXG Technology Preview somewhere else you will need to change the location of the executable project that is used to launch.
 You will also need to change the [InstallLocation.targets](InstallLocation.targets) file to refer to the install location.  
 The install location affects where the projects look for the dependent assemblies and where the built assemblies are copied for use.
 
