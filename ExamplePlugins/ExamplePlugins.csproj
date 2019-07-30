@@ -39,13 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ExamplePlugins.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DelaySign>false</DelaySign>
+    <SignAssembly>False</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NationalInstruments.ComponentEditor, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -70,7 +64,7 @@
     </Reference>
     <Reference Include="NationalInstruments.Controls.Design, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-	  <HintPath>$(InstallLocation)\NationalInstruments.Controls.Design.dll</HintPath>
+      <HintPath>$(InstallLocation)\NationalInstruments.Controls.Design.dll</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
