@@ -1,7 +1,7 @@
 ﻿# NI Dev Labs
 ## Extend NI's development environment with C# 
 
-This repository contains examples for how to extend the editor and also how to create a custom control and expose it in the editor.
+The ExamplesPlugins.sln contains examples for how to extend the editor and also how to create a custom control and expose it in the editor.
 There are 4 projects in the solution:
 
 1. ExamplePlugins - Contains the source for several editor extensions.  [See ExamplePlugins.md](ExamplePlugins/README.md).
@@ -31,3 +31,10 @@ To remove this example from the installed application, delete the following file
 * ProgrammaticControl.exe
 * ProgrammaticControl.pdb
 * disable_cache.txt
+
+
+## GLLs as Web Services
+
+The WebServiceRunner.sln / WebServiceRunner folder contain an example of how to use VIs exported from a GLL as web services.  The project contains a simple HTTP Listener which handles requests by calling exported VIs from a registered GLL.
+
+See the [Readme](WebServiceRunner/README.md) for more information.
