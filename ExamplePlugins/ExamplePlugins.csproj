@@ -42,10 +42,6 @@
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NationalInstruments.ComponentEditor, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(InstallLocation)\NationalInstruments.ComponentEditor.dll</HintPath>
-    </Reference>
     <Reference Include="NationalInstruments.CommandLineInterface.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.CommandLineInterface.Core.dll</HintPath>
@@ -77,6 +73,10 @@
     <Reference Include="NationalInstruments.MocCommon, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.MocCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.MocCommon.Components, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.MocCommon.Components.dll</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.PlatformFramework, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -224,6 +224,7 @@
     <EmbeddedResource Include="Resources\LocalizedStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="ExamplePlugins.snk" />
     <None Include="Properties\Settings.settings">

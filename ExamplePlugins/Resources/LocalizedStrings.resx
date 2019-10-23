@@ -132,6 +132,10 @@
   <data name="BuildApplicationTool_HelpOptionDescription_TargetName" xml:space="preserve">
     <value>The target that contains the application to build. This option is required if the project contains SystemDesigner targets. If there are no SystemDesigner targets, this option is not required.</value>
   </data>
+  <data name="BuildComponentTool_BuildCanceledMessage" xml:space="preserve">
+    <value>{0} build canceled. -- {1}</value>
+    <comment>{0} is the name of a component file. {1} is a localized time stamp for the message (full day, date, and time).</comment>
+  </data>
   <data name="BuildComponentTool_BuildErrorMessage" xml:space="preserve">
     <value>Message:</value>
   </data>
@@ -156,6 +160,10 @@
   <data name="BuildComponentTool_ChildBuildSuccess" xml:space="preserve">
     <value>{0} build finished. -- {1}</value>
     <comment>{0} is the name of a component that built successfully. {1} is a time stamp for the message (format TBD).</comment>
+  </data>
+  <data name="BuildComponentTool_ComponentNameHasWrongExtension" xml:space="preserve">
+    <value>"{0}" must end in "{1}".</value>
+    <comment>{0} is the name of a passed-in component file.  {1} is the required file extension (currently ".gcomp")</comment>
   </data>
   <data name="BuildComponentTool_ComponentSubTypeNotSupported" xml:space="preserve">
     <value>{0} is of a sub-type that cannot be built by this tool. Sub-type: {1}.</value>

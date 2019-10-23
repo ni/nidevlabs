@@ -12,6 +12,7 @@ using NationalInstruments.Compiler;
 using NationalInstruments.ComponentEditor.SourceModel;
 using NationalInstruments.Core;
 using NationalInstruments.MocCommon.Components.BuildQueue.Model;
+using NationalInstruments.MocCommon.Components.SourceModel;
 using NationalInstruments.SourceModel;
 
 namespace ExamplePlugins.ExampleCommandLineInterfaceTool
@@ -26,11 +27,13 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
         private readonly IBuildQueueJob _rootJob;
         private readonly TaskCompletionSource<object> _jobFinishedCompletionSource;
         private PropertyChangedEventHandler _rootJobFinishedEventHandler;
+        private readonly ConsoleCancelEventHandler _consoleCancelEventHandler;
 
         /// <inheritdoc />
         protected override void DisposeManagedResources()
         {
             _jobCollection.CollectionChanged -= JobCollectionOnCollectionChanged;
+            Console.CancelKeyPress -= _consoleCancelEventHandler;
             if (_rootJob != null)
             {
                 _rootJob.PropertyChanged -= _rootJobFinishedEventHandler;
@@ -53,6 +56,8 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
             _jobCollection = componentConfiguration.Host.GetSharedExportedValue<IJobCollection>();
             _jobCollection.CollectionChanged += JobCollectionOnCollectionChanged;
             _rootJob = CreateNewBuildJob(componentConfiguration, cancellationTokenSource, progressToken, _jobCollection);
+            _consoleCancelEventHandler = (sender, args) => this.CancelBuild();
+            Console.CancelKeyPress += _consoleCancelEventHandler;
             if (_rootJob == null)
             {
                 throw new CommandLineOperationException(LocalizedStrings.BuildComponentTool_FailToStartBuildErrorMessage);
@@ -60,9 +65,24 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
             SubscribeToRootJobFinishedEvent();
         }
 
+        private void CancelBuild()
+        {
+            if (_rootJob == null)
+            {
+                return;
+            }
+            _rootJob.Cancel();
+            string cancelMessage = string.Format(
+                CultureInfo.CurrentCulture,
+                LocalizedStrings.BuildComponentTool_BuildCanceledMessage,
+                _rootJob.AssociatedEnvoy.Name.Last,
+                CommandLineHelpers.GetFullDateTimeString());
+            CommandLineInterfaceApplication.WriteLine(cancelMessage);
+        }
+
         /// <summary>
         /// Waits for the build to finish asynchronously and return whether the build succeeded
-        /// Build is finished when the build state is set to Error, Failed, or Success. 
+        /// Build is finished when the build state is set to Error, Failed, or Success.
         /// </summary>
         /// <returns>True if the build succeeded (it is no longer running and the job state is not Failed or Error).</returns>
         public async Task<bool> WaitForBuildToFinishAsync()

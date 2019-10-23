@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using ExamplePlugins.Resources;
 using NationalInstruments.CommandLineInterface;
-using NationalInstruments.ComponentEditor.SourceModel;
+using NationalInstruments.MocCommon.Components.SourceModel;
 
 namespace ExamplePlugins.ExampleCommandLineInterfaceTool
 {
