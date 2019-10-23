@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NationalInstruments.CommonModel;
 using NationalInstruments.DataTypes;
 using NationalInstruments.SourceModel;
 
@@ -41,10 +39,10 @@ namespace FanPlugin.SourceModel
         private static Lazy<NIType> _clickEventType = new Lazy<NIType>(() =>
         {
             var eventData = NITypes.Factory.DefineCluster();
-            
+
             // The first field must be this control reference field
-            eventData.DefineField(NITypes.UInt32, RefIdFieldName);
-            
+            eventData.DefineField(NITypes.UInt32, DiagramEventConstants.RefIdFieldName);
+
             // The rest of the fields are event specific
             eventData.DefineField(NITypes.Int32, ClickCountFieldName);
             eventData.DefineField(NITypes.Double, XPositionFieldName);
@@ -123,7 +121,7 @@ namespace FanPlugin.SourceModel
                 this,                    // Pass this along
                 xaml,                    // Pass this along
                 context,                 // Pass this along
-                "FanClickEventBehavior", // The .net typename of the attached behavior 
+                "FanClickEventBehavior", // The .net typename of the attached behavior
                 FanRuntimeNamespace);    // The clr namespace where the attached behavior is defined
         }
 
@@ -136,7 +134,7 @@ namespace FanPlugin.SourceModel
         /// <returns>false to hide the field from the user, true to let the user use the field on the diagram.</returns>
         public override bool ShouldExposeProperty(string fieldName)
         {
-            if (fieldName == RefIdFieldName)
+            if (fieldName == DiagramEventConstants.RefIdFieldName)
             {
                 return false;
             }

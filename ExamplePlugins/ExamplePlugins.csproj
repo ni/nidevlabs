@@ -70,6 +70,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NationalInstruments.ExecutionFramework, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(InstallLocation)\NationalInstruments.ExecutionFramework.dll</HintPath>
+    </Reference>
     <Reference Include="NationalInstruments.MocCommon, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(InstallLocation)\NationalInstruments.MocCommon.dll</HintPath>

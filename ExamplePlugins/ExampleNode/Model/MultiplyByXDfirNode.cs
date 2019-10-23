@@ -44,13 +44,12 @@ namespace ExamplePlugins.ExampleNode.Model
         /// <summary>
         /// Called to perform type propagation (semantic analysis)
         /// </summary>
-        /// <param name="node">node to type prop</param>
         /// <param name="semanticAnalysisAccess">Helper interface to access aspects of type propagation</param>
         /// <param name="cancellationToken">Token indicating whether compile has been cancelled.</param>
-        public override Task DoTypePropagationAsync(Node node, ITypePropagationAccessor semanticAnalysisAccess, CompileCancellationToken cancellationToken)
+        public override Task DoTypePropagationAsync(ITypePropagationAccessor semanticAnalysisAccess, CompileCancellationToken cancellationToken)
         {
             // this simple example requires all inputs to be wired and forces all types to double
-            foreach (Terminal terminal in node.Terminals)
+            foreach (Terminal terminal in Terminals)
             {
                 if (terminal.Direction == Direction.Input)
                 {
@@ -127,7 +126,7 @@ namespace ExamplePlugins.ExampleNode.Model
         /// </summary>
         /// <remarks>
         /// Overload disambiguation will not allow nodes from the same OverloadGroupSubId to compete with each other.
-        /// </remarks> 
+        /// </remarks>
         public string OverloadGroupSubId
         {
             get { return typeof(MultiplyByXDfirNode).ToString(); }

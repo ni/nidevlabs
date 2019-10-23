@@ -39,16 +39,15 @@ namespace ExamplePlugins.ExampleNode.Model
         /// <summary>
         /// Called to perform type propagation (semantic analysis)
         /// </summary>
-        /// <param name="node">node to type prop</param>
         /// <param name="typePropagationAccessor">Helper interface to access aspects of type propagation</param>
         /// <param name="cancellationToken">Token indicating whether compile has been cancelled.</param>
-        public override Task DoTypePropagationAsync(Node node, ITypePropagationAccessor typePropagationAccessor, CompileCancellationToken cancellationToken)
+        public override Task DoTypePropagationAsync(ITypePropagationAccessor typePropagationAccessor, CompileCancellationToken cancellationToken)
         {
             GetTerminalByName("names").DataType = NITypes.StringArray1D;
             GetTerminalByName("extra name").DataType = NITypes.String;
             GetTerminalByName("length").DataType = NITypes.Int32;
             // this simple example requires all inputs to be wired
-            foreach (Terminal terminal in node.Terminals)
+            foreach (Terminal terminal in Terminals)
             {
                 if (terminal.Direction == Direction.Input)
                 {
