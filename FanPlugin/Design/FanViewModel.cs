@@ -75,7 +75,7 @@ namespace FanPlugin.Design
             base.CreateCommandContent(context);
             using (context.AddConfigurationPaneContent())
             {
-                using (context.AddGroup(MocCommonCommands.DesignRibbonGroupCommand))
+                using (context.AddGroup(MocCommonCommands.ControlDesignCommand))
                 {
                     context.Add(FanCommands.SetFanSpeedCommand);
                 }

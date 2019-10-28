@@ -106,6 +106,15 @@ namespace ExamplePlugins.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} build canceled. -- {1}.
+        /// </summary>
+        internal static string BuildComponentTool_BuildCanceledMessage {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_BuildCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message:.
         /// </summary>
         internal static string BuildComponentTool_BuildErrorMessage {
@@ -165,6 +174,15 @@ namespace ExamplePlugins.Resources {
         internal static string BuildComponentTool_ChildBuildSuccess {
             get {
                 return ResourceManager.GetString("BuildComponentTool_ChildBuildSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot; must end in &quot;{1}&quot;..
+        /// </summary>
+        internal static string BuildComponentTool_ComponentNameHasWrongExtension {
+            get {
+                return ResourceManager.GetString("BuildComponentTool_ComponentNameHasWrongExtension", resourceCulture);
             }
         }
         

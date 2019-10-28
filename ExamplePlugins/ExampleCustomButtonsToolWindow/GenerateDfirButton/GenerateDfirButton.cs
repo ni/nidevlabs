@@ -39,7 +39,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
         private const string DfirGenerationErrorMessageBoxText = "There was an internal error generating the DfirRoot";
         private const string WaitForCompileErrorMessageBoxText = "Please wait for compilation to finish before using this tool.";
         private ICompositionHost _host;
-        
+
         /// <summary>
         /// The action to perform when the button is clicked.
         ///
@@ -117,7 +117,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
             {
                 return null;
             }
-            
+
             // Generate DFIR for subVIs
             IDictionary<ExtendedQualifiedName, DfirRoot> subDfirRoots = new Dictionary<ExtendedQualifiedName, DfirRoot>();
             await GetSubDfirRootsAsync(sourceDfirRoot, subDfirRoots, compileCancellationToken, progressToken, host);
@@ -191,10 +191,10 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
         /// <param name="host">The composition host</param>
         /// <returns>The task to wait on</returns>
         private static async Task GetSubDfirRootsAsync(
-            DfirRoot sourceDfirRoot, 
+            DfirRoot sourceDfirRoot,
             IDictionary<ExtendedQualifiedName, DfirRoot> nameDictionary,
-            CompileCancellationToken compileCancellationToken, 
-            ProgressToken progressToken, 
+            CompileCancellationToken compileCancellationToken,
+            ProgressToken progressToken,
             ICompositionHost host)
         {
             if (sourceDfirRoot == null)
@@ -228,13 +228,13 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
                     {
                         continue;
                     }
-                     
+
                     if (nameDictionary.ContainsKey(node.TargetName))
                     {
                         // If the subVI has already been visited, then don't enqueue it to be visited again.
                         continue;
                     }
-                    
+
                     // The subVI has not been visited. Add the subVI to the queue of VIs to visit.
                     nameDictionary[node.TargetName] = subDfirRoot;
                     rootsToProcess.Enqueue(subDfirRoot);
@@ -266,7 +266,7 @@ namespace ExamplePlugins.ExampleCustomButtonsToolWindow.GenerateDfirButton
                     {
                         continue;
                     }
-                    
+
                     Terminal connectedTerminal = terminal.ConnectedTerminal;
                     var wire = connectedTerminal.ParentNode as Wire;
                     terminal.Disconnect();

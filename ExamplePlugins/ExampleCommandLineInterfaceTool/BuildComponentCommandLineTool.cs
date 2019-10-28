@@ -12,6 +12,7 @@ using NationalInstruments.ComponentEditor.SourceModel;
 using NationalInstruments.Core;
 using NationalInstruments.Core.IO;
 using NationalInstruments.Linking;
+using NationalInstruments.MocCommon.Components.SourceModel;
 using NationalInstruments.Shell;
 using NationalInstruments.SourceModel;
 using NationalInstruments.SourceModel.Envoys;
@@ -80,6 +81,20 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
         protected override void ThrowIfOptionNotSupported()
         {
             ThrowIfProjectPathDoesNotExist();
+            ThrowIfComponentNameDoesNotEndInProperExtension();
+        }
+
+        private void ThrowIfComponentNameDoesNotEndInProperExtension()
+        {
+            if (!ComponentName.EndsWith(ComponentDefinition.FileExtension, StringComparison.InvariantCultureIgnoreCase))
+            {
+                string message = string.Format(
+                    CultureInfo.CurrentCulture,
+                    LocalizedStrings.BuildComponentTool_ComponentNameHasWrongExtension,
+                    ComponentName,
+                    ComponentDefinition.FileExtension);
+                throw new CommandLineOperationException(message, showToolHelp: true);
+            }
         }
 
         private void ThrowIfProjectPathDoesNotExist()
@@ -181,7 +196,9 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
             foreach (var target in targets)
             {
                 ITargetScopeService targetbuildBuildSpecScope = target.GetDefaultBuildSpecScope();
-                IEnumerable<Envoy> matchingComponents = await targetbuildBuildSpecScope.TargetScope.ResolveAsync(new QualifiedName(ComponentName));
+                IEnumerable<Envoy> matchingComponents =
+                    (await targetbuildBuildSpecScope.TargetScope.ResolveAsync(new QualifiedName(ComponentName)))
+                    .Where(envoy => envoy.IsComponentDefinitionEnvoy());
 
                 if (matchingComponents.HasExactly(1))
                 {
@@ -198,7 +215,8 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
         private static ITargetScopeService GetTargetScopeServiceByName(Project project, string targetName)
         {
             IEnumerable<ITargetScopeService> userManagedTargets = project.GetTargets(GetTargetsOptions.ExcludeNonUserManaged);
-            IEnumerable<ITargetScopeService> matchingTargets = userManagedTargets.Where(scope => string.Equals(scope.GetScopeDisplayName(), targetName));
+            IEnumerable<ITargetScopeService> matchingTargets = userManagedTargets
+                .Where(scope => string.Equals(scope.GetScopeDisplayName(), targetName, StringComparison.InvariantCultureIgnoreCase));
             if (matchingTargets.HasMoreThan(1))
             {
                 throw new CommandLineOperationException("Multiple targets matching the provided name were found. This likely indicates a corrupt project file.");
@@ -221,7 +239,9 @@ namespace ExamplePlugins.ExampleCommandLineInterfaceTool
         private async Task<Envoy> ResolveComponentOnTargetAsync(string componentName, ITargetScopeService targetScope)
         {
             ITargetScopeService targetbuildBuildSpecScope = targetScope.GetDefaultBuildSpecScope();
-            IEnumerable<Envoy> matchingComponents = await targetbuildBuildSpecScope.TargetScope.ResolveAsync(new QualifiedName(componentName));
+            IEnumerable<Envoy> matchingComponents =
+                (await targetbuildBuildSpecScope.TargetScope.ResolveAsync(new QualifiedName(componentName)))
+                .Where(envoy => envoy.IsComponentDefinitionEnvoy());
 
             if (matchingComponents.HasMoreThan(1))
             {
